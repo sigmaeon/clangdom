@@ -1,0 +1,4 @@
+bbl_web:
+    resource: "@BBLWebBundle/Resources/config/routing.yml"
+    prefix:   /
+
