@@ -1,0 +1,7 @@
+{% extends '::base.html.twig' %}
+{% block body %} 
+{# hier kommen noch die tags zur formatierung #}
+<div class="header">{% block header %} {# A fixed Header #}{% endblock %} </div>
+<div class="content">{% block content %} {% endblock %}</div>
+<div class="footer"> {% block footer %} {# A fixed Footer #}{% endblock %}</div>
+{% endblock %}

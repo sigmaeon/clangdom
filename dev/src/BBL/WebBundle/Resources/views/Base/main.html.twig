@@ -1,7 +1,4 @@
-{% extends '::base.html.twig' %}
-{% block body %} 
-<div class="header">{% block header %} {% endblock %} </div>
-<div class="content">{% block content %} {% endblock %}</div>
-<div class="footer"> {% block footer %} {% endblock %}</div>
-
-{% endblock %}
+{% extends 'BBLWebBundle:Base:base.html.twig' %}
+{# falls header geaendert werden muss {% block header %} {% endblock %} #}
+{% block content %} {% endblock %}
+{# falls footer geaendert werden muss {% block footer %} {% endblock %} #}
