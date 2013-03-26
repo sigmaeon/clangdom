@@ -1,17 +1,18 @@
 {% extends 'BBLWebBundle:Base:layout.html.twig' %}
-{% block header %} 
-{{ parent() }}
 
-<script>
-	$(function() {
-		$( "#tabs" ).tabs();
-	});
-</script>
- <style type="text/css">
+{% block head %} 
+{{ parent() }}
+	<script>
+		$(function() {
+			$( "#tabs" ).tabs();
+		});
+	</script>
+	<style type="text/css">
 			body { font-family: "HelveticaNeue","Helvetica-Neue", "Helvetica", "Arial", sans-serif; }
 			.big-link { display:block; margin-top: 100px; text-align: center; font-size: 70px; color: #06f; }
-</style>
+	</style>
 {% endblock %} 
+
 {% block content %}
 <!-- Tabs
      ------------------------------------------------------------------------------------------------ -->
@@ -29,6 +30,8 @@
 <!-- Tabs-1
      ------------------------------------------------------------------------------------------------ -->
 		<div id="tabs-1" class="min">
+		{% block pewpew %}
+		{% endblock %}
 		</div>	
 		
 <!-- Tabs-2
