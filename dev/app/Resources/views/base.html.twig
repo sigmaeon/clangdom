@@ -3,15 +3,43 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Clangdom{% endblock %}</title>
-        {% stylesheets 'bundles/bblweb/css/*' filter='cssrewrite' %}
-        	<link rel="stylesheet" href="{{ asset_url }}" />
+<!-- Tabs-->
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+		<script src="http://code.jquery.com/jquery-1.8.0.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<!-- Framework-->
+        {% stylesheets 'bundles/bblweb/css/screen.css' filter='cssrewrite' %}
+        	<link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen, projection"/>
         {% endstylesheets %}
+		
+		 {% stylesheets 'bundles/bblweb/css/print.css' filter='cssrewrite' %}
+        	<link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="print"/>
+        {% endstylesheets %}
+		
+		{% stylesheets 'bundles/bblweb/css/plugins/fancy-type/screen.css.css' filter='cssrewrite' %}
+        	<link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
+        {% endstylesheets %}
+<!-- selfmade style.css-->
+		 {% stylesheets 'bundles/bblweb/css/style.css' filter='cssrewrite' %}
+        	<link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
+        {% endstylesheets %}
+<!-- Popup-->
+		 {% stylesheets 'bundles/bblweb/css/reveal.css' filter='cssrewrite' %}
+        	<link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
+        {% endstylesheets %}
+		{% stylesheets 'bundles/bblweb/js/jquery.reveal.js' filter='cssrewrite' %}
+        	<link  src="{{ asset_url }}" type="text/javascript"/>
+        {% endstylesheets %}
+		
         {% javascripts %}
 		{% endjavascripts %}
+		
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
+	</head>
+	<body>
+		<div class="container">
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
+		</div>
     </body>
 </html>
