@@ -1,0 +1,17 @@
+{% extends 'BBLWebBundle:Base:layout.html.twig' %}
+{# falls header geaendert werden muss {% block header %} {% endblock %} #}
+{% block content %}
+	 <p> ---- Some more Forms go here ----</p>
+	 <form id='signfo'  method="post" >
+		 <p> eMail </p>
+		 <input id="eMail" type="text"> </br>
+		 <p> Passwort </p>
+		  <input id="pwt" type="text"> </br>
+		 <p>  Band </p>
+		 <input id="Band" type="text"> </br>
+		 <p> Genre </p>
+		 <input id="genre" type="text"> </br>
+		 <input type="submit" value="Sign Up">
+	 </form>
+{% endblock %}
+{# falls footer geaendert werden muss {% block footer %} {% endblock %} #}

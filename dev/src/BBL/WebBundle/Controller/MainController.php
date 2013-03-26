@@ -11,9 +11,9 @@ class MainController extends Controller
          return $this->render('BBLWebBundle:Base:main.html.twig');
     }
     
-    public function loginAction()
+    public function regAction()
     {
-    	return $this->render('BBLWebBundle:Base:main.html.twig');
+    	return $this->render('BBLWebBundle:Base:reg.html.twig');
     }
     
     

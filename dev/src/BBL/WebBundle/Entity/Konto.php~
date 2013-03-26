@@ -1,0 +1,42 @@
+<?php
+
+namespace BBL\WebBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Konto
+ *
+ * @ORM\Table(name="konto")
+ * @ORM\Entity
+ */
+class Konto
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idKonto", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idkonto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Name", type="string", length=45, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var \Profil
+     *
+     * @ORM\ManyToOne(targetEntity="Profil")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Profil", referencedColumnName="idProfil")
+     * })
+     */
+    private $profil;
+
+
+}

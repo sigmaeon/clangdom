@@ -2,6 +2,6 @@ bbl_web_homepage:
     pattern:  /
     defaults: { _controller: BBLWebBundle:Main:index }
     
-clangdom_login:
-    pattern: /login
-    defaults: { _controller: BBLWebBundle:Main:login }
+registry:
+    pattern: /reg
+    defaults: { _controller: BBLWebBundle:Main:reg }

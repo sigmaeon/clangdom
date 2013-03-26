@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="User" table="user">
+    <id name="iduser" type="integer" column="idUser">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="email" type="string" column="eMail" length="45" nullable="false"/>
+    <field name="password" type="string" column="Password" length="45" nullable="false"/>
+    <many-to-one field="konto" target-entity="Konto">
+      <join-columns>
+        <join-column name="Konto" referenced-column-name="idKonto"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
