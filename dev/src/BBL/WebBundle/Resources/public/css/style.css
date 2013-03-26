@@ -1,0 +1,49 @@
+body{
+background-image:url('../stage.jpg');
+background-repeat:no-repeat;
+background-size:100% 100%;
+}
+
+h1{
+    color: black;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+
+}
+
+hr{
+color:black;
+}
+
+ul{
+list-style-type:none;
+}
+
+#header{
+height:155px;
+}
+
+#content{
+background:white;
+height:450px;
+margin-top:12px;
+}
+
+#footer{
+background-image:url('../Bilder/header.jpg');
+width:950px;
+height:161px;
+}
+
+.abstand{
+margin:20px;
+}
+
+.transparent {
+	zoom: 1;
+	filter: alpha(opacity=50);
+	opacity: 0.5;
+}
+
+.min{
+min-height:450px;
+}
