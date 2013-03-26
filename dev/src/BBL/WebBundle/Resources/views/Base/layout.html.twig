@@ -1,15 +1,31 @@
 {% extends '::base.html.twig' %}
 {% block body %} 
-
+	
 	{# hier kommen noch die tags zur formatierung #}
-	<div class="header">{% block header %} 
-		<h1>Hallo ich bin ein header{# A fixed Header #}</h1>
-	{% endblock %} </div>
+	<div id="header" class="span-24 transparent">	
+		{% block header %} 	
+			<div id="upheader">
+				<img src="{{ asset('bundles/bblweb/images/HeaderUPPER.jpg') }}"  width="950" height="60">
+			</div>
+			<div id="midheader">
+				<img src="Bilder/HEADERDOWNER.jpg" width="574" height="42"><a href="#" data-reveal-id="myModal"  data-animation="fade"><img src="Bilder/JOIN.jpg" width="130" height="42"></a><a href="#" data-reveal-id="myModal1"  data-animation="fade"><img src="Bilder/LOGIN.jpg" width="88" height="42"></a><img src="Bilder/Bilder/side1_05.jpg" width="158" height="42">
+			</div>
+			<div id="downheader">
+				<img src="Bilder/HEADERDOWNER-06.jpg" width="568" height="59"><img src="Bilder/BELOWBUTT.jpg" width="224" height="59"><img src="Bilder/Bilder/side2_08.jpg" width="158" height="59">
+			</div>
+			
+		{% endblock %} 
+	</div>
 	
-	<div class="content">{% block content %} 
-	{% endblock %}</div>
+	<div id="content">
+		{% block content %} 
+		{% endblock %}
+	</div>
 	
-	<div class="footer"> {% block footer %} <h1>Hallo ich bin ein footer</h1>{# A fixed Footer #}
-	{% endblock %}</div>
+	<div id="footer" class="span-24 transparent"> 
+		{% block footer %} 
+			<h1> THIS IS OUR AWESOME FOOTER!!!!!</h1>
+		{% endblock %}
+	</div>
 	
 {% endblock %}

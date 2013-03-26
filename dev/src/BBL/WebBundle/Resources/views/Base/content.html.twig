@@ -1,5 +1,19 @@
 {% extends '::base.html.twig' %}
 {% block body %} 
  {# hier kommen noch die tags zur formatierung #}
-<div class="content">{% block content %} {% endblock %}</div> 
+	<div id="content">
+		{% block content %} 
+		<div class="abstand">
+		<div class="span-22 prepend-2 last">	<h3 class="alt">{{ title }}</h3></div>
+			<ul>
+				<!-- title: Überschrift des jeweiligen Tabs(Bands, Events, Forum)-->
+				<div class="span-20 prepend-2 box"><li><div class="span-2 colborder"><img src="Bilder/camelized.jpg" width="80" height="80"></div> 
+				<!-- name: Band bzw. Event name, info: Band bzw. Event information -->
+				<div class="span-6 last alt"><a href="https://www.facebook.com/Camelized?fref=ts" target="_blank"><h3> {{ name }}</h3></a><br />{{ info }}<br /></div></li></div><hr> 
+				
+			</ul>
+			
+		</div>
+		{% endblock %}
+	</div> 
 {% endblock %}
