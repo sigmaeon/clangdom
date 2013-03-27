@@ -1,5 +1,18 @@
 {% extends 'BBLWebBundle:Base:layout.html.twig' %}
-{# falls header geaendert werden muss {% block header %} {% endblock %} #}
+
+{% block head %} 
+{{ parent() }}
+	<script>
+		$(function() {
+			$( "#tabs" ).tabs();
+		});
+	</script>
+	<style type="text/css">
+			body { font-family: "HelveticaNeue","Helvetica-Neue", "Helvetica", "Arial", sans-serif; }
+			.big-link { display:block; margin-top: 100px; text-align: center; font-size: 70px; color: #06f; }
+	</style>
+{% endblock %} 
+
 {% block content %}
 <!-- Tabs
      ------------------------------------------------------------------------------------------------ -->
@@ -40,4 +53,4 @@
 {% block javascripts %}
 <script type="text/javascript" src="{{ asset('bundles/bblweb/js/test.js') }}"></script> 
 {% endblock %}
-{# falls footer geaendert werden muss {% block footer %} {% endblock %} #}
+

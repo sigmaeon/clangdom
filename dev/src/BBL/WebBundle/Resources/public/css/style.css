@@ -1,5 +1,5 @@
 body{
-background-image:url('../stage.jpg');
+background-image:url('../images/stage.jpg');
 background-repeat:no-repeat;
 background-size:100% 100%;
 }
@@ -18,7 +18,7 @@ ul{
 list-style-type:none;
 }
 
-#header{
+#header1{
 height:155px;
 }
 
@@ -29,7 +29,7 @@ margin-top:12px;
 }
 
 #footer{
-background-image:url('../Bilder/header.jpg');
+background-image:url('../images/header.jpg');
 width:950px;
 height:161px;
 }
