@@ -29,20 +29,28 @@
 		 {% stylesheets 'bundles/bblweb/css/reveal.css' filter='cssrewrite' %}
         	<link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
         {% endstylesheets %}
-		
-		{% javascripts 'bundles/bblweb/js/jquery.reveal.js' filter='cssrewrite' %}
-        	<link  src="{{ asset_url }}" type="text/javascript"/>
+		<!-- Das ist die js file für die popups wenn diese aktiviert ist funktionieren die Tabs nicht mehr, 
+			also wenn arbeiten an den tabs vorgenommen werden sollen bitte dieses javascript auskommentieren.-->
+		{% javascripts 'bundles/bblweb/js/jquery.reveal.js' %}
+        	<script src="{{ asset_url }}" type="text/javascript" />
         {% endjavascripts %}
 		
        
 		
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+		
+		<style type="text/css">
+			body { font-family: "HelveticaNeue","Helvetica-Neue", "Helvetica", "Arial", sans-serif; }
+			.big-link { display:block; margin-top: 100px; text-align: center; font-size: 70px; color: #06f; }
+		</style>
 {% endblock %}
 	</head>
 	<body>
 		<div class="container">
         {% block body %}
+
 		{% endblock %}
-		</div>
+		</div>	
+	
     </body>
 </html>
