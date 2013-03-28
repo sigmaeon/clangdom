@@ -17,7 +17,7 @@
         	<link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="print"/>
         {% endstylesheets %}
 		
-		{% stylesheets 'bundles/bblweb/css/plugins/fancy-type/screen.css.css' filter='cssrewrite' %}
+		{% stylesheets 'bundles/bblweb/css/plugins/fancy-type/screen.css' filter='cssrewrite' %}
         	<link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
         {% endstylesheets %}
 <!-- selfmade style.css-->
@@ -31,9 +31,9 @@
         {% endstylesheets %}
 		<!-- Das ist die js file für die popups wenn diese aktiviert ist funktionieren die Tabs nicht mehr, 
 			also wenn arbeiten an den tabs vorgenommen werden sollen bitte dieses javascript auskommentieren.-->
-		{% javascripts 'bundles/bblweb/js/jquery.reveal.js' %}
+		{# {% javascripts 'bundles/bblweb/js/jquery.reveal.js' %}
         	<script src="{{ asset_url }}" type="text/javascript" />
-        {% endjavascripts %}
+        {% endjavascripts %} #}
 		
        
 		
