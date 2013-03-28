@@ -31,9 +31,9 @@
         {% endstylesheets %}
 		<!-- Das ist die js file für die popups wenn diese aktiviert ist funktionieren die Tabs nicht mehr, 
 			also wenn arbeiten an den tabs vorgenommen werden sollen bitte dieses javascript auskommentieren.-->
-		{# {% javascripts 'bundles/bblweb/js/jquery.reveal.js' %}
-        	<script src="{{ asset_url }}" type="text/javascript" />
-        {% endjavascripts %} #}
+		{% javascripts '@BBLWebBundle/Resources/public/js/*' %}
+        	<link rel="stylesheet" href="{{ asset_url }}" />
+        {% endjavascripts %} 
 		
        
 		
