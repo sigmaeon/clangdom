@@ -4,10 +4,10 @@
 	{% block head %}
         <meta charset="UTF-8" />
         <title>{% block title %}Clangdom{% endblock %}</title>
-<!-- Tabs-->
+ <!-- Jquery-->
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
 		<script src="http://code.jquery.com/jquery-1.8.0.js"></script>
-		<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script> 
 <!-- Framework-->
         {% stylesheets 'bundles/bblweb/css/screen.css' filter='cssrewrite' %}
         	<link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen, projection"/>
@@ -44,5 +44,8 @@
         {% block body %}
 		{% endblock %}
 		</div>
+		<script>
+		{% block javascript %} {% endblock %}
+		</script>
     </body>
 </html>
