@@ -50,9 +50,14 @@
         {% block body %}
 
 		{% endblock %}
-		</div>	
+<<<<<<< HEAD
+		</div>
 		<script>
 		{% block javascript %} {% endblock %}
 		</script>
+=======
+		</div>	
+	
+>>>>>>> 0dddfefd55156d2208ec7c30bcd1976e32fdef71
     </body>
 </html>

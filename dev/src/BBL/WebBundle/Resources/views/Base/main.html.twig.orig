@@ -2,6 +2,18 @@
 
 {% block head %} 
 {{ parent() }}
+<<<<<<< HEAD
+	<style type="text/css">
+			body { font-family: "HelveticaNeue","Helvetica-Neue", "Helvetica", "Arial", sans-serif; }
+			.big-link { display:block; margin-top: 100px; text-align: center; font-size: 70px; color: #06f; }
+	</style>
+=======
+	<script>
+		$(function() {
+			$( "#tabs" ).tabs();
+		});
+	</script>
+>>>>>>> 0dddfefd55156d2208ec7c30bcd1976e32fdef71
 {% endblock %} 
 
 {% block content %}

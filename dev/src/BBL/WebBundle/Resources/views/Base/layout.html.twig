@@ -1,26 +1,24 @@
 {% extends '::base.html.twig' %}
 {% block body %} 
-	<div id="header" class="span-24 transparent">	
-			<div id="upheader">
-				<img src="{{ asset('bundles/bblweb/images/HeaderUPPER.jpg') }}"/>
-			</div>
-			<div id="midheader">
-				<img src="{{ asset('bundles/bblweb/images/HEADERDOWNER.jpg') }}"><a href="#" data-reveal-id="myModal"  data-animation="fade"><img src="{{ asset('bundles/bblweb/images/JOIN.jpg') }}" width="130" height="42"></a><a href="#" data-reveal-id="myModal1"  data-animation="fade"><img src="{{ asset('bundles/bblweb/images/LOGIN.jpg') }}" width="88" height="42"></a><img src="{{ asset('bundles/bblweb/images/Bilder/side1_05.jpg') }}" width="158" height="42">
-			</div>
-			<div id="downheader">
-				<img src="{{ asset('bundles/bblweb/images/HEADERDOWNER-06.jpg') }}"><img src="{{ asset('bundles/bblweb/images/BELOWBUTT.jpg') }}" width="224" height="59"><img src="{{ asset('bundles/bblweb/images/Bilder/side2_08.jpg') }}" width="158" height="59">
-			</div>
-			
+	<div id="header" class="span-24">
+		<img src="{{ asset('bundles/bblweb/images/topheader.jpg') }}" width="731" height="35" alt="topheader"><a href="#" data-reveal-id="myModal"  data-animation="fade"><img src="{{ asset('bundles/bblweb/images/join.jpg') }}" width="139" height="35" alt="join"></a><img src="{{ asset('bundles/bblweb/images/space.jpg') }}" width="8" height="35"><a href="#" data-reveal-id="myModal1"  data-animation="fade"><img src="{{ asset('bundles/bblweb/images/login.jpg') }}" width="72" height="35" alt="login"></a>
+		<div class="transparent"><img src="{{ asset('bundles/bblweb/images/gapup.jpg') }}" width="950" height="19"></div>
+		<img src="{{ asset('bundles/bblweb/images/logo.jpg') }}" width="950" height="53" alt="clangdom">
+		<div class="transparent"><img src="{{ asset('bundles/bblweb/images/gapdown.jpg') }}" width="950" height="18" alt="gapdonw"></div>
+		<img src="{{ asset('bundles/bblweb/images/navigationbar.jpg') }}" width="950" height="70" alt="navigation">	
 	</div>
 	
 	<div id="content">
 		{% block content %} 
-		
 		{% endblock %}
+
 	</div>
 	
 	<div id="footer" class="span-24 transparent"> 
 
 			<h1> THIS IS OUR AWESOME FOOTER!!!!!</h1>
 	</div>
+	<!-- includes the login and join popup -->
+	{% include 'BBLWebBundle:Base:join.html.twig' %}
+	{% include 'BBLWebBundle:Base:login.html.twig' %}
 {% endblock %}
