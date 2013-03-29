@@ -1,5 +1,5 @@
 body{
-background-image:url('../images/stage.jpg');
+background-image:url('../../bundles/bblweb/images/stage.jpg');
 background-repeat:no-repeat;
 background-size:100% 100%;
 }
@@ -29,7 +29,7 @@ margin-top:12px;
 }
 
 #footer{
-background-image:url('../images/header.jpg');
+background-image:url('../../bundles/bblweb/images/header.jpg');
 width:950px;
 height:161px;
 }

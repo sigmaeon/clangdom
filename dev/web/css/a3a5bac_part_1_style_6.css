@@ -1,5 +1,5 @@
 body{
-background-image:url('../images/stage.jpg');
+background-image:url('../../bundles/bblweb/stage.jpg');
 background-repeat:no-repeat;
 background-size:100% 100%;
 }
@@ -18,7 +18,7 @@ ul{
 list-style-type:none;
 }
 
-#header1{
+#header{
 height:155px;
 }
 
@@ -29,14 +29,9 @@ margin-top:12px;
 }
 
 #footer{
-background-image:url('../images/header.jpg');
+background-image:url('../../bundles/bblweb/Bilder/header.jpg');
 width:950px;
 height:161px;
-}
-
-#tabs{
-margin-top:50px;
-width:943px;
 }
 
 .abstand{

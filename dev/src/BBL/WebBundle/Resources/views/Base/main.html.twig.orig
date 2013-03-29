@@ -2,9 +2,22 @@
 
 {% block head %} 
 {{ parent() }}
+<<<<<<< HEAD
+	<style type="text/css">
+			body { font-family: "HelveticaNeue","Helvetica-Neue", "Helvetica", "Arial", sans-serif; }
+			.big-link { display:block; margin-top: 100px; text-align: center; font-size: 70px; color: #06f; }
+	</style>
+=======
+	<script>
+		$(function() {
+			$( "#tabs" ).tabs();
+		});
+	</script>
+>>>>>>> 0dddfefd55156d2208ec7c30bcd1976e32fdef71
 {% endblock %} 
 
 {% block content %}
+{{ parent() }}
 <!-- Tabs
      ------------------------------------------------------------------------------------------------ -->
 	 <!-- main.twig -->
@@ -39,10 +52,6 @@
 		</div>
 		
 	</div>
-	<button onclick="testfunc()" id="yobut"> Yoo </button>
-{% endblock %}
-{% block javascripts %}
-<script type="text/javascript" src="{{ asset('bundles/bblweb/js/test.js') }}"></script> 
 {% endblock %}
 {% block javascript %}
 		$(document).ready(function(){
