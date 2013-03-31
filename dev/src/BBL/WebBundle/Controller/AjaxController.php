@@ -10,4 +10,10 @@ class DefaultController extends Controller
     {
         return $this->render('BBLWebBundle:Base:main.html.twig');
     }
+    
+    public function loadAction()
+    {
+    	
+    	return $this->render('BBLWebBundle:Base:main.html.twig');
+    }
 }
