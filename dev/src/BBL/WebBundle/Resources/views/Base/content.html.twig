@@ -1,9 +1,11 @@
 {% extends '::base.html.twig' %}
- {# hier kommen noch die tags zur formatierung #}
+{% block body %}
+{# hier kommen noch die tags zur formatierung #}
 	<div id="content">
 		{% block pewpew %} 
 		<div class="abstand">
 		<div class="span-22 prepend-2 last">	<h3 class="alt">{{ title }}</h3></div>
+			
 			<ul>
 				<!-- title: Überschrift des jeweiligen Tabs(Bands, Events, Forum)-->
 				<div class="span-20 prepend-2 box"><li><div class="span-2 colborder"><img src="Bilder/camelized.jpg" width="80" height="80"></div> 
@@ -15,3 +17,4 @@
 		</div>
 		{% endblock %}
 	</div> 
+{% endblock %}

@@ -42,7 +42,15 @@
 {% endblock %}
 {% block javascript %}
 		$(document).ready(function(){
-			$( "#tabs" ).tabs();
+			$( "#tabs" ).tabs({activate: function( event, ui) {
+					var url = "{{ path('ajax_load') }}";
+					 $.post(url,{typ: "Plan"}, 
+				 	 function(data){
+				 			ui.newTab.html(data);
+				       });
+		        }
+			});
 		});
+		
 {% endblock %}
 
