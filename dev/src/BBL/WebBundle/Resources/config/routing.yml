@@ -5,3 +5,7 @@ bbl_web_homepage:
 registry:
     pattern: /reg
     defaults: { _controller: BBLWebBundle:Main:reg }
+    
+ajax_load:
+  pattern: /load
+  defaults: { _controller: BBLWebBundle:Ajax:load }
