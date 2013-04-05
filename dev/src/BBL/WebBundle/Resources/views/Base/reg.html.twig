@@ -1,17 +1,28 @@
-{% extends 'BBLWebBundle:Base:layout.html.twig' %}
-{# falls header geaendert werden muss {% block header %} {% endblock %} #}
-{% block content %}
-	 <p> ---- Some more Forms go here ----</p>
-	 <form id='signfo'  method="post" >
-		 <p> eMail </p>
-		 <input id="eMail" type="text"> </br>
-		 <p> Passwort </p>
-		  <input id="pwt" type="text"> </br>
-		 <p>  Band </p>
-		 <input id="Band" type="text"> </br>
-		 <p> Genre </p>
-		 <input id="genre" type="text"> </br>
-		 <input type="submit" value="Sign Up">
-	 </form>
+﻿{% extends 'BBLWebBundle:Base:layout.html.twig' %}
+
+{% block head %} 
+{{ parent() }}
+{% endblock %} 
+
+{% block content %}	
+	
+	<div id="whitebox" class="span-24">
+		<div class="abstand">
+			<h2 class="alt">Create your account!</h2>
+			<hr>
+			
+			<div class="span-4 prepend-2">Name:</div>
+			<div class="span-16 last"><input type="text" name="name" method="post"></div><br />
+			<div class="span-4 prepend-2">Email:</div>
+			<div class="span-16 last"><input type="text" name="email_1" method="post"></div><br />
+			<div class="span-4 prepend-2">Confirm email:</div>
+			<div class="span-16 last"><input type="text" name="email_2" method="post"></div><br />
+			<div class="span-4 prepend-2">Password:</div>
+			<div class="span-16 last"><input type="text" name="password_1" method="post"></div><br />
+			<div class="span-4 prepend-2">Confirm password:</div>
+			<div class="span-16 last"><input type="text" name="password_2" method="post"></div><br />
+			<div class="span-22 prepend-2"><input type="submit" name="submit" value="SIGNUP"></div>
+		</div>
+	</div>
+	
 {% endblock %}
-{# falls footer geaendert werden muss {% block footer %} {% endblock %} #}

@@ -1,11 +1,22 @@
-﻿		<div id="myModal1" class="reveal-modal span-24">
-			<h3 class="alt">Log in to your CLANGDOM account here. </h3>
+﻿{% extends 'BBLWebBundle:Base:layout.html.twig' %}
+
+{% block head %} 
+{{ parent() }}
+{% endblock %} 
+
+{% block content %}	
+	
+	<div id="whitebox" class="span-24">
+		<div class="abstand">
+			<h2 class="alt">Create your account!</h2>
 			<hr>
-			<p>
-			Email or Nick: <input type="text" name="login_name" method="post"><br />
-			Password: <input type="text" name="login_password" method="post">Forgot your password? <a href="#"> Retrieve here.</a><br />
-			<input type="checkbox" name="remember" value="remember">Remember me.
-			<input type="submit" name="submit" value="LOGIN">
-			<a class="close-reveal-modal">&#215;</a>
-			</p>
+			
+			<div class="span-4 prepend-2">Email or Nick:</div>
+			<div class="span-16 last"><input type="text" name="name" method="post"></div><br />
+			<div class="span-4 prepend-2">Password:</div>
+			<div class="span-16 last"><input type="text" name="email_1" method="post"></div><br />
+			<div class="span-22 prepend-2"><input type="submit" name="submit" value="LOGIN"></div>
 		</div>
+	</div>
+	
+{% endblock %}
