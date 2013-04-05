@@ -17,4 +17,9 @@ class MainController extends Controller
     }
     
     
+    public function loginAction()
+    {
+    	return $this->render('BBLWebBundle:Base:login.html.twig');
+    }
+    
 }
