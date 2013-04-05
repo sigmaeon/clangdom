@@ -1,7 +1,7 @@
 {% extends '::base.html.twig' %}
 {% block body %} 
 	<div id="header" class="span-24">
-		<img src="{{ asset('bundles/bblweb/images/topheader.jpg') }}" width="731" height="35" alt="topheader"><a href="{{ path('login.html.twig')}}"><img src="{{ asset('bundles/bblweb/images/join.jpg') }}" width="139" height="35" alt="join"></a><img src="{{ asset('bundles/bblweb/images/space.jpg') }}" width="8" height="35"><a href="{{ path('registry.html.twig') }}"><img src="{{ asset('bundles/bblweb/images/login.jpg') }}" width="72" height="35" alt="login"></a>
+		<img src="{{ asset('bundles/bblweb/images/topheader.jpg') }}" width="731" height="35" alt="topheader"><a href="{{ path('login')}}"><img src="{{ asset('bundles/bblweb/images/join.jpg') }}" width="139" height="35" alt="join"></a><img src="{{ asset('bundles/bblweb/images/space.jpg') }}" width="8" height="35"><a href="{{ path('registry') }}"><img src="{{ asset('bundles/bblweb/images/login.jpg') }}" width="72" height="35" alt="login"></a>
 		<div class="transparent"><img src="{{ asset('bundles/bblweb/images/gapup.jpg') }}" width="950" height="19"></div>
 		<img src="{{ asset('bundles/bblweb/images/logo.jpg') }}" width="950" height="53" alt="clangdom">
 		<div class="transparent"><img src="{{ asset('bundles/bblweb/images/gapdown.jpg') }}" width="950" height="18" alt="gapdonw"></div>
