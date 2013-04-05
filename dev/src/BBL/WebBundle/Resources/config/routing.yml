@@ -9,3 +9,7 @@ registry:
 ajax_load:
   pattern: /load
   defaults: { _controller: BBLWebBundle:Ajax:load }
+  
+login:
+  pattern: /login
+  defaults: { _controller: BBLWebBundle:Main:login}
