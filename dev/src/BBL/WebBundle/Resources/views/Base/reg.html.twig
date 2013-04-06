@@ -25,6 +25,7 @@
 {% block javascript %}
 <script>
 $(document).ready(function(){
+	hideLogos();
 	var val = false;
 	if(!val) $("#subbut").prop("disabled", true).addClass("ui-state-disabled");
 	
@@ -37,6 +38,13 @@ $(document).ready(function(){
   	    'json' );*/
 });
 
+function hideLogos(){
+ $("#topheader").attr('width', '960');
+ $("#logLogo").remove();
+ $("#regLogo").remove();
+ $("#gap1").remove();
+} 
+
 /*function ceckval(){
 	if(
 	}*/
@@ -44,3 +52,4 @@ $(document).ready(function(){
 {% endblock %}
 
 {% endblock %}
+

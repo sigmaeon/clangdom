@@ -1,9 +1,9 @@
 {% extends '::base.html.twig' %}
 {% block body %} 
 	<div id="header" class="span-24">
-		<img src="{{ asset('bundles/bblweb/images/topheader.jpg') }}" width="731" height="35" alt="topheader"><a href="#" data-reveal-id="logModal" data-animation="fade" id="logLogo"><img src="{{ asset('bundles/bblweb/images/login.jpg') }}" width="72" height="35" alt="login"></a><img src="{{ asset('bundles/bblweb/images/space.jpg') }}" width="8" height="35"><a href="{{ path('registry') }}" id="regLogo"><img src="{{ asset('bundles/bblweb/images/join.jpg') }}" width="139" height="35" alt="join"></a>
+		<img src="{{ asset('bundles/bblweb/images/topheader.jpg') }}" width="731" height="35" id="topheader" alt="topheader"><a href="#" data-reveal-id="logModal" data-animation="fade" id="logLogo"><img src="{{ asset('bundles/bblweb/images/login.jpg') }}" width="72" height="35" alt="login"></a><img src="{{ asset('bundles/bblweb/images/space.jpg') }}" width="8" height="35" id="gap1"><a href="{{ path('registry') }}" id="regLogo"><img src="{{ asset('bundles/bblweb/images/join.jpg') }}" width="139" height="35" alt="join"></a>
 		<div class="transparent"><img src="{{ asset('bundles/bblweb/images/gapup.jpg') }}" width="950" height="19"></div>
-		<img src="{{ asset('bundles/bblweb/images/logo.jpg') }}" width="950" height="53" alt="clangdom">
+		<a href="{{ path('bbl_web_homepage') }}"><img src="{{ asset('bundles/bblweb/images/logo.jpg') }}" width="950" height="53" alt="clangdom"></a>
 		<div class="transparent"><img src="{{ asset('bundles/bblweb/images/gapdown.jpg') }}" width="950" height="18" alt="gapdonw"></div>
 		<img src="{{ asset('bundles/bblweb/images/navigationbar.jpg') }}" width="950" height="70" alt="navigation">	
 	</div>
@@ -32,5 +32,3 @@
 			</p>
 		</div>
 {% endblock %}
-
-
