@@ -12,9 +12,9 @@
 			<div class="span-4 prepend-2">Email:</div>
 			<div class="span-16 last"><input type="text" name="email_1" method="post"></div><br />
 			<div class="span-4 prepend-2">Confirm email:</div>
-			<div class="span-16 last"><input type="text" name="email_2" method="post"></div><br />
+			<div class="span-16 last"><input type="password" name="email_2" method="post"></div><br />
 			<div class="span-4 prepend-2">Password:</div>
-			<div class="span-16 last"><input type="text" name="password_1" method="post"></div><br />
+			<div class="span-16 last"><input type="password" name="password_1" method="post"></div><br />
 			<div class="span-4 prepend-2">Confirm password:</div>
 			<div class="span-16 last"><input type="text" name="password_2" method="post"></div><br />
 			<div class="span-22 prepend-2"><input type="submit" name="submit" value="SIGNUP" id="subbut"></div>
@@ -39,15 +39,16 @@ $(document).ready(function(){
 });
 
 function hideLogos(){
- $("#topheader").attr('width', '960');
+ $("#topheader").attr('width', '950');
  $("#logLogo").remove();
  $("#regLogo").remove();
  $("#gap1").remove();
 } 
 
-/*function ceckval(){
-	if(
-	}*/
+// function ceckval(){
+	//if(
+//	}  
+	
 </script>
 {% endblock %}
 

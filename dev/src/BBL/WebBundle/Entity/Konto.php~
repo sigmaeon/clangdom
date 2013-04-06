@@ -29,6 +29,13 @@ class Konto
     private $name;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="idkonto")
+     */
+    private $iduser;
+
+    /**
      * @var \Profil
      *
      * @ORM\ManyToOne(targetEntity="Profil")
@@ -38,5 +45,12 @@ class Konto
      */
     private $profil;
 
-
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->iduser = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
 }

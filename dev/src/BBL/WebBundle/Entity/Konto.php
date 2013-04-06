@@ -29,6 +29,13 @@ class Konto
     private $name;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="idkonto")
+     */
+    private $iduser;
+
+    /**
      * @var \Profil
      *
      * @ORM\ManyToOne(targetEntity="Profil")
@@ -38,7 +45,14 @@ class Konto
      */
     private $profil;
 
-
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->iduser = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
 
     /**
      * Get idkonto
@@ -71,6 +85,39 @@ class Konto
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Add iduser
+     *
+     * @param \BBL\WebBundle\Entity\User $iduser
+     * @return Konto
+     */
+    public function addIduser(\BBL\WebBundle\Entity\User $iduser)
+    {
+        $this->iduser[] = $iduser;
+    
+        return $this;
+    }
+
+    /**
+     * Remove iduser
+     *
+     * @param \BBL\WebBundle\Entity\User $iduser
+     */
+    public function removeIduser(\BBL\WebBundle\Entity\User $iduser)
+    {
+        $this->iduser->removeElement($iduser);
+    }
+
+    /**
+     * Get iduser
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getIduser()
+    {
+        return $this->iduser;
     }
 
     /**

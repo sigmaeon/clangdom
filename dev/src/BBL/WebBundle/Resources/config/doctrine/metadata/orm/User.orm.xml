@@ -6,10 +6,15 @@
     </id>
     <field name="email" type="string" column="eMail" length="45" nullable="false"/>
     <field name="password" type="string" column="Password" length="45" nullable="false"/>
-    <many-to-one field="konto" target-entity="Konto">
-      <join-columns>
-        <join-column name="Konto" referenced-column-name="idKonto"/>
-      </join-columns>
-    </many-to-one>
+    <many-to-many field="idkonto" target-entity="Konto" inversed-by="iduser">
+      <join-table name="user_has_konto">
+        <join-columns>
+          <join-column name="idUser" referenced-column-name="idUser"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="idKonto" referenced-column-name="idKonto"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
   </entity>
 </doctrine-mapping>

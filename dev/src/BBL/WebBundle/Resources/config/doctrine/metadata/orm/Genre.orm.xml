@@ -5,7 +5,7 @@
       <generator strategy="IDENTITY"/>
     </id>
     <field name="name" type="string" column="Name" length="45" nullable="false"/>
-    <many-to-one field="konto" target-entity="Konto" />
+    <many-to-one field="konto" target-entity="Konto">
       <join-columns>
         <join-column name="Konto" referenced-column-name="idKonto"/>
       </join-columns>
