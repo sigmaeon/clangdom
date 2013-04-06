@@ -25,4 +25,10 @@ class AjaxController extends Controller
     	return $this->render('BBLWebBundle:Base:content.html.twig', 
     							array('objects' => $objects, 'title' => "A band of Omas"));
     }
+    
+    
+    public function loginAction()
+    {
+    	return $this->render('BBLWebBundle:Base:login.html.twig');
+    }
 }

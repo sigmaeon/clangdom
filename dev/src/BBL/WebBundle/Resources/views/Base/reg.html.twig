@@ -17,8 +17,26 @@
 			<div class="span-16 last"><input type="text" name="password_1" method="post"></div><br />
 			<div class="span-4 prepend-2">Confirm password:</div>
 			<div class="span-16 last"><input type="text" name="password_2" method="post"></div><br />
-			<div class="span-22 prepend-2"><input type="submit" name="submit" value="SIGNUP"></div>
+			<div class="span-22 prepend-2"><input type="submit" name="submit" value="SIGNUP" id="subbut"></div>
 		</div>
 	</div>
 	
+	
+{% block javascript %}
+<script>
+$(document).ready(function(){
+	var val = false;
+	if(!val) $("#subbut").prop("disabled", true).addClass("ui-state-disabled");
+	
+	   var passhash = CryptoJS.MD5(password).toString();
+
+ 	  /* $.post(
+  	    ', 
+  	    { user: username, pass: passhash },
+  	    onLogin, 
+  	    'json' );*/
+});
+</script>
+{% endblock %}
+
 {% endblock %}
