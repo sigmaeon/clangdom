@@ -29,6 +29,13 @@ class Konto
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="Genre", type="string", length=45, nullable=false)
+     */
+    private $genre;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="User", mappedBy="idkonto")

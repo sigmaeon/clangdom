@@ -8,15 +8,15 @@
 			<hr>
 			
 			<div class="span-4 prepend-2">Name:</div>
-			<div class="span-16 last"><input type="text" name="name" method="post"></div><br />
+			<div class="span-16 last"><input type="text" name="name" id="regName"></div><br />
+			<div class="span-4 prepend-2">Genre:</div>
+			<div class="span-16 last"><input type="text" name="genre" id="regGenre"></div><br />
 			<div class="span-4 prepend-2">Email:</div>
-			<div class="span-16 last"><input type="text" name="email_1" method="post"></div><br />
-			<div class="span-4 prepend-2">Confirm email:</div>
-			<div class="span-16 last"><input type="password" name="email_2" method="post"></div><br />
+			<div class="span-16 last"><input type="text" name="email" id="regMail"></div><br />
 			<div class="span-4 prepend-2">Password:</div>
-			<div class="span-16 last"><input type="password" name="password_1" method="post"></div><br />
+			<div class="span-16 last"><input type="password" name="password_1" id="regPass1"></div><br />
 			<div class="span-4 prepend-2">Confirm password:</div>
-			<div class="span-16 last"><input type="text" name="password_2" method="post"></div><br />
+			<div class="span-16 last"><input type="password" name="password_2" id="regPass2"></div><br />
 			<div class="span-22 prepend-2"><input type="submit" name="submit" value="SIGNUP" id="subbut"></div>
 		</div>
 	</div>
@@ -24,18 +24,18 @@
 	
 {% block javascript %}
 <script>
+var val = false;
 $(document).ready(function(){
 	hideLogos();
-	var val = false;
 	if(!val) $("#subbut").prop("disabled", true).addClass("ui-state-disabled");
+	$("#regMail").focusout(checkval());
 	
 	   var passhash = CryptoJS.MD5(password).toString();
 
  	  /* $.post(
   	    ', 
   	    { user: username, pass: passhash },
-  	    onLogin, 
-  	    'json' );*/
+  	    onLogin,   'json' );*/
 });
 
 function hideLogos(){
@@ -45,9 +45,10 @@ function hideLogos(){
  $("#gap1").remove();
 } 
 
-// function ceckval(){
-	//if(
-//	}  
+function checkval(){
+	if($("#regMail").val().indexOf("@") >= 0) val = true;
+	if(val) $("#subbut").removeProp("disabled").removeClass("ui-state-disabled");
+	}  
 	
 </script>
 {% endblock %}

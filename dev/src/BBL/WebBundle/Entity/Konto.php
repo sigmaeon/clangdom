@@ -29,6 +29,13 @@ class Konto
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="Genre", type="string", length=45, nullable=false)
+     */
+    private $genre;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="User", mappedBy="idkonto")
@@ -85,6 +92,29 @@ class Konto
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set genre
+     *
+     * @param string $genre
+     * @return Konto
+     */
+    public function setGenre($genre)
+    {
+        $this->genre = $genre;
+    
+        return $this;
+    }
+
+    /**
+     * Get genre
+     *
+     * @return string 
+     */
+    public function getGenre()
+    {
+        return $this->genre;
     }
 
     /**

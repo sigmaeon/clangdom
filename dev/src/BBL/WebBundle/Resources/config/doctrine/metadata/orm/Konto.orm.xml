@@ -5,11 +5,12 @@
       <generator strategy="IDENTITY"/>
     </id>
     <field name="name" type="string" column="Name" length="45" nullable="false"/>
-    <one-to-one field="profil" target-entity="Profil">
+    <field name="genre" type="string" column="Genre" length="45" nullable="false"/>
+    <many-to-one field="profil" target-entity="Profil">
       <join-columns>
         <join-column name="Profil" referenced-column-name="idProfil"/>
       </join-columns>
-    </one-to-one>
+    </many-to-one>
     <many-to-many field="iduser" target-entity="User" mapped-by="idkonto"/>
   </entity>
 </doctrine-mapping>
