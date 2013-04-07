@@ -36,14 +36,26 @@ class User
     private $password;
 
     /**
-     * @var \Konto
+     * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToOne(targetEntity="Konto")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Konto", referencedColumnName="idKonto")
-     * })
+     * @ORM\ManyToMany(targetEntity="Konto", inversedBy="iduser")
+     * @ORM\JoinTable(name="user_has_konto",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="idUser", referencedColumnName="idUser")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="idKonto", referencedColumnName="idKonto")
+     *   }
+     * )
      */
-    private $konto;
+    private $idkonto;
 
-
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idkonto = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
 }

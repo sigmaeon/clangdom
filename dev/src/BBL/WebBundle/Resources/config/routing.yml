@@ -3,9 +3,13 @@ bbl_web_homepage:
     defaults: { _controller: BBLWebBundle:Main:index }
     
 registry:
-    pattern: /reg
+    pattern: /signup
     defaults: { _controller: BBLWebBundle:Main:reg }
     
 ajax_load:
   pattern: /load
   defaults: { _controller: BBLWebBundle:Ajax:load }
+  
+login:
+  pattern: /login
+  defaults: { _controller: BBLWebBundle:Ajax:login}

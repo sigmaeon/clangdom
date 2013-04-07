@@ -36,16 +36,28 @@ class User
     private $password;
 
     /**
-     * @var \Konto
+     * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToOne(targetEntity="Konto")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Konto", referencedColumnName="idKonto")
-     * })
+     * @ORM\ManyToMany(targetEntity="Konto", inversedBy="iduser")
+     * @ORM\JoinTable(name="user_has_konto",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="idUser", referencedColumnName="idUser")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="idKonto", referencedColumnName="idKonto")
+     *   }
+     * )
      */
-    private $konto;
+    private $idkonto;
 
-
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idkonto = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
 
     /**
      * Get iduser
@@ -104,25 +116,35 @@ class User
     }
 
     /**
-     * Set konto
+     * Add idkonto
      *
-     * @param \BBL\WebBundle\Entity\Konto $konto
+     * @param \BBL\WebBundle\Entity\Konto $idkonto
      * @return User
      */
-    public function setKonto(\BBL\WebBundle\Entity\Konto $konto = null)
+    public function addIdkonto(\BBL\WebBundle\Entity\Konto $idkonto)
     {
-        $this->konto = $konto;
+        $this->idkonto[] = $idkonto;
     
         return $this;
     }
 
     /**
-     * Get konto
+     * Remove idkonto
      *
-     * @return \BBL\WebBundle\Entity\Konto 
+     * @param \BBL\WebBundle\Entity\Konto $idkonto
      */
-    public function getKonto()
+    public function removeIdkonto(\BBL\WebBundle\Entity\Konto $idkonto)
     {
-        return $this->konto;
+        $this->idkonto->removeElement($idkonto);
+    }
+
+    /**
+     * Get idkonto
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getIdkonto()
+    {
+        return $this->idkonto;
     }
 }

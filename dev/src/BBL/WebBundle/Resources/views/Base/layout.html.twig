@@ -1,24 +1,35 @@
 {% extends '::base.html.twig' %}
 {% block body %} 
 	<div id="header" class="span-24">
-		<img src="{{ asset('bundles/bblweb/images/topheader.jpg') }}" width="731" height="35" alt="topheader"><a href="#" data-reveal-id="myModal"  data-animation="fade"><img src="{{ asset('bundles/bblweb/images/join.jpg') }}" width="139" height="35" alt="join"></a><img src="{{ asset('bundles/bblweb/images/space.jpg') }}" width="8" height="35"><a href="#" data-reveal-id="myModal1"  data-animation="fade"><img src="{{ asset('bundles/bblweb/images/login.jpg') }}" width="72" height="35" alt="login"></a>
+		<img src="{{ asset('bundles/bblweb/images/topheader.jpg') }}" width="731" height="35" id="topheader" alt="topheader"><a href="#" data-reveal-id="logModal" data-animation="fade" id="logLogo"><img src="{{ asset('bundles/bblweb/images/login.jpg') }}" width="72" height="35" alt="login"></a><img src="{{ asset('bundles/bblweb/images/space.jpg') }}" width="8" height="35" id="gap1"><a href="{{ path('registry') }}" id="regLogo"><img src="{{ asset('bundles/bblweb/images/join.jpg') }}" width="139" height="35" alt="join"></a>
 		<div class="transparent"><img src="{{ asset('bundles/bblweb/images/gapup.jpg') }}" width="950" height="19"></div>
-		<img src="{{ asset('bundles/bblweb/images/logo.jpg') }}" width="950" height="53" alt="clangdom">
+		<a href="{{ path('bbl_web_homepage') }}"><img src="{{ asset('bundles/bblweb/images/logo.jpg') }}" width="950" height="53" alt="clangdom"></a>
 		<div class="transparent"><img src="{{ asset('bundles/bblweb/images/gapdown.jpg') }}" width="950" height="18" alt="gapdonw"></div>
 		<img src="{{ asset('bundles/bblweb/images/navigationbar.jpg') }}" width="950" height="70" alt="navigation">	
 	</div>
 	
 	<div id="content">
 		{% block content %} 
+		
 		{% endblock %}
 
-	</div>
+	</div> 	
 	
 	<div id="footer" class="span-24 transparent"> 
 
 			<h1> THIS IS OUR AWESOME FOOTER!!!!!</h1>
 	</div>
-	<!-- includes the login and join popup -->
-	{% include 'BBLWebBundle:Base:join.html.twig' %}
-	{% include 'BBLWebBundle:Base:login.html.twig' %}
+	
+<----- Pop ups---> 
+	<div id="logModal" class="reveal-modal span-24 showgrid">
+			<h3 class="alt">Log in to your CLANGDOM account here. </h3>
+			<hr>
+			<p>
+			Email or Nick: <input type="text" name="login_name" method="post"><br />
+			Password: <input type="text" name="login_password" method="post">Forgot your password? <a href="#"> Retrieve here.</a><br />
+			<input type="checkbox" name="remember" value="remember">Remember me.
+			<input type="submit" name="submit" value="LOGIN">
+			<a class="close-reveal-modal">&#215;</a>
+			</p>
+		</div>
 {% endblock %}

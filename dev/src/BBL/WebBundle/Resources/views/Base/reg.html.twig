@@ -1,17 +1,57 @@
 {% extends 'BBLWebBundle:Base:layout.html.twig' %}
-{# falls header geaendert werden muss {% block header %} {% endblock %} #}
-{% block content %}
-	 <p> ---- Some more Forms go here ----</p>
-	 <form id='signfo'  method="post" >
-		 <p> eMail </p>
-		 <input id="eMail" type="text"> </br>
-		 <p> Passwort </p>
-		  <input id="pwt" type="text"> </br>
-		 <p>  Band </p>
-		 <input id="Band" type="text"> </br>
-		 <p> Genre </p>
-		 <input id="genre" type="text"> </br>
-		 <input type="submit" value="Sign Up">
-	 </form>
+
+{% block content %}	
+	
+	<div id="whitebox" class="span-24">
+		<div class="abstand">
+			<h2 class="alt">Create your account!</h2>
+			<hr>
+			
+			<div class="span-4 prepend-2">Name:</div>
+			<div class="span-16 last"><input type="text" name="name" id="regName"></div><br />
+			<div class="span-4 prepend-2">Genre:</div>
+			<div class="span-16 last"><input type="text" name="genre" id="regGenre"></div><br />
+			<div class="span-4 prepend-2">Email:</div>
+			<div class="span-16 last"><input type="text" name="email" id="regMail"></div><br />
+			<div class="span-4 prepend-2">Password:</div>
+			<div class="span-16 last"><input type="password" name="password_1" id="regPass1"></div><br />
+			<div class="span-4 prepend-2">Confirm password:</div>
+			<div class="span-16 last"><input type="password" name="password_2" id="regPass2"></div><br />
+			<div class="span-22 prepend-2"><input type="submit" name="submit" value="SIGNUP" id="subbut"></div>
+		</div>
+	</div>
+	
+	
+{% block javascript %}
+<script>
+var val = false;
+$(document).ready(function(){
+	hideLogos();
+	if(!val) $("#subbut").prop("disabled", true).addClass("ui-state-disabled");
+	$("#regMail").focusout(checkval());
+	
+	   var passhash = CryptoJS.MD5(password).toString();
+
+ 	  /* $.post(
+  	    ', 
+  	    { user: username, pass: passhash },
+  	    onLogin,   'json' );*/
+});
+
+function hideLogos(){
+ $("#topheader").attr('width', '950');
+ $("#logLogo").remove();
+ $("#regLogo").remove();
+ $("#gap1").remove();
+} 
+
+function checkval(){
+	if($("#regMail").val().indexOf("@") >= 0) val = true;
+	if(val) $("#subbut").removeProp("disabled").removeClass("ui-state-disabled");
+	}  
+	
+</script>
 {% endblock %}
-{# falls footer geaendert werden muss {% block footer %} {% endblock %} #}
+
+{% endblock %}
+
