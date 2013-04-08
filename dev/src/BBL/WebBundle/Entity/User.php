@@ -58,4 +58,93 @@ class User
         $this->idkonto = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
+
+    /**
+     * Get iduser
+     *
+     * @return integer 
+     */
+    public function getIduser()
+    {
+        return $this->iduser;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return User
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     * @return User
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string 
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Add idkonto
+     *
+     * @param \BBL\WebBundle\Entity\Konto $idkonto
+     * @return User
+     */
+    public function addIdkonto(\BBL\WebBundle\Entity\Konto $idkonto)
+    {
+        $this->idkonto[] = $idkonto;
+    
+        return $this;
+    }
+
+    /**
+     * Remove idkonto
+     *
+     * @param \BBL\WebBundle\Entity\Konto $idkonto
+     */
+    public function removeIdkonto(\BBL\WebBundle\Entity\Konto $idkonto)
+    {
+        $this->idkonto->removeElement($idkonto);
+    }
+
+    /**
+     * Get idkonto
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getIdkonto()
+    {
+        return $this->idkonto;
+    }
 }

@@ -17,7 +17,8 @@
 			<div class="span-16 last"><input type="password" name="password_1" id="regPass1"></div><br />
 			<div class="span-4 prepend-2">Confirm password:</div>
 			<div class="span-16 last"><input type="password" name="password_2" id="regPass2"></div><br />
-			<div class="span-22 prepend-2"><input type="submit" name="submit" value="SIGNUP" id="subbut"></div>
+			<div class="span-22 prepend-2"><input type="submit" name="submit" value="SIGNUP" id="subbut"></div><br />
+			<div class="span-22 prepend-2"><button  id="test" action="{{ path('signUp') }}" methode="post">OMA!!!</button></div>
 		</div>
 	</div>
 	
@@ -26,6 +27,7 @@
 <script>
 var val = false;
 $(document).ready(function(){
+	$("#test").click(function() {$.post('{{ path('signUp') }}')});
 	hideLogos();
 	if(!val) $("#subbut").prop("disabled", true).addClass("ui-state-disabled");
 	$("#regMail").focusout(checkval());

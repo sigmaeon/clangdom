@@ -43,4 +43,70 @@ class Genre
         $this->kontokonto = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
+
+    /**
+     * Get idgenre
+     *
+     * @return integer 
+     */
+    public function getIdgenre()
+    {
+        return $this->idgenre;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Genre
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Add kontokonto
+     *
+     * @param \BBL\WebBundle\Entity\Konto $kontokonto
+     * @return Genre
+     */
+    public function addKontokonto(\BBL\WebBundle\Entity\Konto $kontokonto)
+    {
+        $this->kontokonto[] = $kontokonto;
+    
+        return $this;
+    }
+
+    /**
+     * Remove kontokonto
+     *
+     * @param \BBL\WebBundle\Entity\Konto $kontokonto
+     */
+    public function removeKontokonto(\BBL\WebBundle\Entity\Konto $kontokonto)
+    {
+        $this->kontokonto->removeElement($kontokonto);
+    }
+
+    /**
+     * Get kontokonto
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getKontokonto()
+    {
+        return $this->kontokonto;
+    }
 }

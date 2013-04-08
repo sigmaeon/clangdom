@@ -29,4 +29,37 @@ class Profil
     private $html;
 
 
+
+    /**
+     * Get idprofil
+     *
+     * @return integer 
+     */
+    public function getIdprofil()
+    {
+        return $this->idprofil;
+    }
+
+    /**
+     * Set html
+     *
+     * @param string $html
+     * @return Profil
+     */
+    public function setHtml($html)
+    {
+        $this->html = $html;
+    
+        return $this;
+    }
+
+    /**
+     * Get html
+     *
+     * @return string 
+     */
+    public function getHtml()
+    {
+        return $this->html;
+    }
 }
