@@ -16,5 +16,10 @@ class MainController extends Controller
     	return $this->render('BBLWebBundle:Base:reg.html.twig');
     }
     
+    public function signAction()
+    {
+    	return;
+    }
+    
     
 }
