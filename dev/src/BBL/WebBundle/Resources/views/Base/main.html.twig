@@ -16,22 +16,22 @@
 		
 <!-- Tabs-1
      ------------------------------------------------------------------------------------------------ -->
-		<div id="tabs-1" class="min">
+		<div id="tabs-1" class="min" load="true">
 		</div>	
 		
 <!-- Tabs-2
      ------------------------------------------------------------------------------------------------ -->	
-		<div id="tabs-2"class="min">
+		<div id="tabs-2"class="min" load="true">
 		</div>
 		
 <!-- Tabs-3
      ------------------------------------------------------------------------------------------------ -->
-		<div id="tabs-3"class="min">
+		<div id="tabs-3"class="min" load="true">
 		</div>
 		
 <!-- Tabs-4
      ------------------------------------------------------------------------------------------------ -->
-		<div id="tabs-4"class="min">
+		<div id="tabs-4"class="min" load="true">
 		</div>
 	</div>
 	<button onclick="testfunc()" id="yobut"> Yoo </button>
@@ -40,16 +40,21 @@
 <script type="text/javascript" src="{{ asset('bundles/bblweb/js/test.js') }}"></script> 
 {% endblock %}
 {% block javascript %}
-		$(document).ready(function(){
-			$( "#tabs" ).tabs({activate: function( event, ui) {
+		 $(document).ready(function(){
+		 		$( "#tabs" ).tabs({activate: function( event, ui) {
 					var url = "{{ path('ajax_load') }}";
 					 $.post(url,{typ: "Plan"}, 
 				 	 function(data){
-				 			ui.newTab.html(data);
+				 			ui.newPanel.html(data);
 				       });
 		        }
 			});
-		});
-		
+			var url = "{{ path('ajax_load') }}";
+			 $.post(url,{typ: "Plan"}, 
+				 	 function(data){
+				 			$("#tabs-1").html(data);
+				       });
+		 });
+
 {% endblock %}
 

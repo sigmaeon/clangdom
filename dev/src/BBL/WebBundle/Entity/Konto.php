@@ -29,11 +29,19 @@ class Konto
     private $name;
 
     /**
-     * @var string
+     * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\Column(name="Genre", type="string", length=45, nullable=false)
+     * @ORM\ManyToMany(targetEntity="Genre", inversedBy="kontokonto")
+     * @ORM\JoinTable(name="konto_has_genre",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="Konto_idKonto", referencedColumnName="idKonto")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="Genre_idGenre", referencedColumnName="idGenre")
+     *   }
+     * )
      */
-    private $genre;
+    private $genregenre;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -57,119 +65,8 @@ class Konto
      */
     public function __construct()
     {
+        $this->genregenre = new \Doctrine\Common\Collections\ArrayCollection();
         $this->iduser = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
-
-    /**
-     * Get idkonto
-     *
-     * @return integer 
-     */
-    public function getIdkonto()
-    {
-        return $this->idkonto;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return Konto
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set genre
-     *
-     * @param string $genre
-     * @return Konto
-     */
-    public function setGenre($genre)
-    {
-        $this->genre = $genre;
-    
-        return $this;
-    }
-
-    /**
-     * Get genre
-     *
-     * @return string 
-     */
-    public function getGenre()
-    {
-        return $this->genre;
-    }
-
-    /**
-     * Add iduser
-     *
-     * @param \BBL\WebBundle\Entity\User $iduser
-     * @return Konto
-     */
-    public function addIduser(\BBL\WebBundle\Entity\User $iduser)
-    {
-        $this->iduser[] = $iduser;
-    
-        return $this;
-    }
-
-    /**
-     * Remove iduser
-     *
-     * @param \BBL\WebBundle\Entity\User $iduser
-     */
-    public function removeIduser(\BBL\WebBundle\Entity\User $iduser)
-    {
-        $this->iduser->removeElement($iduser);
-    }
-
-    /**
-     * Get iduser
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getIduser()
-    {
-        return $this->iduser;
-    }
-
-    /**
-     * Set profil
-     *
-     * @param \BBL\WebBundle\Entity\Profil $profil
-     * @return Konto
-     */
-    public function setProfil(\BBL\WebBundle\Entity\Profil $profil = null)
-    {
-        $this->profil = $profil;
-    
-        return $this;
-    }
-
-    /**
-     * Get profil
-     *
-     * @return \BBL\WebBundle\Entity\Profil 
-     */
-    public function getProfil()
-    {
-        return $this->profil;
-    }
 }
