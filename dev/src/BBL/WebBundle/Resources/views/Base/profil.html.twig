@@ -1,0 +1,30 @@
+﻿{% extends 'BBLWebBundle:Base:layout.html.twig' %}
+	
+	{% block content %}
+		<div id="profilbanner" class="span-24">
+			<div id="profilpic" class="span-4"><img src="{{ pic }}" height="120px" width="120px"></div> <div id="name" class="span-10 last"><h1> {{ name }}</h1></div>
+		</div>
+		<hr>
+		<div id="profcontent">
+			<div id="tabs" class="span-24">
+				<ul>
+					<li><a href="#tabs-1">DASHBOARD</a></li>
+					<li><a href="#tabs-2">MUSIC</a></li>
+					<li><a href="#tabs-3">VIDEOS</a></li>
+					<li><a href="#tabs-4">ABOUT</a></li>
+				</ul>
+				
+				<div id="tabs-1" class="min">
+				</div>
+		
+				<div id="tabs-2"class="min">
+				</div>
+		
+				<div id="tabs-3"class="min">
+				</div>
+		
+				<div id="tabs-4"class="min">
+				</div>
+			</div>
+		</div>
+	{% endblock %}

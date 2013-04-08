@@ -5,21 +5,68 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Clangdom -  {{ app.environment}} {% endblock %}</title>
  <!-- Hashing -->
- 		<script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/md5.js"></script>
+		<script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/md5.js"></script>
  <!-- Jquery-->
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
 		<script src="http://code.jquery.com/jquery-1.8.0.js"></script>
-		<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script> 
+		<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<!-- Searchfunction -->
+		{% stylesheets 'bundles/bblweb/css/searchStyle.css' filter='cssrewrite' %}
+			<link  rel="stylesheet"href="{{ asset_url }}" type="text/css" />
+		{% endstylesheets %}
+	<!--	<script type="text/javascript"  src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>-->
+<!-- Script for the searchfunction -->
+		<script type="text/javascript">  
+ 		  $(document).ready(function() {
+												
+													 showCancel ();
+												
+												$('.cancelBtn').bind( "click" , function()
+														{
+															$(".cancelBtn").stop();
+															$(".cancelBtn").fadeTo(500 , 0 );
+															$('.textBox').attr({value: ""});
+															
+														});
+												
+												$('.textBox').bind( "change" , function()
+														{
+															 showCancel ();
+														});
+												$('.textBox').bind( "keydown" , function()
+														{
+															showCancel ();
+														});
+												$('.textBox').bind( "keyup" , function()
+														{
+															 showCancel ();
+														});
+												
+												function showCancel ( )
+												{
+													var textBxContent = $(".textBox").attr("value");
+															if((textBxContent  == "")  || (textBxContent  == " ") ||  (textBxContent  == null) )
+															{
+																$(".cancelBtn").fadeTo(500, 0 );
+															}
+															else
+															{
+																$(".cancelBtn").stop();
+																$(".cancelBtn").fadeTo(500, 1 );
+															}
+												}
+									 });
+</script>
 <!-- Framework-->
-        {% stylesheets 'bundles/bblweb/css/screen.css'  %}
+        {% stylesheets 'bundles/bblweb/css/screen.css' filter='cssrewrite'  %}
         	<link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen, projection"/>
         {% endstylesheets %}
 		
-		 {% stylesheets 'bundles/bblweb/css/print.css' %}
+		 {% stylesheets 'bundles/bblweb/css/print.css' filter='cssrewrite' %}
         	<link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="print"/>
         {% endstylesheets %}
 		
-		{% stylesheets 'bundles/bblweb/css/plugins/fancy-type/screen.css'  %}
+		{% stylesheets 'bundles/bblweb/css/plugins/fancy-type/screen.css' filter='cssrewrite'  %}
         	<link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
         {% endstylesheets %}
 <!-- selfmade style.css-->
@@ -31,8 +78,7 @@
 		 {% stylesheets 'bundles/bblweb/css/reveal.css' filter='cssrewrite' %}
         	<link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
         {% endstylesheets %}
-		<!-- Das ist die js file für die popups wenn diese aktiviert ist funktionieren die Tabs nicht mehr, 
-			also wenn arbeiten an den tabs vorgenommen werden sollen bitte dieses javascript auskommentieren.-->
+
 		{% javascripts '@BBLWebBundle/Resources/public/js/jquery.reveal.js' %}
         	<script src="{{ asset_url }}"></script>
         {% endjavascripts %} 
@@ -49,9 +95,9 @@
 	</head>
 	<body>
 		<div class="container">
-        {% block body %}
+			{% block body %}
 
-		{% endblock %}
+			{% endblock %}
 		</div>	
 		<script>
 		{% block javascript %} {% endblock %}
