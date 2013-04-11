@@ -1,5 +1,5 @@
 body{
-background-image:url('../../bundles/bblweb/images/stage.jpg');
+background-image:url('../../bundles/bblweb/images/background.jpg');
 background-repeat:no-repeat;
 background-size:100% 100%;
 }
@@ -10,16 +10,24 @@ h1{
 
 }
 
-hr{
-color:black;
+hr {
+border:0px;
+border-bottom:1px solid black;
+}
+
+h3{
+font-size:35px;
+margin:5px;
 }
 
 ul{
 list-style-type:none;
 }
 
-#header1{
-height:155px;
+#header{
+background-image:url('../../bundles/bblweb/images/topbar.jpg');
+height:65px;
+margin-top:none;
 }
 
 #whitebox{
@@ -29,13 +37,35 @@ margin-top:50px;
 }
 
 #footer{
-background-image:url('../../bundles/bblweb/images/header.jpg');
 width:950px;
 height:161px;
 }
+#searchfield{
+margin-top:3px;
+}
+
+
+#bandname{
+margin-top:12px;
+font-size:18px;
+text-align:right;
+}
+
+#profilbanner{
+margin-bottom:20px;
+height:140px;
+background-color:white;
+}
+
+#profilpic{
+margin:10px;
+}
+
+#name{
+margin:20px;
+}
 
 #tabs{
-margin-top:50px;
 width:943px;
 }
 
@@ -51,4 +81,5 @@ margin:20px;
 
 .min{
 min-height:450px;
+max-height:450px;
 }

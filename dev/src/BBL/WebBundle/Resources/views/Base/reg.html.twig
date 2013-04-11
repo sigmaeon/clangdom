@@ -22,38 +22,21 @@
 		</div>
 	</div>
 	
-	
+{% endblock %}
+
 {% block javascript %}
-<script>
-var val = false;
 $(document).ready(function(){
 	$("#test").click(function() {$.post('{{ path('signUp') }}')});
 	hideLogos();
-	if(!val) $("#subbut").prop("disabled", true).addClass("ui-state-disabled");
-	$("#regMail").focusout(checkval());
-	
-	   var passhash = CryptoJS.MD5(password).toString();
-
- 	  /* $.post(
-  	    ', 
-  	    { user: username, pass: passhash },
-  	    onLogin,   'json' );*/
 });
-
+	
 function hideLogos(){
  $("#topheader").attr('width', '950');
  $("#logLogo").remove();
  $("#regLogo").remove();
  $("#gap1").remove();
 } 
-
-function checkval(){
-	if($("#regMail").val().indexOf("@") >= 0) val = true;
-	if(val) $("#subbut").removeProp("disabled").removeClass("ui-state-disabled");
-	}  
-	
-</script>
 {% endblock %}
 
-{% endblock %}
+
 

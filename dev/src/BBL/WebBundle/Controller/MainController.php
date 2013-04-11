@@ -22,16 +22,26 @@ class MainController extends Controller
     
     public function signUpAction()
     {
-    	$em = $this->getDoctrine()->getManager();
+    	//Objects for Doctrine
+    	$em = $this->getDoctrine()->getManager(); 
+    	$repository = $this->getDoctrine()->getRepository('BBLWebBundle:User');
+    	//Fill the DB
     	$genre = new Genre();
-    	$genre->setName("Rockpoppunkmetaljazzclassic");
+    	$genre->setName("RockMetalHardYeah");
     	$profil = new Profil();
-    	$profil->setHtml("<h> Wooow ich bin ein Profil... blabla</h>");
-    	$user = new User();
-    	$user->setEmail("oma@Koma");
-    	$user->setPassword("ich bin ein gehashtes PW");
+    	$profil->setHtml("<h> Ich bin das Profil von Koma</h>");
+    	//Does this user have a account yet?
+    	$userhere = $user = $repository->findOneByEmail("oma@Koma");
+    	if($userhere != null){
+    		$user = $userhere;
+    	}
+    	else{
+    		$user = new User();
+    		$user->setEmail("oma@Koma");
+    		$user->setPassword("ich bin ein gehashtes PW");
+    	}
     	$konto = new Konto();
-    	$konto->setName("A band Of Omas");
+    	$konto->setName("A band Of Komas");
     	$konto->setProfil($profil);
     	$konto->addIduser($user);
     	$konto->addGenregenre($genre);
