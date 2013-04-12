@@ -16,41 +16,56 @@
 		</ul>
 <!-- Tabs-1
      ------------------------------------------------------------------------------------------------ -->
-		<div id="tabs-1" class="min" load="true">
-		</div>	
+		<div id="tabs-1" class="min" load="true"></div>	
 		
 <!-- Tabs-2
      ------------------------------------------------------------------------------------------------ -->	
-		<div id="tabs-2"class="min" load="true">
-		</div>
+		<div id="tabs-2"class="min" load="true"></div>
 		
 <!-- Tabs-3
      ------------------------------------------------------------------------------------------------ -->
-		<div id="tabs-3"class="min" load="true">
-		</div>
+		<div id="tabs-3"class="min" load="true"></div>
 		
 <!-- Tabs-4
      ------------------------------------------------------------------------------------------------ -->
-		<div id="tabs-4"class="min" load="true">
-		</div>
+		<div id="tabs-4"class="min" load="true"></div>
 	</div>
 {% endblock %}
 {% block javascript %}
-		 $(document).ready(function(){
-		 		$( "#tabs" ).tabs({activate: function( event, ui) {
-					var url = "{{ path('ajax_load') }}";
-					 $.post(url,{typ: "Plan"}, 
-				 	 function(data){
-				 			ui.newPanel.html(data);
-				       });
-		        }
+{{  parent() }} 
+
+$(document).ready(function(){
+
+
+	// --------------- AJAX Loading -----------------
+	    var aTab = $("#tabs-1"); //der Inhalt des aktuellen Tabs
+		$( "#tabs" ).tabs({activate: function( event, ui) {
+			var url = '{{ path('ajax_load') }}';
+			  $.ajax({
+ 				  url: url,
+  				  data: {typ: "Plan"},
+  				  beforeSend: function(){
+  				  	if(ui.newPanel.html() == "") ui.newPanel.html(genLoad());
+   				  },
+ 				  success: function(data) {
+     				 ui.newPanel.html(data);
+  				  }
 			});
-			var url = "{{ path('ajax_load') }}";
-			 $.post(url,{typ: "Plan"}, 
-				 	 function(data){
-				 			$("#tabs-1").html(data);
-				       });
-		 });
+		    }
+	    });
+        //initial Load
+		 var url = "{{ path('ajax_load') }}";
+		 $.post(url,{typ: "Plan"}, 
+		 function(data){
+			$("#tabs-1").html(data);
+	      });	
+});
+		 
+function genLoad()
+{
+	return "<p> Loading, please wait....</p>";
+}
+
 
 {% endblock %}
 

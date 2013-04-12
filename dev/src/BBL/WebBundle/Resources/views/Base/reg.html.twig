@@ -25,6 +25,7 @@
 {% endblock %}
 
 {% block javascript %}
+{{ parent() }}
 $(document).ready(function(){
 	$("#test").click(function() {$.post('{{ path('signUp') }}')});
 	hideLogos();
