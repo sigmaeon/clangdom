@@ -42,8 +42,13 @@
 			<div class="span-16 last"><input type="password" name="password_1" id="regPass1"></div><br />
 			<div class="span-4 prepend-2">Confirm password:</div>
 			<div class="span-16 last"><input type="password" name="password_2" id="regPass2"></div><br />
+<<<<<<< HEAD
 			<div class="span-22 prepend-2"><input type="submit" name="submit" value="SIGNUP" id="subbut"></div><br />
+			<div class="span-22 prepend-2"><button  id="test" action="{{ path('signUp') }}" methode="post">OMA!!!</button></div>
+=======
+			<div class="span-22 prepend-2"><input type="submit" name="submit" value="SIGNUP" id="subbut"></div>
 			
+>>>>>>> 71c277a0da4b390afb67b1b40c10c7d605954058
 		</div>
 	</div>
 	
@@ -51,14 +56,18 @@
 
 {% block javascript %}
 {{ parent() }}
-var val = false;
 $(document).ready(function(){
+<<<<<<< HEAD
+	$("#test").click(function() {$.post('{{ path('signUp') }}')});
+	hideLogos();
+=======
 $("#subbut").click(function(){
 		checkval();
 	});
 	hideLogos();
 	   var passhash = CryptoJS.MD5(password).toString();
 	
+>>>>>>> 71c277a0da4b390afb67b1b40c10c7d605954058
 });
 	
 function hideLogos(){
@@ -68,6 +77,8 @@ function hideLogos(){
  $("#gap1").remove();
  
 } 
+<<<<<<< HEAD
+=======
 
 function checkval(){
 	if($("#regMail").val().indexOf("@") >= 0){
@@ -92,6 +103,8 @@ function checkval(){
 }  
 
 
+</script>
+>>>>>>> 71c277a0da4b390afb67b1b40c10c7d605954058
 {% endblock %}
 
 
