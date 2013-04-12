@@ -8,12 +8,12 @@ class MainController extends Controller
 {
     public function indexAction()
     {
-         return $this->render('BBLWebBundle:Base:main.html.twig');
+         return $this->render('BBLWebBundle:Base:main.html.twig', array('sesson' => false));
     }
     
     public function regAction()
     {
-    	return $this->render('BBLWebBundle:Base:reg.html.twig');
+    	return $this->render('BBLWebBundle:Base:reg.html.twig', array('sesson' => false));
     }
     
     public function signAction()
