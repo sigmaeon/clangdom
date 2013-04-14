@@ -1,0 +1,49 @@
+<?php
+
+namespace BBL\WebBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Post
+ *
+ * @ORM\Table(name="post")
+ * @ORM\Entity
+ */
+class Post
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idPost", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idpost;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="Datum", type="date", nullable=false)
+     */
+    private $datum;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Name", type="string", length=45, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var \Konto
+     *
+     * @ORM\ManyToOne(targetEntity="Konto")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Konto", referencedColumnName="idKonto")
+     * })
+     */
+    private $konto;
+
+
+}

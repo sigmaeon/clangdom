@@ -1,0 +1,42 @@
+<?php
+
+namespace BBL\WebBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Video
+ *
+ * @ORM\Table(name="video")
+ * @ORM\Entity
+ */
+class Video
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idVideo", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idvideo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="URL", type="string", length=45, nullable=false)
+     */
+    private $url;
+
+    /**
+     * @var \Post
+     *
+     * @ORM\ManyToOne(targetEntity="Post")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Post", referencedColumnName="idPost")
+     * })
+     */
+    private $post;
+
+
+}

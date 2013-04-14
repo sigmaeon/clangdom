@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="Profil" table="profil">
-    <id name="idprofil" type="integer" column="idProfil">
+  <entity name="Music" table="music">
+    <id name="idmusic" type="integer" column="idMusic">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="link" type="string" column="Link" length="45" nullable="false"/>
-    <field name="pic" type="string" column="Pic" length="45" nullable="true"/>
+    <field name="url" type="string" column="URL" length="45" nullable="false"/>
+    <one-to-one field="post" target-entity="Post">
+      <join-columns>
+        <join-column name="Post" referenced-column-name="idPost"/>
+      </join-columns>
+    </one-to-one>
   </entity>
 </doctrine-mapping>

@@ -1,5 +1,5 @@
 body{
-background-image:url('../bundles/bblweb/images/background.jpg');
+background-image:url('../../bundles/bblweb/images/background.jpg');
 background-repeat:no-repeat;
 background-size:100% 100%;
 }
@@ -25,13 +25,13 @@ list-style-type:none;
 }
 
 #header{
-background-image:url('../bundles/bblweb/images/topbar.jpg');
+background-image:url('../../bundles/bblweb/images/topbar.jpg');
 height:65px;
 margin-top:none;
 }
 
 #whitebox{
-background:white;
+
 height:450px;
 margin-top:50px;
 }
@@ -70,7 +70,11 @@ width:943px;
 }
 
 .abstand{
-margin:20px;
+margin-top:30px;
+}
+
+.moveup{
+margin-bottom:5px;
 }
 
 .transparent {

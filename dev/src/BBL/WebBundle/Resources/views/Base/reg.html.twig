@@ -9,37 +9,35 @@
 			<div class="span-11 prepend-1">Accountname: <input type="text" name="accname" id="accName"></div><div class="span-11 prepend-1 last"><input type="radio" name="user" value="Artist">Artist <input type="radio" name="user" value="Source">Source</div>
 			<div class="span-11 prepend-1">Email: <input type="text" name="email" id="email_1"></div><div class="span-11 prepend-1 last">Profilename: <input type="text" name="prfname" id="prfName"></div>
 			<div class="span-11 prepend-1">Confirm email: <input type="text" name="email2" id="email_2"></div><div class="span-11 prepend-1 last">Genre: <select name="genre" id="regGenre">
-											<option value=""></option>
-											<option value="rock">Rock</option>
-											<option value="metal">Metal</option>
-											<option value="punk">Punk</option>
-											<option value="jazz">Jazz</option>
-											<option value="classic">Classic</option>
-											<option value="pop">Pop</option>
-											<option value="funk">Funk</option>
-											<option value="schlager">Schlager</option>
-											<option value="hiphop">Hip Hop</option>
-											<option value="house">House</option>
+											<option value="Rock">Rock</option>
+											<option value="Metal">Metal</option>
+											<option value="Punk">Punk</option>
+											<option value="Jazz">Jazz</option>
+											<option value="Classic">Classic</option>
+											<option value="Pop">Pop</option>
+											<option value="Funk">Funk</option>
+											<option value="Schlager">Schlager</option>
+											<option value="Hiphop">Hip Hop</option>
+											<option value="House">House</option>
 										</select>+
 			<select name="genre" id="regGenre">
 											<option value=""></option>
-											<option value="rock">Rock</option>
-											<option value="metal">Metal</option>
-											<option value="punk">Punk</option>
-											<option value="jazz">Jazz</option>
-											<option value="classic">Classic</option>
-											<option value="pop">Pop</option>
-											<option value="funk">Funk</option>
-											<option value="schlager">Schlager</option>
-											<option value="hiphop">Hip Hop</option>
-											<option value="house">House</option>
+											<option value="Rock">Rock</option>
+											<option value="Metal">Metal</option>
+											<option value="Punk">Punk</option>
+											<option value="Jazz">Jazz</option>
+											<option value="Classic">Classic</option>
+											<option value="Pop">Pop</option>
+											<option value="Funk">Funk</option>
+											<option value="Schlager">Schlager</option>
+											<option value="Hiphop">Hip Hop</option>
+											<option value="House">House</option>
 										</select></div>
 			<div class="span-11 prepend-1">Password: <input type="password" name="password" id="pwd_1"></div><div class="span-11 prepend-1 last"></div>
 			<div class="span-11 prepend-1">Confirm password: <input type="password" name="password2" id="pwd_1"></div><div class="span-11 prepend-1 last"></div>
 			<br />
 			<div class="span-23 prepend-1"><input type="checkbox" name="agreement" value="">I've read and agree the <a href="#">user agreement</a>.</div>
-			<div class="span-23 prepend-1"><input type="submit" name="submit" value="SIGNUP" id="subbut"></div>
-			<div class="span-22 prepend-2"><input type="submit" name="submit" value="SIGNUP" id="subbut"></div><br />
+			<div class="span-23 prepend-1"><button id="subbut">Sign Up</button></div>
 		</div>
 	</div>
 	
@@ -47,14 +45,27 @@
 
 {% block javascript %}
 {{ parent() }}
-var val = false;
+var val = true;
 $(document).ready(function(){
-$("#subbut").click(function(){
-		checkval();
+     $("#subbut").click(function(){
+		//checkval();
+		var passhash = CryptoJS.SHA3($("#pwd_1").val()).toString();
+		//if(val == true) {
+		var url = '{{ path('signUp') }}';
+			$.ajax({
+ 				  type: "post",
+ 				  url: url,
+  				  data: {Name: $("#accName").val(),
+  				  		 Email: $("#email_1").val(),
+  				  		 Pwd: passhash,
+  				  		 Genre: $("#regGenre").val()},
+ 				  success: function() {
+     				 window.location = "{{ path('bbl_web_homepage') }}";
+  				  }
+			});
+		//}
 	});
 	hideLogos();
-	   var passhash = CryptoJS.MD5(password).toString();
-	
 });
 	
 function hideLogos(){
@@ -65,7 +76,7 @@ function hideLogos(){
  
 } 
 
-function checkval(){
+/*function checkval(){
 	if($("#regMail").val().indexOf("@") >= 0){
 		var mailOke = true;
 	}else{	alert("Bitte fuellen Sie eine gueltige Email-Adresse ein!");	}	
@@ -76,7 +87,7 @@ function checkval(){
 	
 	if($("#regGenre").val()!==("")){
 		var nameOke = true;	
-	}else{	alert("Bitte waehlen Sie ein Genre aus!");	}
+	}else{val = true;	alert("Bitte waehlen Sie ein Genre aus!");	}
 	
 	if($("#regPass1").val()!==("")){
 		var nameOke = true;	
@@ -86,7 +97,7 @@ function checkval(){
 		var nameOke = true;	
 	}else{	alert("Bitte bestaetigen Sie Ihr Passwort!");	}
 }  
-
+*/
 
 {% endblock %}
 

@@ -17,4 +17,3 @@ login:
 signUp:
    pattern: /signUp
    defaults: { _controller: BBLWebBundle:Main:signUp}
-  

@@ -24,9 +24,16 @@ class Profil
     /**
      * @var string
      *
-     * @ORM\Column(name="html", type="text", nullable=false)
+     * @ORM\Column(name="Link", type="string", length=45, nullable=false)
      */
-    private $html;
+    private $link;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Pic", type="string", length=45, nullable=true)
+     */
+    private $pic;
 
 
 
@@ -41,25 +48,48 @@ class Profil
     }
 
     /**
-     * Set html
+     * Set link
      *
-     * @param string $html
+     * @param string $link
      * @return Profil
      */
-    public function setHtml($html)
+    public function setLink($link)
     {
-        $this->html = $html;
+        $this->link = $link;
     
         return $this;
     }
 
     /**
-     * Get html
+     * Get link
      *
      * @return string 
      */
-    public function getHtml()
+    public function getLink()
     {
-        return $this->html;
+        return $this->link;
+    }
+
+    /**
+     * Set pic
+     *
+     * @param string $pic
+     * @return Profil
+     */
+    public function setPic($pic)
+    {
+        $this->pic = $pic;
+    
+        return $this;
+    }
+
+    /**
+     * Get pic
+     *
+     * @return string 
+     */
+    public function getPic()
+    {
+        return $this->pic;
     }
 }

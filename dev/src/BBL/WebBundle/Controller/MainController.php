@@ -3,6 +3,8 @@
 namespace BBL\WebBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use BBL\WebBundle\Entity\User;
 use BBL\WebBundle\Entity\Konto;
 use BBL\WebBundle\Entity\Genre;
@@ -12,7 +14,10 @@ class MainController extends Controller
 {
     public function indexAction()
     {
+    	$this->get('session')->start();
+    	if($this->get('session')->get('state') != 'logged')
          return $this->render('BBLWebBundle:Base:main.html.twig', array('sesson' => false));
+    	else return $this->render('BBLWebBundle:Base:main.html.twig', array('sesson' => true));
     }
     
     public function regAction()
@@ -22,26 +27,31 @@ class MainController extends Controller
     
     public function signUpAction()
     {
+    	$request = $this->getRequest();	
     	//Objects for Doctrine
     	$em = $this->getDoctrine()->getManager(); 
-    	$repository = $this->getDoctrine()->getRepository('BBLWebBundle:User');
+    	$userRepo = $this->getDoctrine()->getRepository('BBLWebBundle:User');
+    	$genreRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Genre');
+    	
     	//Fill the DB
-    	$genre = new Genre();
-    	$genre->setName("RockMetalHardYeah");
     	$profil = new Profil();
-    	$profil->setHtml("<h> Ich bin das Profil von Koma</h>");
+    	//Logic to avoid multiple links goes here
+    	$profil->setLink("/".$request->request->get('Name'));
     	//Does this user have a account yet?
-    	$userhere = $user = $repository->findOneByEmail("oma@Koma");
+    	$userhere = $userRepo->findOneByEmail($request->request->get('Email'));
     	if($userhere != null){
     		$user = $userhere;
     	}
     	else{
     		$user = new User();
-    		$user->setEmail("oma@Koma");
-    		$user->setPassword("ich bin ein gehashtes PW");
+    		$user->setEmail($request->request->get('Email'));
+    		$user->setPassword($request->request->get('Pwd'));
     	}
+    	if($request->request->get('Genre') != null)
+    	$genre = $genreRepo->findOneByName($request->request->get('Genre'));
+    	else $genre = $genreRepo->findOneByName("Classic");
     	$konto = new Konto();
-    	$konto->setName("A band Of Komas");
+    	$konto->setName($request->request->get('Name'));
     	$konto->setProfil($profil);
     	$konto->addIduser($user);
     	$konto->addGenregenre($genre);
@@ -52,7 +62,10 @@ class MainController extends Controller
     	$em->persist($konto);
     	$em->flush();
     	
-    	return $this->redirect($this->generateUrl('bbl_web_homepage'));
+    	//return
+    	$response = new Response();
+    	$response->setStatusCode(200);
+    	return $response;
     }
     
     

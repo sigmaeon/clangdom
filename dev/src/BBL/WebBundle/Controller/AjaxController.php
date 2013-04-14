@@ -6,15 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class AjaxController extends Controller
 {
-    public function regAction($name)
-    {
-        return $this->render('BBLWebBundle:Base:main.html.twig');
-    }
-    
+
     public function loadAction()
     {
     	$objects['ob1']['picture'] = "oma whaaaa";
-    	$objects['ob1']['link'] = "here is a link to oma";
+    	$objects['ob1']['link'] = "{{}}";
     	$objects['ob1']['info'] = "hell yeah this is oma";
     	$objects['ob1']['name'] = "OMA";
     	
