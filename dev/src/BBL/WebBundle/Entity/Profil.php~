@@ -24,9 +24,16 @@ class Profil
     /**
      * @var string
      *
-     * @ORM\Column(name="html", type="text", nullable=false)
+     * @ORM\Column(name="Link", type="string", length=45, nullable=false)
      */
-    private $html;
+    private $link;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Pic", type="string", length=45, nullable=true)
+     */
+    private $pic;
 
 
 }

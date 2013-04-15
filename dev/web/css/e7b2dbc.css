@@ -1,0 +1,51 @@
+@charset "UTF-8";
+/* CSS Document */
+
+#searchHolder
+{
+	padding:5px;
+	margin:0px;
+	width:800px;
+	height:400px;
+	
+}
+#searchHolder form
+{
+	padding:0px;
+	margin:0px;
+}
+#searchHolder span
+{
+	padding:0px;
+	margin:0px;
+	background: url(../../bundles/bblweb/images/macSearchbg.png) no-repeat;
+	padding-right:30px;
+	display:block;
+	float:left;
+	width:280px;
+	padding-left:40px;
+	height:37px;
+	padding-top:5px;
+}
+#searchHolder input
+{
+	border:none;
+	background:none;
+	line-height:18px;
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size:14px;
+	height:30px;
+	padding:0px;
+	width:200px;
+	float:left;
+	margin-right:10px;
+	margin-top:2px;
+}
+
+#searchHolder .cancelBtn
+{
+	float:left;
+	margin-top:8px;
+	border:none;
+	cursor:pointer;
+}

@@ -31,7 +31,7 @@ margin-top:none;
 }
 
 #whitebox{
-background:white;
+
 height:450px;
 margin-top:50px;
 }
@@ -70,7 +70,11 @@ width:943px;
 }
 
 .abstand{
-margin:20px;
+margin-top:30px;
+}
+
+.moveup{
+margin-bottom:5px;
 }
 
 .transparent {

@@ -1,4 +1,6 @@
-{% extends '::base.html.twig' %}
+<!DOCTYPE html>
+<html>
+<body>
 {% block body %}
 {# hier kommen noch die tags zur formatierung #}
 	<div id="content">
@@ -14,8 +16,9 @@
 				<div class="span-6 last alt"><a href=" {{ object.link }}"><h3> {{ object.name }}</h3></a><br />{{ object.info }}<br /></div></li></div><hr> 
 				{% endfor %}
 			</ul>
-			
 		</div>
 		{% endblock %}
 	</div> 
 {% endblock %}
+</body>
+</html>
