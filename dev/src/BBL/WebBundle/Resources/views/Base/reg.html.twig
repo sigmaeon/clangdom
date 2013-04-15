@@ -7,7 +7,7 @@
 			<h2 class="alt">Create your account!</h2>
 			<hr>
 			
-			<div class="span-4 prepend-2">Name:</div>
+			<div class="span-4 prepend-2">Bandname:</div>
 			<div class="span-16 last"><input type="text" name="name" id="regName"></div><br />
 			<div class="span-4 prepend-2">Genre:</div>
 			<div class="span-16 last"><select name="genre" id="regGenre">
@@ -23,6 +23,7 @@
 											<option value="hiphop">Hip Hop</option>
 											<option value="house">House</option>
 										</select>+
+			<!--<div class="span-22 prepend-2"><input type="submit" name="moreGenre" value="Genre erweitern" id="moreGenre"></div>-->
 			<select name="genre" id="regGenre">
 											<option value=""></option>
 											<option value="rock">Rock</option>
@@ -38,6 +39,8 @@
 										</select></div>
 			<div class="span-4 prepend-2">Email:</div>
 			<div class="span-16 last"><input type="text" name="email" id="regMail"></div><br />
+			<div class="span-4 prepend-2">Confirm email:</div>
+			<div class="span-16 last"><input type="text" name="email" id="regMail1"></div><br />
 			<div class="span-4 prepend-2">Password:</div>
 			<div class="span-16 last"><input type="password" name="password_1" id="regPass1"></div><br />
 			<div class="span-4 prepend-2">Confirm password:</div>
@@ -72,6 +75,10 @@ function checkval(){
 	if($("#regMail").val().indexOf("@") >= 0){
 		var mailOke = true;
 	}else{	alert("Bitte fuellen Sie eine gueltige Email-Adresse ein!");	}	
+	
+	if($("#regMail1").val().indexOf("@") >= 0){
+		var mailOke = true;
+	}else{	alert("Bitte bestaetigen Sie Ihre Email-Adresse!");	}	
 	
 	if($("#regName").val()!==("")){
 		var nameOke = true;	
