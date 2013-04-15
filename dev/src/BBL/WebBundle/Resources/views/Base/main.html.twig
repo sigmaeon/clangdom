@@ -7,7 +7,7 @@
 	 <!-- main.twig -->
 	<div id="tabs" class="span-24">
 		<ul>
-			<li><a href="#tabs-1">HOTSPOT</a></li>
+			<li><a href="#tabs-1" >HOTSPOT</a></li>
 			<li><a href="#tabs-2">BANDS</a></li>
 			<li><a href="#tabs-3">EVENTS</a></li>
 			<li><a href="#tabs-4">FORUM</a></li>
@@ -36,8 +36,8 @@
 <script type="text/javascript" src="{{ asset('bundles/bblweb/js/test.js') }}"></script> 
 {% endblock %}
 {% block javascript %}
-{{  parent() }} 
-
+{{  parent() }}
+<!-- <script> -->
 $(document).ready(function(){
 
 
@@ -70,6 +70,11 @@ function genLoad()
 	return "<p> Loading, please wait....</p>";
 }
 
+ 
+function testfunc()
+{
+	alert('Fuck You!! I`m still here! Rock`N`Roll Bitch!');
+}
 
 {% endblock %}
 

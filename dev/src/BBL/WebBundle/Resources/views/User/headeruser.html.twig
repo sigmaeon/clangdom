@@ -6,7 +6,7 @@
 			<span ><input type="text"  class="textBox" />
 			<img src="images/clearBtn.png"  class="cancelBtn"/></span>
 			</form></div></div></div>
-			<div class="span-9"><div id="bandname"> Hier wäre der Username{# {{ name }} #}</div></div>
-			<div class="span-3"><img src="{{ asset('bunes/bblweb/images/profile.') }}"></div>
-			<div class="span-2 last"><img src="{{ asset('bundles/bblweb/images/logout.jpg') }}"></div>
+			<div class="span-9"><div id="bandname"> {{ name }} </div></div>
+			<div class="span-3"><img src="{{ asset('bundles/bblweb/images/profile.jpg') }}"></div>
+			<div class="span-2 last"><a href="{{ path('logout') }}"><img src="{{ asset('bundles/bblweb/images/logout.jpg') }}"></a></div>
 	</div>

@@ -60,7 +60,12 @@ $(document).ready(function(){
   				  		 Pwd: passhash,
   				  		 Genre: $("#regGenre").val()},
  				  success: function() {
-     				 window.location = "{{ path('bbl_web_homepage') }}";
+ 				  //Change this!!
+ 				   	 alert('Thanks for signing up! You`ll be redirected in a few seconds...');
+ 				  	 setTimeout(function() {
+ 				  	 			window.location = "{{ path('bbl_web_homepage') }}";
+ 				  	 		    }
+ 				  	 , 3000); 
   				  }
 			});
 		//}

@@ -17,7 +17,8 @@ class MainController extends Controller
     	$this->get('session')->start();
     	if($this->get('session')->get('state') != 'logged')
          return $this->render('BBLWebBundle:Base:main.html.twig', array('sesson' => false));
-    	else return $this->render('BBLWebBundle:Base:main.html.twig', array('sesson' => true));
+    	else return $this->render('BBLWebBundle:Base:main.html.twig', array('sesson' => true, 
+    										'name' => $this->get('session')->get('name')));
     }
     
     public function regAction()
@@ -62,11 +63,27 @@ class MainController extends Controller
     	$em->persist($konto);
     	$em->flush();
     	
+    	//session-handling
+    	$session = $this->get('session');
+    	$session->set('state','logged');
+    	$session->set('user', $user->getIduser());
+    	$session->set('name',$konto->getName());
+    	$session->set('konto', $konto->getIdkonto());
+    	
     	//return
     	$response = new Response();
     	$response->setStatusCode(200);
     	return $response;
     }
     
+    public function logoutAction()
+    {
+    	$session = $this->get('session');
+    	$session->set('state','');
+    	$session->set('user', '');
+    	$session->set('name','');
+    	$session->set('konto','');
+    	return $this->redirect($this->generateUrl('bbl_web_homepage'));
+    }
     
 }

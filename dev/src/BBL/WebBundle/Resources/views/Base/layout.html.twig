@@ -3,7 +3,7 @@
 
 	
 		{% if sesson == true %}
-			{% include 'BBLWebBundle:User:headeruser.html.twig' %}
+			{% include 'BBLWebBundle:User:headeruser.html.twig' with { 'name' : name } %}
 		{% else %}
 			{% include 'BBLWebBundle:Base:headerguest.html.twig' %}
 		{% endif %}
@@ -28,8 +28,30 @@
 			Email or Nick: <input type="text" id="login_name" method="post"><br />
 			Password: <input type="text" id="login_password" method="post">Forgot your password? <a href="#"> Retrieve here.</a><br />
 			<input type="checkbox" id="remember" value="remember">Remember me.
-			<input type="submit" id="submit" value="LOGIN">
+			<button id="logbut">logIN</button>
 			<a class="close-reveal-modal">&#215;</a>
 			</p>
 	</div>
+{% endblock %}
+{% block javascript %}
+{{ parent() }}
+ //--------------------- AJAX Login ------------
+$(document).ready(function(){
+	$("#logbut").click(function(){
+		var passhash = CryptoJS.SHA3($("#login_password").val()).toString();
+		var url = '{{ path('login') }}';
+			$.ajax({
+ 				  type: "post",
+ 				  url: url,
+  				  data: {Email: $("#login_name").val(),
+  				  		 Pwd:   passhash},
+ 				  success: function() {
+     				 window.location = "{{ path('bbl_web_homepage') }}";
+  				  },
+  				  error: function() {
+  				     alert('No! This is wrong');
+  				  }
+			});
+	});
+});  
 {% endblock %}

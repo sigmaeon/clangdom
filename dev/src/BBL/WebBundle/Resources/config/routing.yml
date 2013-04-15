@@ -13,6 +13,10 @@ ajax_load:
 login:
   pattern: /login
   defaults: { _controller: BBLWebBundle:Ajax:login}
+ 
+logout:
+  pattern: /logout
+  defaults: { _controller: BBLWebBundle:Main:logout}
   
 signUp:
    pattern: /signUp
