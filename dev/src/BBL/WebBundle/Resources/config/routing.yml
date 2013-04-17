@@ -2,13 +2,17 @@ bbl_web_homepage:
     pattern:  /
     defaults: { _controller: BBLWebBundle:Main:index }
     
+profil:
+    pattern:  /profil/{name}
+    defaults: { _controller: BBLWebBundle:Main:profil }
+    
 registry:
     pattern: /signup
     defaults: { _controller: BBLWebBundle:Main:reg }
     
 ajax_load:
   pattern: /load
-  defaults: { _controller: BBLWebBundle:Ajax:load }
+  defaults: { _controller: BBLWebBundle:Load:load }
   
 login:
   pattern: /login

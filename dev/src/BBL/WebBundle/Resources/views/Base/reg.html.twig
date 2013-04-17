@@ -58,9 +58,9 @@ $(document).ready(function(){
   				  data: {Name: $("#accName").val(),
   				  		 Email: $("#email_1").val(),
   				  		 Pwd: passhash,
-  				  		 Genre: $("#regGenre").val()},
+  				  		 Genre: $("#regGenre").val(),
+  				  		 Type: "Artist"},
  				  success: function() {
- 				  //Change this!!
  				   	 alert('Thanks for signing up! You`ll be redirected in a few seconds...');
  				  	 setTimeout(function() {
  				  	 			window.location = "{{ path('bbl_web_homepage') }}";

@@ -5,21 +5,21 @@ namespace BBL\WebBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Genre
+ * Tasks
  *
- * @ORM\Table(name="genre")
+ * @ORM\Table(name="tasks")
  * @ORM\Entity
  */
-class Genre
+class Tasks
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="idGenre", type="integer", nullable=false)
+     * @ORM\Column(name="idTasks", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idgenre;
+    private $idtasks;
 
     /**
      * @var string
@@ -31,34 +31,34 @@ class Genre
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Artist", mappedBy="genregenre")
+     * @ORM\ManyToMany(targetEntity="Source", mappedBy="taskstasks")
      */
-    private $artistartist;
+    private $sourcesource;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->artistartist = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->sourcesource = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
 
     /**
-     * Get idgenre
+     * Get idtasks
      *
      * @return integer 
      */
-    public function getIdgenre()
+    public function getIdtasks()
     {
-        return $this->idgenre;
+        return $this->idtasks;
     }
 
     /**
      * Set name
      *
      * @param string $name
-     * @return Genre
+     * @return Tasks
      */
     public function setName($name)
     {
@@ -78,35 +78,35 @@ class Genre
     }
 
     /**
-     * Add artistartist
+     * Add sourcesource
      *
-     * @param \BBL\WebBundle\Entity\Artist $artistartist
-     * @return Genre
+     * @param \BBL\WebBundle\Entity\Source $sourcesource
+     * @return Tasks
      */
-    public function addArtistartist(\BBL\WebBundle\Entity\Artist $artistartist)
+    public function addSourcesource(\BBL\WebBundle\Entity\Source $sourcesource)
     {
-        $this->artistartist[] = $artistartist;
+        $this->sourcesource[] = $sourcesource;
     
         return $this;
     }
 
     /**
-     * Remove artistartist
+     * Remove sourcesource
      *
-     * @param \BBL\WebBundle\Entity\Artist $artistartist
+     * @param \BBL\WebBundle\Entity\Source $sourcesource
      */
-    public function removeArtistartist(\BBL\WebBundle\Entity\Artist $artistartist)
+    public function removeSourcesource(\BBL\WebBundle\Entity\Source $sourcesource)
     {
-        $this->artistartist->removeElement($artistartist);
+        $this->sourcesource->removeElement($sourcesource);
     }
 
     /**
-     * Get artistartist
+     * Get sourcesource
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getArtistartist()
+    public function getSourcesource()
     {
-        return $this->artistartist;
+        return $this->sourcesource;
     }
 }

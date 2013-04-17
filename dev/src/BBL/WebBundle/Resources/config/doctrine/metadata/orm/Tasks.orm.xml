@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="Genre" table="genre">
-    <id name="idgenre" type="integer" column="idGenre">
+  <entity name="Tasks" table="tasks">
+    <id name="idtasks" type="integer" column="idTasks">
       <generator strategy="IDENTITY"/>
     </id>
     <field name="name" type="string" column="Name" length="45" nullable="false"/>
-    <many-to-many field="artistartist" target-entity="Artist" mapped-by="genregenre"/>
+    <many-to-many field="sourcesource" target-entity="Source" mapped-by="taskstasks"/>
   </entity>
 </doctrine-mapping>

@@ -5,10 +5,10 @@
       <generator strategy="IDENTITY"/>
     </id>
     <field name="url" type="string" column="URL" length="45" nullable="false"/>
-    <one-to-one field="post" target-entity="Post">
+    <many-to-one field="post" target-entity="Post">
       <join-columns>
         <join-column name="Post" referenced-column-name="idPost"/>
       </join-columns>
-    </one-to-one>
+    </many-to-one>
   </entity>
 </doctrine-mapping>

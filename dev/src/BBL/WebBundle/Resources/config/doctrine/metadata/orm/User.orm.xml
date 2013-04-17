@@ -5,7 +5,7 @@
       <generator strategy="IDENTITY"/>
     </id>
     <field name="email" type="string" column="eMail" length="45" nullable="false"/>
-    <field name="password" type="string" column="Password" length="45" nullable="false"/>
+    <field name="password" type="text" column="Password" nullable="false"/>
     <many-to-many field="idkonto" target-entity="Konto" inversed-by="iduser">
       <join-table name="user_has_konto">
         <join-columns>

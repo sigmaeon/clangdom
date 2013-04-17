@@ -2,7 +2,6 @@
 <html>
 <body>
 {% block body %}
-{# hier kommen noch die tags zur formatierung #}
 	<div id="content">
 		{% block tabcontent %} 
 		<div class="abstand">
@@ -10,10 +9,18 @@
 			
 			<ul>
 				{% for object in objects %}
-				<!-- title: Überschrift des jeweiligen Tabs(Bands, Events, Forum)-->
-				<div class="span-20 prepend-2 box"><li><div class="span-2 colborder">{{ object.picture }}</div> 
-				<!-- name: Band bzw. Event name, info: Band bzw. Event information -->
-				<div class="span-6 last alt"><a href=" {{ object.link }}"><h3> {{ object.name }}</h3></a><br />{{ object.info }}<br /></div></li></div><hr> 
+					{% if object.type == "simple" %}
+					    {% include 'BBLWebBundle:content:simple.html.twig' 
+						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'info': object.info} %}
+						
+					{% elseif object.type == "mp3" %}
+						{% include 'BBLWebBundle:content:mp3.html.twig'
+						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'info': object.info} %}
+						
+					{% elseif object.type == "video" %}
+					    {% include 'BBLWebBundle:content:video.html.twig' 
+						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'info': object.info} %}
+					{% endif %}
 				{% endfor %}
 			</ul>
 		</div>

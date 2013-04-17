@@ -1,0 +1,57 @@
+<?php
+
+namespace BBL\WebBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Source
+ *
+ * @ORM\Table(name="source")
+ * @ORM\Entity
+ */
+class Source
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idSource", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idsource;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Tasks", inversedBy="sourcesource")
+     * @ORM\JoinTable(name="source_has_tasks",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="Source_idSource", referencedColumnName="idSource")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="Tasks_idTasks", referencedColumnName="idTasks")
+     *   }
+     * )
+     */
+    private $taskstasks;
+
+    /**
+     * @var \Konto
+     *
+     * @ORM\ManyToOne(targetEntity="Konto")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Konto", referencedColumnName="idKonto")
+     * })
+     */
+    private $konto;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->taskstasks = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+}
