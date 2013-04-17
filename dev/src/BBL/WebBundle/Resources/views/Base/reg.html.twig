@@ -20,6 +20,7 @@
 											<option value="Hiphop">Hip Hop</option>
 											<option value="House">House</option>
 										</select>+
+			<!--<div class="span-22 prepend-2"><input type="submit" name="moreGenre" value="Genre erweitern" id="moreGenre"></div>-->
 			<select name="genre" id="regGenre">
 											<option value=""></option>
 											<option value="Rock">Rock</option>
@@ -38,6 +39,9 @@
 			<br />
 			<div class="span-23 prepend-1"><input type="checkbox" name="agreement" value="">I've read and agree the <a href="#">user agreement</a>.</div>
 			<div class="span-23 prepend-1"><button id="subbut">Sign Up</button></div>
+		
+			<hr><br />
+			
 		</div>
 	</div>
 	
@@ -85,6 +89,10 @@ function hideLogos(){
 	if($("#regMail").val().indexOf("@") >= 0){
 		var mailOke = true;
 	}else{	alert("Bitte fuellen Sie eine gueltige Email-Adresse ein!");	}	
+	
+	if($("#regMail1").val().indexOf("@") >= 0){
+		var mailOke = true;
+	}else{	alert("Bitte bestaetigen Sie Ihre Email-Adresse!");	}	
 	
 	if($("#regName").val()!==("")){
 		var nameOke = true;	

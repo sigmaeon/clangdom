@@ -4,52 +4,75 @@
 	
 	<div id="whitebox" class="span-24 showgrid">
 		<div class="abstand">
+<<<<<<< HEAD
+			<h2 class="alt">Create your account!</h2>
+			<hr>
+			
+			<div class="span-4 prepend-2">Bandname:</div>
+			<div class="span-16 last"><input type="text" name="name" id="regName"></div><br />
+			<div class="span-4 prepend-2">Genre:</div>
+			<div class="span-16 last"><select name="genre" id="regGenre">
+											<option value=""></option>
+											<option value="rock">Rock</option>
+											<option value="metal">Metal</option>
+											<option value="punk">Punk</option>
+											<option value="jazz">Jazz</option>
+											<option value="classic">Classic</option>
+											<option value="pop">Pop</option>
+											<option value="funk">Funk</option>
+											<option value="schlager">Schlager</option>
+											<option value="hiphop">Hip Hop</option>
+											<option value="house">House</option>
+=======
 			<div class="span-10 prepend-1"><h2 class="alt">Create account</h2></div><div class="span-10 prepend-1 last"><h2 class="alt">Create profile</h2></div>
 			<hr><br />
 			<div class="span-11 prepend-1">Accountname: <input type="text" name="accname" id="accName"></div><div class="span-11 prepend-1 last"><input type="radio" name="user" value="Artist">Artist <input type="radio" name="user" value="Source">Source</div>
 			<div class="span-11 prepend-1">Email: <input type="text" name="email" id="email_1"></div><div class="span-11 prepend-1 last">Profilename: <input type="text" name="prfname" id="prfName"></div>
 			<div class="span-11 prepend-1">Confirm email: <input type="text" name="email2" id="email_2"></div><div class="span-11 prepend-1 last">Genre: <select name="genre" id="regGenre">
-											<option value=""></option>
-											<option value="rock">Rock</option>
-											<option value="metal">Metal</option>
-											<option value="punk">Punk</option>
-											<option value="jazz">Jazz</option>
-											<option value="classic">Classic</option>
-											<option value="pop">Pop</option>
-											<option value="funk">Funk</option>
-											<option value="schlager">Schlager</option>
-											<option value="hiphop">Hip Hop</option>
-											<option value="house">House</option>
+											<option value="Rock">Rock</option>
+											<option value="Metal">Metal</option>
+											<option value="Punk">Punk</option>
+											<option value="Jazz">Jazz</option>
+											<option value="Classic">Classic</option>
+											<option value="Pop">Pop</option>
+											<option value="Funk">Funk</option>
+											<option value="Schlager">Schlager</option>
+											<option value="Hiphop">Hip Hop</option>
+											<option value="House">House</option>
+>>>>>>> 09f3cb543db1ea8992b80b2ad601faa27a41ff0f
 										</select>+
+			<!--<div class="span-22 prepend-2"><input type="submit" name="moreGenre" value="Genre erweitern" id="moreGenre"></div>-->
 			<select name="genre" id="regGenre">
 											<option value=""></option>
-											<option value="rock">Rock</option>
-											<option value="metal">Metal</option>
-											<option value="punk">Punk</option>
-											<option value="jazz">Jazz</option>
-											<option value="classic">Classic</option>
-											<option value="pop">Pop</option>
-											<option value="funk">Funk</option>
-											<option value="schlager">Schlager</option>
-											<option value="hiphop">Hip Hop</option>
-											<option value="house">House</option>
+											<option value="Rock">Rock</option>
+											<option value="Metal">Metal</option>
+											<option value="Punk">Punk</option>
+											<option value="Jazz">Jazz</option>
+											<option value="Classic">Classic</option>
+											<option value="Pop">Pop</option>
+											<option value="Funk">Funk</option>
+											<option value="Schlager">Schlager</option>
+											<option value="Hiphop">Hip Hop</option>
+											<option value="House">House</option>
 										</select></div>
 <<<<<<< HEAD
 			<div class="span-4 prepend-2">Email:</div>
 			<div class="span-16 last"><input type="text" name="email" id="regMail"></div><br />
+			<div class="span-4 prepend-2">Confirm email:</div>
+			<div class="span-16 last"><input type="text" name="email" id="regMail1"></div><br />
 			<div class="span-4 prepend-2">Password:</div>
 			<div class="span-16 last"><input type="password" name="password_1" id="regPass1"></div><br />
 			<div class="span-4 prepend-2">Confirm password:</div>
 			<div class="span-16 last"><input type="password" name="password_2" id="regPass2"></div><br />
-			<div class="span-22 prepend-2"><input type="submit" name="submit" value="SIGNUP" id="subbut"></div><br />
+			<div class="span-22 prepend-2"><input type="submit" name="submit" value="SIGNUP" id="subbut"></div>
 			
 =======
 			<div class="span-11 prepend-1">Password: <input type="password" name="password" id="pwd_1"></div><div class="span-11 prepend-1 last"></div>
 			<div class="span-11 prepend-1">Confirm password: <input type="password" name="password2" id="pwd_1"></div><div class="span-11 prepend-1 last"></div>
 			<br />
 			<div class="span-23 prepend-1"><input type="checkbox" name="agreement" value="">I've read and agree the <a href="#">user agreement</a>.</div>
-			<div class="span-23 prepend-1"><input type="submit" name="submit" value="SIGNUP" id="subbut"></div>
->>>>>>> 260e9266e4d795c4fdbda3cab8416e07cbd2970b
+			<div class="span-23 prepend-1"><button id="subbut">Sign Up</button></div>
+>>>>>>> 09f3cb543db1ea8992b80b2ad601faa27a41ff0f
 		</div>
 	</div>
 	
@@ -57,14 +80,32 @@
 
 {% block javascript %}
 {{ parent() }}
-var val = false;
+var val = true;
 $(document).ready(function(){
-$("#subbut").click(function(){
-		checkval();
+     $("#subbut").click(function(){
+		//checkval();
+		var passhash = CryptoJS.SHA3($("#pwd_1").val()).toString();
+		//if(val == true) {
+		var url = '{{ path('signUp') }}';
+			$.ajax({
+ 				  type: "post",
+ 				  url: url,
+  				  data: {Name: $("#accName").val(),
+  				  		 Email: $("#email_1").val(),
+  				  		 Pwd: passhash,
+  				  		 Genre: $("#regGenre").val()},
+ 				  success: function() {
+ 				  //Change this!!
+ 				   	 alert('Thanks for signing up! You`ll be redirected in a few seconds...');
+ 				  	 setTimeout(function() {
+ 				  	 			window.location = "{{ path('bbl_web_homepage') }}";
+ 				  	 		    }
+ 				  	 , 3000); 
+  				  }
+			});
+		//}
 	});
 	hideLogos();
-	   var passhash = CryptoJS.MD5(password).toString();
-	
 });
 	
 function hideLogos(){
@@ -75,10 +116,14 @@ function hideLogos(){
  
 } 
 
-function checkval(){
+/*function checkval(){
 	if($("#regMail").val().indexOf("@") >= 0){
 		var mailOke = true;
 	}else{	alert("Bitte fuellen Sie eine gueltige Email-Adresse ein!");	}	
+	
+	if($("#regMail1").val().indexOf("@") >= 0){
+		var mailOke = true;
+	}else{	alert("Bitte bestaetigen Sie Ihre Email-Adresse!");	}	
 	
 	if($("#regName").val()!==("")){
 		var nameOke = true;	
@@ -86,7 +131,7 @@ function checkval(){
 	
 	if($("#regGenre").val()!==("")){
 		var nameOke = true;	
-	}else{	alert("Bitte waehlen Sie ein Genre aus!");	}
+	}else{val = true;	alert("Bitte waehlen Sie ein Genre aus!");	}
 	
 	if($("#regPass1").val()!==("")){
 		var nameOke = true;	
@@ -96,7 +141,7 @@ function checkval(){
 		var nameOke = true;	
 	}else{	alert("Bitte bestaetigen Sie Ihr Passwort!");	}
 }  
-
+*/
 
 {% endblock %}
 
