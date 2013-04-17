@@ -2,33 +2,15 @@
 
 {% block content %}	
 	
+<<<<<<< HEAD
 	<div id="whitebox" class="span-24 showgrid">
 		<div class="abstand">
-<<<<<<< HEAD
-			<h2 class="alt">Create your account!</h2>
-			<hr>
-			
-			<div class="span-4 prepend-2">Bandname:</div>
-			<div class="span-16 last"><input type="text" name="name" id="regName"></div><br />
-			<div class="span-4 prepend-2">Genre:</div>
-			<div class="span-16 last"><select name="genre" id="regGenre">
-											<option value=""></option>
-											<option value="rock">Rock</option>
-											<option value="metal">Metal</option>
-											<option value="punk">Punk</option>
-											<option value="jazz">Jazz</option>
-											<option value="classic">Classic</option>
-											<option value="pop">Pop</option>
-											<option value="funk">Funk</option>
-											<option value="schlager">Schlager</option>
-											<option value="hiphop">Hip Hop</option>
-											<option value="house">House</option>
-=======
 			<div class="span-10 prepend-1"><h2 class="alt">Create account</h2></div><div class="span-10 prepend-1 last"><h2 class="alt">Create profile</h2></div>
 			<hr><br />
 			<div class="span-11 prepend-1">Accountname: <input type="text" name="accname" id="accName"></div><div class="span-11 prepend-1 last"><input type="radio" name="user" value="Artist">Artist <input type="radio" name="user" value="Source">Source</div>
 			<div class="span-11 prepend-1">Email: <input type="text" name="email" id="email_1"></div><div class="span-11 prepend-1 last">Profilename: <input type="text" name="prfname" id="prfName"></div>
-			<div class="span-11 prepend-1">Confirm email: <input type="text" name="email2" id="email_2"></div><div class="span-11 prepend-1 last">Genre: <select name="genre" id="regGenre">
+			<div class="span-11 prepend-1">Confirm email: <input type="text" name="email2" id="email_2">
+			</div><div class="span-11 prepend-1 last">Genre: <select name="genre" id="regGenre">
 											<option value="Rock">Rock</option>
 											<option value="Metal">Metal</option>
 											<option value="Punk">Punk</option>
@@ -39,7 +21,6 @@
 											<option value="Schlager">Schlager</option>
 											<option value="Hiphop">Hip Hop</option>
 											<option value="House">House</option>
->>>>>>> 09f3cb543db1ea8992b80b2ad601faa27a41ff0f
 										</select>+
 			<!--<div class="span-22 prepend-2"><input type="submit" name="moreGenre" value="Genre erweitern" id="moreGenre"></div>-->
 			<select name="genre" id="regGenre">
@@ -55,26 +36,25 @@
 											<option value="Hiphop">Hip Hop</option>
 											<option value="House">House</option>
 										</select></div>
-<<<<<<< HEAD
-			<div class="span-4 prepend-2">Email:</div>
-			<div class="span-16 last"><input type="text" name="email" id="regMail"></div><br />
-			<div class="span-4 prepend-2">Confirm email:</div>
-			<div class="span-16 last"><input type="text" name="email" id="regMail1"></div><br />
-			<div class="span-4 prepend-2">Password:</div>
-			<div class="span-16 last"><input type="password" name="password_1" id="regPass1"></div><br />
-			<div class="span-4 prepend-2">Confirm password:</div>
-			<div class="span-16 last"><input type="password" name="password_2" id="regPass2"></div><br />
-			<div class="span-22 prepend-2"><input type="submit" name="submit" value="SIGNUP" id="subbut"></div>
-			
-=======
 			<div class="span-11 prepend-1">Password: <input type="password" name="password" id="pwd_1"></div><div class="span-11 prepend-1 last"></div>
 			<div class="span-11 prepend-1">Confirm password: <input type="password" name="password2" id="pwd_1"></div><div class="span-11 prepend-1 last"></div>
 			<br />
-			<div class="span-23 prepend-1"><input type="checkbox" name="agreement" value="">I've read and agree the <a href="#">user agreement</a>.</div>
+			<div class="span-23 prepend-1"><input type="checkbox" name="agreement" value="" id="cbx">I've read and agree the <a href="#">user agreement</a>.</div>
 			<div class="span-23 prepend-1"><button id="subbut">Sign Up</button></div>
->>>>>>> 09f3cb543db1ea8992b80b2ad601faa27a41ff0f
 		</div>
 	</div>
+=======
+			{% if type == "no" %}
+				{% include 'BBLWebBundle:Base:regnew.html.twig' %}
+						
+			{% elseif type == "art" %}
+				{% include 'BBLWebBundle:Base:regart.html.twig' %}
+				
+			{% elseif type == "sou" %}
+				{% include 'BBLWebBundle:Base:regsou.html.twig'  %}
+				
+			{% endif %}
+>>>>>>> ea73b0d9942759f2727ede78a4948898466909fc
 	
 {% endblock %}
 
@@ -83,7 +63,7 @@
 var val = true;
 $(document).ready(function(){
      $("#subbut").click(function(){
-		//checkval();
+		checkval();
 		var passhash = CryptoJS.SHA3($("#pwd_1").val()).toString();
 		//if(val == true) {
 		var url = '{{ path('signUp') }}';
@@ -93,9 +73,9 @@ $(document).ready(function(){
   				  data: {Name: $("#accName").val(),
   				  		 Email: $("#email_1").val(),
   				  		 Pwd: passhash,
-  				  		 Genre: $("#regGenre").val()},
+  				  		 Genre: $("#regGenre").val(),
+  				  		 Type: "Artist"},
  				  success: function() {
- 				  //Change this!!
  				   	 alert('Thanks for signing up! You`ll be redirected in a few seconds...');
  				  	 setTimeout(function() {
  				  	 			window.location = "{{ path('bbl_web_homepage') }}";
@@ -116,34 +96,52 @@ function hideLogos(){
  
 } 
 
-/*function checkval(){
-	if($("#regMail").val().indexOf("@") >= 0){
-		var mailOke = true;
-	}else{	alert("Bitte fuellen Sie eine gueltige Email-Adresse ein!");	}	
-	
-	if($("#regMail1").val().indexOf("@") >= 0){
-		var mailOke = true;
-	}else{	alert("Bitte bestaetigen Sie Ihre Email-Adresse!");	}	
-	
-	if($("#regName").val()!==("")){
+function checkval(){
+
+	if($("#prfName").val()!==("")){
 		var nameOke = true;	
-	}else{	alert("Bitte geben Sie einen gueltigen Namen ein!");	}	
+	}else{	alert("Please put in your name!");	}
+	
+	if($("#email_1").val().indexOf("@") >= 0){
+		var mailOke = true;
+	}else{	alert("Please select an email!");	}	
+	
+	if($("#email_2").val().indexOf("@") >= 0){
+			var mailOke = true;
+	}else{	alert("Please confirm your email!");	}	
 	
 	if($("#regGenre").val()!==("")){
 		var nameOke = true;	
-	}else{val = true;	alert("Bitte waehlen Sie ein Genre aus!");	}
+	}else{val = true;	alert("You forgot to choose a genre!");	}
 	
-	if($("#regPass1").val()!==("")){
+	if($("#pwd_1").val()!==("")){
 		var nameOke = true;	
-	}else{	alert("Sie haben kein Passwort eingegeben!");	}
+	}else{	alert("Please type in a Password");	}
 	
-	if($("#regPass2").val()!==("")){
+	if($("#pwd_1").val()!==("")){
 		var nameOke = true;	
-	}else{	alert("Bitte bestaetigen Sie Ihr Passwort!");	}
+	}else{	alert("Please confirm your Password!");	}
+	
+	if($("#cbx").is(':checked')){
+		var nameOke = true;	
+	}else{	alert("you have to agree the user agreement!");	}
 }  
-*/
 
+/*
+	var sameMail = ("#email_1").val();
+	var confMail = ("#email_2").val();
+
+if (sameMail == confmail){
+			var mailOke = true;
+		}else{
+			alert("You confirmed the wrong Email!")
+		
+
+if($("#cbx").attr(':checked')){
+		var nameOke = true;	
+	}else{	alert("you have to agree the user agreement!");	} 
+*/
 {% endblock %}
 
 
-
+		
