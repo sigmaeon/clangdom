@@ -7,10 +7,10 @@
 	 <!-- main.twig -->
 	<div id="tabs" class="span-24">
 		<ul>
-			<li><a href="#tabs-1" >HOTSPOT</a></li>
-			<li><a href="#tabs-2">BANDS</a></li>
-			<li><a href="#tabs-3">EVENTS</a></li>
-			<li><a href="#tabs-4">FORUM</a></li>
+			<li><a href="#tabs-1" type="hot">HOTSPOT</a></li>
+			<li><a href="#tabs-2" type="bands">BANDS</a></li>
+			<li><a href="#tabs-3" type="events">EVENTS</a></li>
+			<li><a href="#tabs-4" type="forum">FORUM</a></li>
 		<!--	<li><a href="#tabs-5">JOIN CLANGDOM</a></li>
 			<li><a href="#tabs-6">LOGIN</a></li>-->
 		</ul>
@@ -20,15 +20,15 @@
 		
 <!-- Tabs-2
      ------------------------------------------------------------------------------------------------ -->	
-		<div id="tabs-2"class="min" load="true"></div>
+		<div id="tabs-2" class="min" load="true"></div>
 		
 <!-- Tabs-3
      ------------------------------------------------------------------------------------------------ -->
-		<div id="tabs-3"class="min" load="true"></div>
+		<div id="tabs-3" class="min" load="true"></div>
 		
 <!-- Tabs-4
      ------------------------------------------------------------------------------------------------ -->
-		<div id="tabs-4"class="min" load="true"></div>
+		<div id="tabs-4" class="min" load="true"></div>
 	</div>
 	<button onclick="testfunc()" id="yobut"> Yoo </button>
 {% endblock %}
@@ -42,12 +42,13 @@ $(document).ready(function(){
 
 
 	// --------------- AJAX Loading -----------------
-	    var aTab = $("#tabs-1"); //der Inhalt des aktuellen Tabs
 		$( "#tabs" ).tabs({activate: function( event, ui) {
 			var url = '{{ path('ajax_load') }}';
 			  $.ajax({
  				  url: url,
-  				  data: {typ: "Plan"},
+ 				  type: "post",
+  				  data: {Type: "bands"/*ui.newTab.attr('type')*/,
+  				  		 Num: 10 /* maybe gets moded*/},
   				  beforeSend: function(){
   				  	if(ui.newPanel.html() == "") ui.newPanel.html(genLoad());
    				  },
@@ -73,7 +74,7 @@ function genLoad()
  
 function testfunc()
 {
-	alert('Fuck You!! I`m still here! Rock`N`Roll Bitch!');
+	alert('Surprise Mothafuckaa!!! ');
 }
 
 {% endblock %}

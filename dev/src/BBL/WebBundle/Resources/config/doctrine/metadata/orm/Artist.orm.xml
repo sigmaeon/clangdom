@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="Post" table="post">
-    <id name="idpost" type="integer" column="idPost">
+  <entity name="Artist" table="artist">
+    <id name="idartist" type="integer" column="idArtist">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="datum" type="date" column="Datum" nullable="false"/>
-    <field name="name" type="string" column="Name" length="45" nullable="false"/>
     <many-to-one field="konto" target-entity="Konto">
       <join-columns>
         <join-column name="Konto" referenced-column-name="idKonto"/>
       </join-columns>
     </many-to-one>
-    <many-to-many field="tagstags" target-entity="Tags" inversed-by="postpost">
-      <join-table name="post_has_tags">
+    <many-to-many field="genregenre" target-entity="Genre" inversed-by="artistartist">
+      <join-table name="artist_has_genre">
         <join-columns>
-          <join-column name="Post_idPost" referenced-column-name="idPost"/>
+          <join-column name="Artist_idArtist" referenced-column-name="idArtist"/>
         </join-columns>
         <inverse-join-columns>
-          <join-column name="Tags_idTags" referenced-column-name="idTags"/>
+          <join-column name="Genre_idGenre" referenced-column-name="idGenre"/>
         </inverse-join-columns>
       </join-table>
     </many-to-many>

@@ -31,17 +31,17 @@ class Konto
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Genre", inversedBy="kontokonto")
-     * @ORM\JoinTable(name="konto_has_genre",
+     * @ORM\ManyToMany(targetEntity="Tags", inversedBy="kontokonto")
+     * @ORM\JoinTable(name="konto_has_tags",
      *   joinColumns={
      *     @ORM\JoinColumn(name="Konto_idKonto", referencedColumnName="idKonto")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="Genre_idGenre", referencedColumnName="idGenre")
+     *     @ORM\JoinColumn(name="Tags_idTags", referencedColumnName="idTags")
      *   }
      * )
      */
-    private $genregenre;
+    private $tagstags;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -65,7 +65,7 @@ class Konto
      */
     public function __construct()
     {
-        $this->genregenre = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tagstags = new \Doctrine\Common\Collections\ArrayCollection();
         $this->iduser = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
@@ -104,36 +104,36 @@ class Konto
     }
 
     /**
-     * Add genregenre
+     * Add tagstags
      *
-     * @param \BBL\WebBundle\Entity\Genre $genregenre
+     * @param \BBL\WebBundle\Entity\Tags $tagstags
      * @return Konto
      */
-    public function addGenregenre(\BBL\WebBundle\Entity\Genre $genregenre)
+    public function addTagstag(\BBL\WebBundle\Entity\Tags $tagstags)
     {
-        $this->genregenre[] = $genregenre;
+        $this->tagstags[] = $tagstags;
     
         return $this;
     }
 
     /**
-     * Remove genregenre
+     * Remove tagstags
      *
-     * @param \BBL\WebBundle\Entity\Genre $genregenre
+     * @param \BBL\WebBundle\Entity\Tags $tagstags
      */
-    public function removeGenregenre(\BBL\WebBundle\Entity\Genre $genregenre)
+    public function removeTagstag(\BBL\WebBundle\Entity\Tags $tagstags)
     {
-        $this->genregenre->removeElement($genregenre);
+        $this->tagstags->removeElement($tagstags);
     }
 
     /**
-     * Get genregenre
+     * Get tagstags
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getGenregenre()
+    public function getTagstags()
     {
-        return $this->genregenre;
+        return $this->tagstags;
     }
 
     /**

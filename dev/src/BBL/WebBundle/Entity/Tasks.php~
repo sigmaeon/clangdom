@@ -5,21 +5,21 @@ namespace BBL\WebBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Genre
+ * Tasks
  *
- * @ORM\Table(name="genre")
+ * @ORM\Table(name="tasks")
  * @ORM\Entity
  */
-class Genre
+class Tasks
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="idGenre", type="integer", nullable=false)
+     * @ORM\Column(name="idTasks", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idgenre;
+    private $idtasks;
 
     /**
      * @var string
@@ -31,16 +31,16 @@ class Genre
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Artist", mappedBy="genregenre")
+     * @ORM\ManyToMany(targetEntity="Source", mappedBy="taskstasks")
      */
-    private $artistartist;
+    private $sourcesource;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->artistartist = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->sourcesource = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
 }

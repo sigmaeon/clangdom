@@ -36,6 +36,21 @@ class Post
     private $name;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Tags", inversedBy="postpost")
+     * @ORM\JoinTable(name="post_has_tags",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="Post_idPost", referencedColumnName="idPost")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="Tags_idTags", referencedColumnName="idTags")
+     *   }
+     * )
+     */
+    private $tagstags;
+
+    /**
      * @var \Konto
      *
      * @ORM\ManyToOne(targetEntity="Konto")
@@ -45,7 +60,14 @@ class Post
      */
     private $konto;
 
-
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->tagstags = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
 
     /**
      * Get idpost
@@ -101,6 +123,39 @@ class Post
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Add tagstags
+     *
+     * @param \BBL\WebBundle\Entity\Tags $tagstags
+     * @return Post
+     */
+    public function addTagstag(\BBL\WebBundle\Entity\Tags $tagstags)
+    {
+        $this->tagstags[] = $tagstags;
+    
+        return $this;
+    }
+
+    /**
+     * Remove tagstags
+     *
+     * @param \BBL\WebBundle\Entity\Tags $tagstags
+     */
+    public function removeTagstag(\BBL\WebBundle\Entity\Tags $tagstags)
+    {
+        $this->tagstags->removeElement($tagstags);
+    }
+
+    /**
+     * Get tagstags
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTagstags()
+    {
+        return $this->tagstags;
     }
 
     /**
