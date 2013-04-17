@@ -2,48 +2,16 @@
 
 {% block content %}	
 	
-	<div id="whitebox" class="span-24 showgrid">
-		<div class="abstand">
-			<div class="span-10 prepend-1"><h2 class="alt">Create account</h2></div><div class="span-10 prepend-1 last"><h2 class="alt">Create profile</h2></div>
-			<hr><br />
-			<div class="span-11 prepend-1">Accountname: <input type="text" name="accname" id="accName"></div><div class="span-11 prepend-1 last"><input type="radio" name="user" value="Artist">Artist <input type="radio" name="user" value="Source">Source</div>
-			<div class="span-11 prepend-1">Email: <input type="text" name="email" id="email_1"></div><div class="span-11 prepend-1 last">Profilename: <input type="text" name="prfname" id="prfName"></div>
-			<div class="span-11 prepend-1">Confirm email: <input type="text" name="email2" id="email_2"></div><div class="span-11 prepend-1 last">Genre: <select name="genre" id="regGenre">
-											<option value="Rock">Rock</option>
-											<option value="Metal">Metal</option>
-											<option value="Punk">Punk</option>
-											<option value="Jazz">Jazz</option>
-											<option value="Classic">Classic</option>
-											<option value="Pop">Pop</option>
-											<option value="Funk">Funk</option>
-											<option value="Schlager">Schlager</option>
-											<option value="Hiphop">Hip Hop</option>
-											<option value="House">House</option>
-										</select>+
-			<!--<div class="span-22 prepend-2"><input type="submit" name="moreGenre" value="Genre erweitern" id="moreGenre"></div>-->
-			<select name="genre" id="regGenre">
-											<option value=""></option>
-											<option value="Rock">Rock</option>
-											<option value="Metal">Metal</option>
-											<option value="Punk">Punk</option>
-											<option value="Jazz">Jazz</option>
-											<option value="Classic">Classic</option>
-											<option value="Pop">Pop</option>
-											<option value="Funk">Funk</option>
-											<option value="Schlager">Schlager</option>
-											<option value="Hiphop">Hip Hop</option>
-											<option value="House">House</option>
-										</select></div>
-			<div class="span-11 prepend-1">Password: <input type="password" name="password" id="pwd_1"></div><div class="span-11 prepend-1 last"></div>
-			<div class="span-11 prepend-1">Confirm password: <input type="password" name="password2" id="pwd_1"></div><div class="span-11 prepend-1 last"></div>
-			<br />
-			<div class="span-23 prepend-1"><input type="checkbox" name="agreement" value="">I've read and agree the <a href="#">user agreement</a>.</div>
-			<div class="span-23 prepend-1"><button id="subbut">Sign Up</button></div>
-		
-			<hr><br />
-			
-		</div>
-	</div>
+			{% if type == "no" %}
+				{% include 'BBLWebBundle:Base:regnew.html.twig' %}
+						
+			{% elseif type == "art" %}
+				{% include 'BBLWebBundle:Base:regart.html.twig' %}
+				
+			{% elseif type == "sou" %}
+				{% include 'BBLWebBundle:Base:regsou.html.twig'  %}
+				
+			{% endif %}
 	
 {% endblock %}
 

@@ -27,8 +27,19 @@ class MainController extends Controller
     
     public function regAction()
     {
-    	return $this->render('BBLWebBundle:Base:reg.html.twig', array('sesson' => false));
+    	return $this->render('BBLWebBundle:Base:reg.html.twig', array('sesson' => false, 'type' => "no"));
     }
+    
+    public function regArtAction()
+    {
+    	return $this->render('BBLWebBundle:Base:reg.html.twig', array('sesson' => false, 'type' => "art"));
+    }
+    
+    public function regSouAction()
+    {
+    	return $this->render('BBLWebBundle:Base:reg.html.twig', array('sesson' => false, 'type' => "sou"));
+    }
+    
     
     
     public function profilAction($name)

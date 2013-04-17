@@ -10,6 +10,14 @@ registry:
     pattern: /signup
     defaults: { _controller: BBLWebBundle:Main:reg }
     
+regart:
+    pattern: /artist
+    defaults: { _controller: BBLWebBundle:Main:regArt }
+    
+regsou:
+    pattern: /source
+    defaults: { _controller: BBLWebBundle:Main:regSou }
+    
 ajax_load:
   pattern: /load
   defaults: { _controller: BBLWebBundle:Load:load }

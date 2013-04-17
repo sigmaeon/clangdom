@@ -1,8 +1,4 @@
-﻿{% extends 'BBLWebBundle:Base:layout.html.twig' %}
-
-{% block content %}	
-	
-	<div id="whitebox" class="span-24 showgrid">
+<div id="whitebox" class="span-24 showgrid">
 		
 		<h3 class="alt">1. Step: Artist or Source?</h3>
 		<hr><br />
@@ -20,79 +16,10 @@
 											then you are a Source.</p></div>
 		</div>
 		<div class="span-24">
-		<div class="span-3 prepend-2"><button id="artbut">I'm an artist!</button></div>
-		<div class="span-3 prepend-6"><button id="soubut">I'm a source!</button></div>
+		<div class="span-3 prepend-2"><a href="{{ path('regart') }}"><button id="artbut" >I'm an artist!</button></a></div>
+		<div class="span-3 prepend-6"><a href="{{ path('regsou') }}"><button id="soubut">I'm a source!</button></a></div>
 		</div>
 		
 			
 		
-	</div>
-	
-{% endblock %}
-
-{% block javascript %}
-{{ parent() }}
-var val = true;
-$(document).ready(function(){
-     $("#subbut").click(function(){
-		//checkval();
-		var passhash = CryptoJS.SHA3($("#pwd_1").val()).toString();
-		//if(val == true) {
-		var url = '{{ path('signUp') }}';
-			$.ajax({
- 				  type: "post",
- 				  url: url,
-  				  data: {Name: $("#accName").val(),
-  				  		 Email: $("#email_1").val(),
-  				  		 Pwd: passhash,
-  				  		 Genre: $("#regGenre").val()},
- 				  success: function() {
- 				  //Change this!!
- 				   	 alert('Thanks for signing up! You`ll be redirected in a few seconds...');
- 				  	 setTimeout(function() {
- 				  	 			window.location = "{{ path('bbl_web_homepage') }}";
- 				  	 		    }
- 				  	 , 3000); 
-  				  }
-			});
-		//}
-	});
-	hideLogos();
-});
-	
-function hideLogos(){
- $("#topheader").attr('width', '950');
- $("#logLogo").remove();
- $("#regLogo").remove();
- $("#gap1").remove();
- 
-} 
-
-/*function checkval(){
-	if($("#regMail").val().indexOf("@") >= 0){
-		var mailOke = true;
-	}else{	alert("Bitte fuellen Sie eine gueltige Email-Adresse ein!");	}	
-	
-	if($("#regMail1").val().indexOf("@") >= 0){
-		var mailOke = true;
-	}else{	alert("Bitte bestaetigen Sie Ihre Email-Adresse!");	}	
-	
-	if($("#regName").val()!==("")){
-		var nameOke = true;	
-	}else{	alert("Bitte geben Sie einen gueltigen Namen ein!");	}	
-	
-	if($("#regGenre").val()!==("")){
-		var nameOke = true;	
-	}else{val = true;	alert("Bitte waehlen Sie ein Genre aus!");	}
-	
-	if($("#regPass1").val()!==("")){
-		var nameOke = true;	
-	}else{	alert("Sie haben kein Passwort eingegeben!");	}
-	
-	if($("#regPass2").val()!==("")){
-		var nameOke = true;	
-	}else{	alert("Bitte bestaetigen Sie Ihr Passwort!");	}
-}  
-*/
-
-{% endblock %}
+</div>
