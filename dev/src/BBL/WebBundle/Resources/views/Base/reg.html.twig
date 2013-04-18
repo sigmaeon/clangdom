@@ -1,6 +1,7 @@
 {% extends 'BBLWebBundle:Base:layout.html.twig' %}
 
 {% block content %}	
+<div id="whitebox">
 	
 			{% if type == "no" %}
 				{% include 'BBLWebBundle:Base:regnew.html.twig' %}
@@ -12,7 +13,7 @@
 				{% include 'BBLWebBundle:Base:regsou.html.twig'  %}
 				
 			{% endif %}
-	
+</div>>
 {% endblock %}
 
 {% block javascript %}
@@ -31,6 +32,7 @@ $(document).ready(function(){
   				  		 Email: $("#email_1").val(),
   				  		 Pwd: passhash,
   				  		 Genre: $("#regGenre").val(),
+  				  		 Source: $("#regGenre").val(),
   				  		 Type: "Artist"},
  				  success: function() {
  				   	 alert('Thanks for signing up! You`ll be redirected in a few seconds...');
