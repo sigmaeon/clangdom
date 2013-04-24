@@ -28,3 +28,49 @@
 			</div>
 		</div>
 	{% endblock %}
+	
+{% block javascript %}
+{{  parent() }}
+<!-- <script> -->
+$(document).ready(function(){
+
+
+	// --------------- AJAX Loading -----------------
+		$( "#tabs" ).tabs({activate: function( event, ui) {
+			var url = '{{ path('ajax_load') }}';
+			  $.ajax({
+ 				  url: url,
+ 				  type: "post",
+  				  data: {Type: "bands"/*ui.newTab.attr('type')*/,
+  				  		 Num: 10 /* maybe gets moded*/},
+  				  beforeSend: function(){
+  				  	if(ui.newPanel.html() == "") ui.newPanel.html(genLoad());
+   				  },
+ 				  success: function(data) {
+     				 ui.newPanel.html(data);
+  				  }
+			});
+		    }
+	    });
+        //initial Load
+		 var url = "{{ path('ajax_load') }}";
+		 $.post(url,{typ: "Plan"}, 
+		 function(data){
+			$("#tabs-1").html(data);
+	      });	
+});
+		 
+function genLoad()
+{
+	return "<p> Loading, please wait....</p>";
+}
+
+ 
+function testfunc()
+{
+	alert('Surprise Mothafuckaa!!! ');
+}
+
+{% endblock %}
+
+	

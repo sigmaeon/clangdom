@@ -33,12 +33,13 @@ $(document).ready(function(){
   				  		 Email: $("#email_1").val(),
   				  		 Pwd: passhash,
   				  		 Genre: $("#regGenre").val(),
-  				  		 Source: $("#regGenre").val(),
+  				  		 Genre2: $("#regGenre2").val(),
+  				  		 Tasks: ["ava", "lll"],
   				  		 Type: "Artist"},
  				  success: function() {
  				   	 alert('Thanks for signing up! You`ll be redirected in a few seconds...');
  				  	 setTimeout(function() {
- 				  	 			window.location = "{{ path('bbl_web_homepage') }}";
+ 				  	 			//window.location = "{{ path('bbl_web_homepage') }}";
  				  	 		    }
  				  	 , 3000); 
   				  }
@@ -61,14 +62,6 @@ $(document).ready(function(){
 		 $("#plus").hide();
 				             });
 });
-	
-function hideLogos(){
- $("#topheader").attr('width', '950');
- $("#logLogo").remove();
- $("#regLogo").remove();
- $("#gap1").remove();
- 
-} 
 
 function checkval(){
 
@@ -101,20 +94,15 @@ function checkval(){
 	}else{	alert("you have to agree the user agreement!");	}
 }  
 
-/*
-	var sameMail = ("#email_1").val();
-	var confMail = ("#email_2").val();
 
-if (sameMail == confmail){
-			var mailOke = true;
-		}else{
-			alert("You confirmed the wrong Email!")
-		
+//--------------------Hide Logos-----------------------
+function hideLogos(){
+ $("#topheader").attr('width', '950');
+ $("#logLogo").remove();
+ $("#regLogo").remove();
+ $("#gap1").remove();
+} 
 
-if($("#cbx").attr(':checked')){
-		var nameOke = true;	
-	}else{	alert("you have to agree the user agreement!");	} 
-*/
 {% endblock %}
 
 
