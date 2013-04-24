@@ -18,6 +18,7 @@
 
 {% block javascript %}
 {{ parent() }}
+//<script>
 var val = true;
 $(document).ready(function(){
      $("#subbut").click(function(){
@@ -45,6 +46,20 @@ $(document).ready(function(){
 		//}
 	});
 	hideLogos();
+	
+	
+	//-----+button-----
+	 $(function() {
+			    $( "#plus" ).button({
+			      icons: {
+			        primary: "ui-icon-circle-plus"
+			      }
+			     });
+	 });
+	 $("#plus").click(function(){
+		 $("#regGenre2").show();
+		 $("#plus").hide();
+				             });
 });
 	
 function hideLogos(){

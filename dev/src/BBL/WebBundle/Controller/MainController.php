@@ -148,10 +148,10 @@ class MainController extends Controller
 		$em = $this->getDoctrine()->getManager();
 		$taskRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Tasks');
 		 
-	//artist
+	//source
 		$source = new Source();
 		$source->setKonto($konto);
-	//Genre
+	//Task
 		if($request->request->get('Tasks') != '')
 			$task = $taskRepo->findOneByName($request->request->get('Tasks'));
 		else $task = $taskRepo->findOneByName("studio"); // task-not-found exception GOES here
