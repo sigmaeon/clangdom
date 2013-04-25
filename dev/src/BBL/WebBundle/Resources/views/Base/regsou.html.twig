@@ -1,4 +1,8 @@
-	<div id="content whitebox" class="span-24">
+{% extends 'BBLWebBundle:Base:reg.html.twig' %}
+
+{% block content %}
+<div id="whitebox">
+<div id="content whitebox" class="span-24">
 	<div class="abstand">
 		<div class="span-24">
 			<div class="span-3 prepend-1 pfeffi">Sourcename:</div>
@@ -6,10 +10,10 @@
 		</div>
 		<div class="span-24">
 			<div class="span-3 prepend-1 pfeffi">Task:</div>
-			<div class="span-3 prepend-1"><input type="checkbox" name="task" name="Seller">Seller<br />
-										  <input type="checkbox" name="task" name="Organizer">Organizer<br />
-										  <input type="checkbox" name="task" name="Mediator">Mediator<br />
-										  <input type="checkbox" name="task" name="Teacher">Teacher</div>
+			<div class="span-3 prepend-1"><input type="checkbox" id="task1" name="Seller">Seller<br />
+										  <input type="checkbox" id="task2" name="Organizer">Organizer<br />
+										  <input type="checkbox" id="task3" name="Mediator">Mediator<br />
+										  <input type="checkbox" id="task4" name="Teacher">Teacher</div>
 		</div>
 		<div class="span-24">
 			<div class="span-3 prepend-1 pfeffi">Email:</div>
@@ -34,4 +38,79 @@
 			<br /><button id="subbut">Sign Up</button>
 		</div>
 	</div>
-	</div>
+</div>
+</div>
+{% endblock %}
+{% block javascript %}
+{{ parent() }}
+//<script>
+var val = true;
+$(document).ready(function(){
+     $("#subbut").click(function(){
+		checkval();
+		var passhash = CryptoJS.SHA3($("#pwd_1").val()).toString();
+		//if(val == true) {
+		var url = '{{ path('signUp') }}';
+		var tasks = getTasks();
+			$.ajax({
+ 				  type: "post",
+ 				  url: url,
+  				  data: {Name: $("#accName").val(),
+  				  		 Email: $("#email_1").val(),
+  				  		 Pwd: passhash,
+  				  		 Tasks: tasks,
+  				  		 Type: "Source"},
+ 				  success: function() {
+ 				   	 alert('Thanks for signing up! You`ll be redirected in a few seconds...');
+ 				  	 setTimeout(function() {
+ 				  	 			window.location = "{{ path('bbl_web_homepage') }}";
+ 				  	 		    }
+ 				  	 , 3000); 
+  				  }
+			});
+		//}
+	});
+});
+/*
+function checkval(){
+
+	if($("#prfName").val()!==("")){
+		var nameOke = true;	
+	}else{	alert("Please put in your name!");	}
+	
+	if($("#email_1").val().indexOf("@") >= 0){
+		var mailOke = true;
+	}else{	alert("Please select an email!");	}	
+	
+	if($("#email_2").val().indexOf("@") >= 0){
+			var mailOke = true;
+	}else{	alert("Please confirm your email!");	}	
+	
+	if($("#regGenre").val()!==("")){
+		var nameOke = true;	
+	}else{val = true;	alert("You forgot to choose a genre!");	}
+	
+	if($("#pwd_1").val()!==("")){
+		var nameOke = true;	
+	}else{	alert("Please type in a Password");	}
+	
+	if($("#pwd_1").val()!==("")){
+		var nameOke = true;	
+	}else{	alert("Please confirm your Password!");	}
+	
+	if($("#cbx").is(':checked')){
+		var nameOke = true;	
+	}else{	alert("you have to agree the user agreement!");	}
+}  
+*/
+function getTasks()
+{	
+	var tasks = new Array();
+	if($("#task1").is(':checked') tasks.push($("#task1").val());
+	if($("#task2").is(':checked') tasks.push($("#task2").val());
+	if($("#task3").is(':checked') tasks.push($("#task3").val());
+	if($("#task4").is(':checked') tasks.push($("#task4").val());
+
+	return tasks;
+}
+{% endblock %}

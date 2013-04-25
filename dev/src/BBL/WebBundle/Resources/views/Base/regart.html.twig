@@ -1,4 +1,8 @@
-	<div id="content" class="span-24">
+{% extends 'BBLWebBundle:Base:reg.html.twig' %}
+
+{% block content %}
+<div id="whitebox">
+  <div id="content" class="span-24">
 	<div class="abstand">
 		<div class="span-24">
 			<div class="span-3 prepend-1 pfeffi">Artistname:</div>
@@ -58,3 +62,88 @@
 		
 	</div>
 </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+{{ parent() }}
+//<script>
+var val = false;
+$(document).ready(function(){
+     $("#subbut").click(function(){
+		checkval();
+		var passhash = CryptoJS.SHA3($("#pwd_1").val()).toString();
+		val = checkval();
+		if(val == true) {
+			var url = '{{ path('signUp') }}';
+			$.ajax({
+ 				  type: "post",
+ 				  url: url,
+  				  data: {Name: $("#accName").val(),
+  				  		 Email: $("#email_1").val(),
+  				  		 Pwd: passhash,
+  				  		 Genre: $("#regGenre").val(),
+  				  		 Genre2: $("#regGenre2").val(),
+  				  		 Type: "Artist"},
+ 				  success: function() {
+ 				   	 alert('Thanks for signing up! You`ll be redirected in a few seconds...');
+ 				  	 setTimeout(function() {
+ 				  	 			window.location = "{{ path('bbl_web_homepage') }}";
+ 				  	 		    }
+ 				  	 , 3000); 
+  				  }
+			});
+		}
+	});
+	hideLogos();
+	
+	
+	//-----+button-----
+	 $(function() {
+			    $( "#plus" ).button({
+			      icons: {
+			        primary: "ui-icon-circle-plus"
+			      }
+			     });
+	 });
+	 $("#plus").click(function(){
+		 $("#regGenre2").show();
+		 $("#plus").hide();
+				             });
+});
+
+function checkval(){
+	var count = 0;
+	if($("#prfName").val()!==("")){
+		count++;	
+	}else{	alert("Please put in your name!");	}
+	
+	if($("#email_1").val().indexOf("@") >= 0){
+		count++;
+	}else{	alert("Please select an email!");	}	
+	
+	if($("#email_2").val().indexOf("@") >= 0){
+		count++;
+	}else{	alert("Please confirm your email!");	}	
+	
+	if($("#regGenre").val()!==("")){
+		count++;
+	}else{alert("You forgot to choose a genre!");	}
+	
+	if($("#pwd_1").val()!==("")){
+		count++;
+	}else{	alert("Please type in a Password");	}
+	
+	if($("#pwd_1").val()!==("")){
+		count++;	
+	}else{	alert("Please confirm your Password!");	}
+	
+	if($("#cbx").is(':checked')){
+		count++;
+	}else{	alert("you have to agree the user agreement!");	}
+	
+	if(count == 7) return true;
+	
+}  
+
+{% endblock %}

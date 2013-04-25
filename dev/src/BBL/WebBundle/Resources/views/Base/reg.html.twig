@@ -1,19 +1,31 @@
 {% extends 'BBLWebBundle:Base:layout.html.twig' %}
 
 {% block content %}	
-<div id="whitebox">
-	
-			{% if type == "no" %}
-				{% include 'BBLWebBundle:Base:regnew.html.twig' %}
-						
-			{% elseif type == "art" %}
-				{% include 'BBLWebBundle:Base:regart.html.twig' %}
-				
-			{% elseif type == "sou" %}
-				{% include 'BBLWebBundle:Base:regsou.html.twig'  %}
-				
-			{% endif %}
-</div>>
+<div id="whitebox" class="span-24">
+	<div class="abstand">
+		
+		<h3 class="alt">1. Step: Artist or Source?</h3>
+		<hr><br />
+		<div class="span-24">
+			<div class=" span-7 prepend-1"><h4>Artist:</h4>
+											<p>An Artist plays the music.<br />
+											Artist involves Bands,individual musicans,<br />
+											choirs and other variants. If you make music,<br />
+											then you are an Artist</p></div>
+			<div class="span-11 prepend-1"><h4>Source:</h4>
+											<p>The Source supplies the Artist in a way.<br />
+											Sources includes Studios, seller,organizer,<br />
+											mediators, music shools and teachers.<br />
+											If you supply or commercialize music Artists,<br />
+											then you are a Source.</p></div>
+		</div>
+		<div class="span-24">
+		<div class="span-3 prepend-2"><a href="{{ path('regart') }}"><button id="artbut" >I'm an artist!</button></a></div>
+		<div class="span-3 prepend-6"><a href="{{ path('regsou') }}"><button id="soubut">I'm a source!</button></a></div>
+		</div>
+		
+	</div>		
+</div>
 {% endblock %}
 
 {% block javascript %}
@@ -21,81 +33,9 @@
 //<script>
 var val = true;
 $(document).ready(function(){
-     $("#subbut").click(function(){
-		checkval();
-		var passhash = CryptoJS.SHA3($("#pwd_1").val()).toString();
-		//if(val == true) {
-		var url = '{{ path('signUp') }}';
-			$.ajax({
- 				  type: "post",
- 				  url: url,
-  				  data: {Name: $("#accName").val(),
-  				  		 Email: $("#email_1").val(),
-  				  		 Pwd: passhash,
-  				  		 Genre: $("#regGenre").val(),
-  				  		 Genre2: $("#regGenre2").val(),
-  				  		 Tasks: ["ava", "lll"],
-  				  		 Type: "Artist"},
- 				  success: function() {
- 				   	 alert('Thanks for signing up! You`ll be redirected in a few seconds...');
- 				  	 setTimeout(function() {
- 				  	 			//window.location = "{{ path('bbl_web_homepage') }}";
- 				  	 		    }
- 				  	 , 3000); 
-  				  }
-			});
-		//}
-	});
 	hideLogos();
-	
-	
-	//-----+button-----
-	 $(function() {
-			    $( "#plus" ).button({
-			      icons: {
-			        primary: "ui-icon-circle-plus"
-			      }
-			     });
-	 });
-	 $("#plus").click(function(){
-		 $("#regGenre2").show();
-		 $("#plus").hide();
-				             });
 });
 
-function checkval(){
-
-	if($("#prfName").val()!==("")){
-		var nameOke = true;	
-	}else{	alert("Please put in your name!");	}
-	
-	if($("#email_1").val().indexOf("@") >= 0){
-		var mailOke = true;
-	}else{	alert("Please select an email!");	}	
-	
-	if($("#email_2").val().indexOf("@") >= 0){
-			var mailOke = true;
-	}else{	alert("Please confirm your email!");	}	
-	
-	if($("#regGenre").val()!==("")){
-		var nameOke = true;	
-	}else{val = true;	alert("You forgot to choose a genre!");	}
-	
-	if($("#pwd_1").val()!==("")){
-		var nameOke = true;	
-	}else{	alert("Please type in a Password");	}
-	
-	if($("#pwd_1").val()!==("")){
-		var nameOke = true;	
-	}else{	alert("Please confirm your Password!");	}
-	
-	if($("#cbx").is(':checked')){
-		var nameOke = true;	
-	}else{	alert("you have to agree the user agreement!");	}
-}  
-
-
-//--------------------Hide Logos-----------------------
 function hideLogos(){
  $("#topheader").attr('width', '950');
  $("#logLogo").remove();

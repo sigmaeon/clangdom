@@ -27,17 +27,17 @@ class MainController extends Controller
     
     public function regAction()
     {
-    	return $this->render('BBLWebBundle:Base:reg.html.twig', array('sesson' => false, 'type' => "no"));
+    	return $this->render('BBLWebBundle:Base:reg.html.twig', array('sesson' => false));
     }
     
     public function regArtAction()
     {
-    	return $this->render('BBLWebBundle:Base:reg.html.twig', array('sesson' => false, 'type' => "art"));
+    	return $this->render('BBLWebBundle:Base:regart.html.twig', array('sesson' => false));
     }
     
     public function regSouAction()
     {
-    	return $this->render('BBLWebBundle:Base:reg.html.twig', array('sesson' => false, 'type' => "sou"));
+    	return $this->render('BBLWebBundle:Base:regsou.html.twig', array('sesson' => false));
     }
     
     
@@ -134,11 +134,13 @@ class MainController extends Controller
     	if($request->request->get('Genre') != '')
     		$genre = $genreRepo->findOneByName($request->request->get('Genre'));
     	else $genre = $genreRepo->findOneByName("Classic"); // genre-not-found exception GOES here
+    	if($request->request->get('Genre2') != '')
+    		$genre2 = $genreRepo->findOneByName($request->request->get('Genre2'));
     	$genre->addArtistartist($artist);
     	$artist->addGenregenre($genre);
+    	$artist->addGenregenre($genre2);
     	
 		$em->persist($artist);
-    	$em->persist($genre);
 	}
 	
 	public function signSource($konto)
