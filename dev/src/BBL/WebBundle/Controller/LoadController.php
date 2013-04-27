@@ -2,12 +2,15 @@
 
 namespace BBL\WebBundle\Controller;
 
+use BBL\WebBundle\Exception\NoAjaxClangdomException;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use BBL\WebBundle\Entity\User;
 use BBL\WebBundle\Entity\Konto;
+use BBL\WebBundle\Exception;
 
 class LoadController extends Controller
 {
@@ -16,6 +19,7 @@ class LoadController extends Controller
     {
     	//Objects for Managing
     	$request = $this->getRequest();
+    	if($request->isXmlHttpRequest()) throw new NoAjaxClangdomException();
     	$em = $this->getDoctrine()->getManager();
     	$userRepo = $this->getDoctrine()->getRepository('BBLWebBundle:User');
     	

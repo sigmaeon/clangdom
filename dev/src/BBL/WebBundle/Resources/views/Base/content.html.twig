@@ -7,15 +7,15 @@
 			<ul>
 				{% for object in objects %}
 					{% if object.type == "simple" %}
-					    {% include 'BBLWebBundle:content:simple.html.twig' 
+					    {% include 'BBLWebBundle:Content:simple.html.twig' 
 						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'info': object.info} %}
 						
 					{% elseif object.type == "mp3" %}
-						{% include 'BBLWebBundle:content:mp3.html.twig'
+						{% include 'BBLWebBundle:Content:mp3.html.twig'
 						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'info': object.info} %}
 						
 					{% elseif object.type == "video" %}
-					    {% include 'BBLWebBundle:content:video.html.twig' 
+					    {% include 'BBLWebBundle:Content:video.html.twig' 
 						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'info': object.info} %}
 					{% endif %}
 				{% endfor %}
