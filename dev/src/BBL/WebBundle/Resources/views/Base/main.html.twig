@@ -54,7 +54,12 @@ $(document).ready(function(){
    				  },
  				  success: function(data) {
      				 ui.newPanel.html(data);
+  				  },
+  				  error: function(jqXHR, error, errorThrown) {
+  				  	ui.newPanel.html(jqXHR.responseText);
+  				  
   				  }
+  				  
 			});
 		    }
 	    });
