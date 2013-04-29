@@ -19,7 +19,7 @@ class LoadController extends Controller
     {
     	//Objects for Managing
     	$request = $this->getRequest();
-    	if($request->isXmlHttpRequest()) throw new NoAjaxClangdomException();
+    	if(!$request->isXmlHttpRequest()) throw new NoAjaxClangdomException();
     	$em = $this->getDoctrine()->getManager();
     	$userRepo = $this->getDoctrine()->getRepository('BBLWebBundle:User');
     	
@@ -36,8 +36,14 @@ class LoadController extends Controller
     public function fillBand()
     {
     	$em = $this->getDoctrine()->getManager();
-    	$query = $em->createQuery('SELECT k FROM BBL\WebBundle\Entity\Konto k');
-    	$kontos = $query->getResult();
+    	try{
+    		$query = $em->createQuery('SELECT k FROM BBL\WebBundle\Entity\Konto k');
+    		$kontos = $query->getResult();
+    	}
+    	catch (Exception $e)  
+		{  
+ 			throw new EntityNotFoundClangdomException;  
+		}  
     	
     	$i = 0;
     	foreach ($kontos as $konto) {
