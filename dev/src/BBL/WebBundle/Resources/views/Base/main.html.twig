@@ -1,5 +1,13 @@
 {% extends 'BBLWebBundle:Base:layout.html.twig' %}
 
+{% block header %}
+	{% if sesson == true %}
+			{% include 'BBLWebBundle:User:headeruser.html.twig' with { 'name' : name } %}
+		{% else %}
+			{% include 'BBLWebBundle:Base:headerguest.html.twig' %}
+	{% endif %}
+{% endblock %}
+
 {% block content %}
 
 <!-- Tabs
@@ -31,15 +39,26 @@
 		<div id="tabs-4" class="min" load="true"></div>
 	</div>
 	<button onclick="testfunc()" id="yobut"> Yoo </button>
+	
+	
+<!-- Pop ups --> 
+	<div id="logModal" class="reveal-modal span-24 showgrid">
+			<h3 class="alt">Log in to your CLANGDOM account here. </h3>
+			<hr>
+			<p>
+			Email or Nick: <input type="text" id="login_name" method="post"><br />
+			Password: <input type="text" id="login_password" method="post">Forgot your password? <a href="#"> Retrieve here.</a><br />
+			<input type="checkbox" id="remember" value="remember">Remember me.
+			<button id="logbut">logIN</button>
+			<a class="close-reveal-modal">&#215;</a>
+			</p>
+	</div>
 {% endblock %}
-{% block javascripts %}
-<script type="text/javascript" src="{{ asset('bundles/bblweb/js/test.js') }}"></script> 
-{% endblock %}
-{% block javascript %}
-{{  parent() }}
-<!-- <script> -->
-$(document).ready(function(){
 
+{% block javascript %}
+
+// <script>
+$(document).ready(function(){
 
 	// --------------- AJAX Loading -----------------
 		$( "#tabs" ).tabs({activate: function( event, ui) {
@@ -82,5 +101,26 @@ function testfunc()
 	alert('Surprise Mothafuckaa!!! ');
 }
 
+
+// --------------- Pop Up-------------------
+
+$(document).ready(function(){
+	$("#logbut").click(function(){
+		var passhash = CryptoJS.SHA3($("#login_password").val()).toString();
+		var url = '{{ path('login') }}';
+			$.ajax({
+ 				  type: "post",
+ 				  url: url,
+  				  data: {Email: $("#login_name").val(),
+  				  		 Pwd:   passhash},
+ 				  success: function() {
+     				 window.location = "{{ path('bbl_web_homepage') }}";
+  				  },
+  				  error: function() {
+  				     alert('No! This is wrong');
+  				  }
+			});
+	});
+});  
 {% endblock %}
 
