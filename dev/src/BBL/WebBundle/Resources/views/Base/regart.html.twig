@@ -87,9 +87,6 @@ $(document).ready(function(){
   				  		 Genre: $("#regGenre").val(),
   				  		 Genre2: $("#regGenre2").val(),
   				  		 Type: "Artist"},
-  				  409: function() {
-  	  				  alert('uups something went wrong');
-  	  				  },
  				  success: function() {
  				   	 alert('Thanks for signing up! You`ll be redirected in a few seconds...');
  				  	 setTimeout(function() {
@@ -98,7 +95,13 @@ $(document).ready(function(){
  				  	 , 3000); 
   				  },
   				  error: function(jqXHR, error, errorThrown) {
-  				  	$("html").html(jqXHR.responseText);
+  				     	if (jqXHR.status == '409') {
+  	  				     	if(jqXHR.responseText == 'mail') alert('It works');
+  	  				     	else alert('it didnt work');
+  				      	}
+  				    	else //server returned Exception
+  				  		$("html").html(jqXHR.responseText);
+  				  	
   				  
   				  }
 			});

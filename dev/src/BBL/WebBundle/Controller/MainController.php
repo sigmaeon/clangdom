@@ -86,6 +86,8 @@ class MainController extends Controller
     	//------value check---
     	$email = $request->request->get('Email');
     	if(strpos($email, '@') === false) return new Response('mail', 409);
+    	$name = $request->request->get('Name');
+    //	if(strpos($name, '?') === true || strpos($name, '<') === true, strpos($name, '>') === true || )
     	
     	
     	
@@ -115,7 +117,7 @@ class MainController extends Controller
     	if($userhere != null) $user = $userhere;
     	else{
     		$user = new User();
-    		$user->setEmail($request->request->get('Email'));
+    		$user->setEmail($email);
     		$user->setPassword($request->request->get('Pwd'));
     	}
     	$konto->addIduser($user);
