@@ -26,7 +26,7 @@ class Music
      *
      * @ORM\Column(name="URL", type="string", length=45, nullable=false)
      */
-    private $url;
+    private $path;
 
     /**
      * @var \Post
@@ -51,28 +51,48 @@ class Music
     }
 
     /**
-     * Set url
+     * Set path
      *
      * @param string $url
      * @return Music
      */
-    public function setUrl($url)
+    public function setPath($url)
     {
         $this->url = $url;
     
         return $this;
     }
+    
 
-    /**
-     * Get url
-     *
-     * @return string 
-     */
-    public function getUrl()
+    public function getAbsolutePath()
     {
-        return $this->url;
+        return null === $this->path
+            ? null
+            : $this->getUploadRootDir().'/'.$this->path;
     }
 
+    public function getWebPath()
+    {
+    	return null === $this->path
+    	? null
+    	: $this->getUploadDir().'/'.$this->path;
+    }
+    
+    
+    protected function getUploadRootDir()
+    {
+    	// the absolute directory path where uploaded
+    	// documents should be saved
+    	return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+    
+    protected function getUploadDir()
+    {
+    	// get rid of the __DIR__ so it doesn't screw up
+    	// when displaying uploaded doc/image in the view.
+    	return 'uploads/music';
+    }
+    
     /**
      * Set post
      *
