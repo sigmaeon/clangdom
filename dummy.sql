@@ -11,8 +11,8 @@ insert into Genre (Name) values('Schlager');
 insert into Genre (Name) values('Hip Hop');
 insert into Genre (Name) values('House');
 
-insert into Task (Name) values('Seller');
-insert into Task (Name) values('Organizer');
-insert into Task (Name) values('Mediator');
-insert into Task (Name) values('Teacher');
+insert into Tasks (Name) values('Seller');
+insert into Tasks (Name) values('Organizer');
+insert into Tasks (Name) values('Mediator');
+insert into Tasks (Name) values('Teacher');
 
