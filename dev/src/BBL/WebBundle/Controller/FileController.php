@@ -12,9 +12,9 @@ use BBL\WebBundle\Entity\Konto;
 class FileController extends Controller
 {
  
-    public function loginAction()
+    public function testAction()
     {
-    	
+    	return $this->render('BBLWebBundle:User:test.html.twig');
     }
     
 }

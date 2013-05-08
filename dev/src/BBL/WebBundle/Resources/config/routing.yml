@@ -2,6 +2,7 @@ bbl_web_homepage:
     pattern:  /
     defaults: { _controller: BBLWebBundle:Main:index }
     
+    
 profil:
     pattern:  /profil/{name}
     defaults: { _controller: BBLWebBundle:Main:profil }
@@ -39,4 +40,11 @@ signUp:
    defaults: { _controller: BBLWebBundle:Main:reg}
    requirements:
     _method: POST
+    
+    
+    
+test:
+   pattern: /test
+   defaults: { _controller: BBLWebBundle:File:test}
+   
    
