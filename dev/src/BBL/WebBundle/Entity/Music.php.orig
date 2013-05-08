@@ -22,6 +22,16 @@ class Music
     private $idmusic;
 
     /**
+<<<<<<< HEAD
+     * @var string
+     *
+     * @ORM\Column(name="URL", type="string", length=45, nullable=false)
+     */
+    private $path;
+
+    /**
+=======
+>>>>>>> exceptions
      * @var \Post
      *
      * @ORM\ManyToOne(targetEntity="Post")
@@ -54,12 +64,20 @@ class Music
     }
 
     /**
+<<<<<<< HEAD
+     * Set path
+=======
      * Set post
+>>>>>>> exceptions
      *
      * @param \BBL\WebBundle\Entity\Post $post
      * @return Music
      */
+<<<<<<< HEAD
+    public function setPath($url)
+=======
     public function setPost(\BBL\WebBundle\Entity\Post $post = null)
+>>>>>>> exceptions
     {
         $this->post = $post;
     
@@ -67,13 +85,22 @@ class Music
     }
     
 
+<<<<<<< HEAD
+    public function getAbsolutePath()
+    {
+        return null === $this->path
+            ? null
+            : $this->getUploadRootDir().'/'.$this->path;
+=======
+    /**
      * Get post
+     *
      * @return \BBL\WebBundle\Entity\Post 
+     */
     public function getPost()
     {
         return $this->post;
-            ? null
-            : $this->getUploadRootDir().'/'.$this->path;
+>>>>>>> exceptions
     }
 
     public function getWebPath()

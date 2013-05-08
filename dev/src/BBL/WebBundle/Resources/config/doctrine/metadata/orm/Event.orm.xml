@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Event" table="event">
+    <id name="idevent" type="integer" column="idEvent">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="startdate" type="string" column="Startdate" length="45" nullable="true"/>
+    <field name="enddate" type="string" column="Enddate" length="45" nullable="true"/>
+    <field name="info" type="text" column="Info" nullable="true"/>
+    <many-to-one field="profil" target-entity="Profil">
+      <join-columns>
+        <join-column name="Profil" referenced-column-name="idProfil"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="post" target-entity="Post">
+      <join-columns>
+        <join-column name="Post" referenced-column-name="idPost"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-many field="konto" target-entity="Konto" inversed-by="event">
+      <join-table name="event_has_konto">
+        <join-columns>
+          <join-column name="Event" referenced-column-name="idEvent"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="Konto" referenced-column-name="idKonto"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>

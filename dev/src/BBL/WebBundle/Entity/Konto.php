@@ -31,6 +31,13 @@ class Konto
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
+     * @ORM\ManyToMany(targetEntity="Event", mappedBy="konto")
+     */
+    private $event;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
      * @ORM\ManyToMany(targetEntity="Tags", inversedBy="kontokonto")
      * @ORM\JoinTable(name="konto_has_tags",
      *   joinColumns={
@@ -55,7 +62,7 @@ class Konto
      *
      * @ORM\ManyToOne(targetEntity="Profil")
      * @ORM\JoinColumns({
-     * @ORM\JoinColumn(name="Profil", referencedColumnName="idProfil")
+     *   @ORM\JoinColumn(name="Profil", referencedColumnName="idProfil")
      * })
      */
     private $profil;
@@ -65,6 +72,7 @@ class Konto
      */
     public function __construct()
     {
+        $this->event = new \Doctrine\Common\Collections\ArrayCollection();
         $this->tagstags = new \Doctrine\Common\Collections\ArrayCollection();
         $this->iduser = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -101,6 +109,39 @@ class Konto
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Add event
+     *
+     * @param \BBL\WebBundle\Entity\Event $event
+     * @return Konto
+     */
+    public function addEvent(\BBL\WebBundle\Entity\Event $event)
+    {
+        $this->event[] = $event;
+    
+        return $this;
+    }
+
+    /**
+     * Remove event
+     *
+     * @param \BBL\WebBundle\Entity\Event $event
+     */
+    public function removeEvent(\BBL\WebBundle\Entity\Event $event)
+    {
+        $this->event->removeElement($event);
+    }
+
+    /**
+     * Get event
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEvent()
+    {
+        return $this->event;
     }
 
     /**

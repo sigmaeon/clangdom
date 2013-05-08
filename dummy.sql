@@ -1,6 +1,6 @@
 use clangdom;
 
-insert into Genre(Name) values('Rock');
+insert into Genre (Name) values('Rock');
 insert into Genre (Name) values('Metal');
 insert into Genre (Name) values('Punk');
 insert into Genre (Name) values('Jazz');

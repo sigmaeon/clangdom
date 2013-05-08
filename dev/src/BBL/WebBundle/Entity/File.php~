@@ -1,0 +1,32 @@
+<?php
+
+namespace BBL\WebBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * File
+ *
+ * @ORM\Table(name="file")
+ * @ORM\Entity
+ */
+class File
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idFile", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idfile;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Path", type="string", length=45, nullable=true)
+     */
+    private $path;
+
+
+}

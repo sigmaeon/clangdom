@@ -4,7 +4,11 @@
     <id name="idmusic" type="integer" column="idMusic">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="url" type="string" column="URL" length="45" nullable="false"/>
+    <many-to-one field="file" target-entity="File">
+      <join-columns>
+        <join-column name="File" referenced-column-name="idFile"/>
+      </join-columns>
+    </many-to-one>
     <many-to-one field="post" target-entity="Post">
       <join-columns>
         <join-column name="Post" referenced-column-name="idPost"/>

@@ -31,6 +31,13 @@ class Konto
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
+     * @ORM\ManyToMany(targetEntity="Event", mappedBy="konto")
+     */
+    private $event;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
      * @ORM\ManyToMany(targetEntity="Tags", inversedBy="kontokonto")
      * @ORM\JoinTable(name="konto_has_tags",
      *   joinColumns={
@@ -65,6 +72,7 @@ class Konto
      */
     public function __construct()
     {
+        $this->event = new \Doctrine\Common\Collections\ArrayCollection();
         $this->tagstags = new \Doctrine\Common\Collections\ArrayCollection();
         $this->iduser = new \Doctrine\Common\Collections\ArrayCollection();
     }
