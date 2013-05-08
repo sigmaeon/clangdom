@@ -5,31 +5,28 @@ namespace BBL\WebBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Music
+ * Picture
  *
- * @ORM\Table(name="music")
+ * @ORM\Table(name="picture")
  * @ORM\Entity
  */
-class Music
+class Picture
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="idMusic", type="integer", nullable=false)
+     * @ORM\Column(name="idPicture", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idmusic;
+    private $idpicture;
 
     /**
-     * @var \Post
+     * @var string
      *
-     * @ORM\ManyToOne(targetEntity="Post")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Post", referencedColumnName="idPost")
-     * })
+     * @ORM\Column(name="Name", type="string", length=45, nullable=true)
      */
-    private $post;
+    private $name;
 
     /**
      * @var \File

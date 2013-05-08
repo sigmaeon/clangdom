@@ -29,11 +29,14 @@ class Profil
     private $link;
 
     /**
-     * @var string
+     * @var \Picture
      *
-     * @ORM\Column(name="Pic", type="string", length=45, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Picture")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Picture", referencedColumnName="idPicture")
+     * })
      */
-    private $pic;
+    private $picture;
 
 
 
@@ -71,25 +74,25 @@ class Profil
     }
 
     /**
-     * Set pic
+     * Set picture
      *
-     * @param string $pic
+     * @param \BBL\WebBundle\Entity\Picture $picture
      * @return Profil
      */
-    public function setPic($pic)
+    public function setPicture(\BBL\WebBundle\Entity\Picture $picture = null)
     {
-        $this->pic = $pic;
+        $this->picture = $picture;
     
         return $this;
     }
 
     /**
-     * Get pic
+     * Get picture
      *
-     * @return string 
+     * @return \BBL\WebBundle\Entity\Picture 
      */
-    public function getPic()
+    public function getPicture()
     {
-        return $this->pic;
+        return $this->picture;
     }
 }
