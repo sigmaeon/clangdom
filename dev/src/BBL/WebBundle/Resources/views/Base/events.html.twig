@@ -1,0 +1,43 @@
+﻿{% extends 'BBLWebBundle:Base:layout.html.twig' %}
+
+
+{% block header %}
+	{% include 'BBLWebBundle:Base:headerreg.html.twig' %}
+{% endblock %}
+{% block content %}	
+	<div id="content" class="span-24">
+			<div id="accordion">
+				<h3>Your event history</h3>
+				<div>
+					List of events where you participate.
+				</div>
+				<h3>Create Event</h3>
+				<div>
+				<!-- action has to be edited!-->
+					<form action="#">
+						<div class="span-24">
+							<div class="span-4 prepend-1 pfeffi">Eventname:</div>
+							<div class="span-4 prepend-1 last"><input type="text" name="eventname" id="eveName"></div>
+						</div>
+						<div class="span-24">
+							<div class="span-4 prepend-1 pfeffi">Information:</div>
+							<div class="span-10 prepend-1 last"><textarea placeholder="Information about your event..." id="info"></textarea></div>
+						</div>
+						<div class="span-24">
+							<div class="span-4 prepend-1 pfeffi">Location:</div>
+							<div class="span-4 prepend-1"><input type="text" name="location" id="location"></div>
+						</div>
+						<div class="span-24">
+							<div class="span-4 prepend-1 pfeffi">Date:</div>
+							<div class="span-4 prepend-1 last"><input type="date" name="date" id="date" placeholder="DD/MM/YYYY"	></div>
+						</div>
+						<div class="span-24">
+							<div class="span-4 prepend-1 pfeffi">Time:</div>
+							<div class="span-4 prepend-1 last"><input type="time" name="time" id="time" placeholder="HH:MM"></div>
+						</div>
+						<div class="span-24 prepend-6"><button id="evebut">Create</button></div>
+					</form>	
+				</div>
+			</div>
+		</div>
+{% endblock %}

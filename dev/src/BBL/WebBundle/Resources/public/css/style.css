@@ -91,10 +91,52 @@ margin-top:30px;
 margin-bottom:5px;
 }
 
+.pfeffi{
+margin-top:8px;
+margin-bottom:7px;
+text-align:right;
+}
+
+.hiddenuser{
+visibility:hidden;
+width:208px;
+}
+
+.hiddenguest{
+visibility:hidden;
+width:227px;
+}
+
+.abstand{
+margin:20px;
+}
+
+.fixed{
+margin-left:0px;
+}
+
 .transparent {
 	zoom: 1;
 	filter: alpha(opacity=50);
 	opacity: 0.5;
+}
+
+
+.space{
+height:30px;
+width:30px;
+}
+
+.container{
+background-color:white;
+}
+
+
+.whitebox{
+position:center;
+width:950px;
+height:350px;
+background-color:white;
 }
 
 .min{
