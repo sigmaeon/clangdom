@@ -1,5 +1,35 @@
 ﻿<!-- THIS IS THE USER HEADER!!!!! -->
 	<div id="header" class="span-24">
+		<div class="menu">
+					<ul>
+						<li><a href="#">Clangdom</a></li>
+						<li><div id="searchfield"><input type="text" id="search" class="textBox" value="Search!" onfocus="if (this.value == 'Search!') this.value = '';" onblur="if (this.value == '') this.value = 'Search!';" maxlength="255" /><input type="image" src="images/btn_search.png" class="button" /></div></li>
+						<li><a href="#" onClick="return false"><div id="radio"><img src="{{ asset('bundles/bblweb/images/radio4.png') }}"></div></a>
+							<ul>
+								<li><embed height="100" width="300" src="#"></li>
+							</ul>
+						</li>
+						<li><a href="#" data-reveal-id="logModal" data-animation="fade" onClick="return false"><div id="filter"><img src="{{ asset('bundles/bblweb/images/filter2.png') }}"></div></a></li>
+						<li><div class="hiddenuser">hidden</div></li>
+						<li><a href="#" onClick="return false" id="current"><img src="{{ asset('bundles/bblweb/images/settings.png') }}" class="pic"></a>
+							<ul>
+								<li><a href="#">Profilsettings</a></li>
+								<li><a href="#">Events</a></li>
+							</ul>
+						</li>
+						<li><a href="#">Profiles</a>
+							<ul>
+							<!-- twigschleife hier -->
+								<li><a href="#">Camelized</a></li>
+								<li><a href="#">TheSimsns</a></li>
+								<li><a href="#">TheSimls</a></li>
+							</ul>
+						</li>
+						<li><a href="#">Logout</a></li>
+					</ul>
+				</div>	
+			
+			<!-- old header: 
 			<div class="span-5"><a href="{{ path('bbl_web_homepage') }}"><img src="{{ asset('bundles/bblweb/images/Clangdomlogo.jpg') }}"></a></div>
 			<div class="span-5"><div id="searchfield"><div id="searchHolder">
 			<form>
@@ -8,5 +38,5 @@
 			</form></div></div></div>
 			<div class="span-9"><div id="bandname"> {{ name }} </div></div>
 			<div class="span-3"><img src="{{ asset('bundles/bblweb/images/profile.jpg') }}"></div>
-			<div class="span-2 last"><a href="{{ path('logout') }}"><img src="{{ asset('bundles/bblweb/images/logout.jpg') }}"></a></div>
+			<div class="span-2 last"><a href="{{ path('logout') }}"><img src="{{ asset('bundles/bblweb/images/logout.jpg') }}"></a></div> -->
 	</div>
