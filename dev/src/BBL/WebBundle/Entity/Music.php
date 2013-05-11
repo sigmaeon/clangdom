@@ -67,8 +67,11 @@ class Music
     }
     
 
-     * Get post
+    /** 
+     * 
+     *Get post
      * @return \BBL\WebBundle\Entity\Post 
+     */
     public function getPost()
     {
         return $this->post;

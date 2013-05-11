@@ -17,4 +17,11 @@ class FileController extends Controller
     	return $this->render('BBLWebBundle:User:test.html.twig');
     }
     
+    public function picUpAction()
+    {
+    	$upFile =  $this->getRequest()->files->get("datei");
+    	return new Response($this->get('kernel')->getRootDir().'/../web'.'||'.__DIR__.'/../../../../web/');
+    	
+    }
+   
 }

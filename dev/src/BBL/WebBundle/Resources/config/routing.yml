@@ -41,7 +41,11 @@ signUp:
    requirements:
     _method: POST
     
-    
+picupload:
+   pattern: /picup
+   defaults: { _controller: BBLWebBundle:File:picUp}
+   requirements:
+    _method: POST
     
 test:
    pattern: /test

@@ -28,8 +28,18 @@ class File
      */
     private $path;
 
-
-
+    /**
+     * Is no persistence field, field for filehandling
+     */
+    private $file;
+    
+    /**
+     *  Is no persistence field, field for upload-root-Dir
+     */
+    protected static $uploadDirectory = null;
+    
+    
+	
     /**
      * Get idfile
      *
@@ -73,7 +83,7 @@ class File
     {
     	// the absolute directory path where uploaded
     	// documents should be saved
-    	return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    	return self::$uploadDirectory;
     }
     
     protected function getUploadDir()
@@ -81,6 +91,35 @@ class File
     	// get rid of the __DIR__ so it doesn't screw up
     	// when displaying uploaded doc/image in the view.
     	return 'uploads';
+    }
+    
+    /**
+     * Sets file.
+     *
+     * @param UploadedFile $file
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+    	$this->file = $file;
+    }
+    
+    /**
+     * Get file.
+     *
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+    	return $this->file;
+    }
+    
+    /**
+     *  Sets Upload Root dir (gets executed by Bundle-boot methode in BBLWebBundle)
+     * @param string $dir
+     */
+    static public function setUploadsDirectory($dir)
+    {
+    	self::$uploadDirectory = $dir;
     }
     
 }

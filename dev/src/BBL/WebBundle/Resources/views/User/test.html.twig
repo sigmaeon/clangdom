@@ -1,6 +1,10 @@
 {% extends '::base.html.twig' %}
 {% block body %}
-	<input type="file">
+	<form action="{{ path('picupload') }}" method="post" enctype="multipart/form-data">
+	<input type="file" name="datei" />
+	<br />
+	<input type="submit" value="Upload" />
+	</form>
 {% endblock %}
 
 	
