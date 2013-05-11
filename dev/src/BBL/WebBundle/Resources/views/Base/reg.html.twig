@@ -1,5 +1,9 @@
 {% extends 'BBLWebBundle:Base:layout.html.twig' %}
 
+
+{% block header %}
+	{% include 'BBLWebBundle:Base:headerreg.html.twig' %}
+{% endblock %}
 {% block content %}	
 <div id="whitebox" class="span-24">
 	<div class="abstand">
@@ -27,23 +31,5 @@
 	</div>		
 </div>
 {% endblock %}
-
-{% block javascript %}
-{{ parent() }}
-//<script>
-var val = true;
-$(document).ready(function(){
-	hideLogos();
-});
-
-function hideLogos(){
- $("#topheader").attr('width', '950');
- $("#logLogo").remove();
- $("#regLogo").remove();
- $("#gap1").remove();
-} 
-
-{% endblock %}
-
 
 		

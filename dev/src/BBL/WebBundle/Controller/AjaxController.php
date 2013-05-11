@@ -20,6 +20,7 @@ class AjaxController extends Controller
     	$userRepo = $this->getDoctrine()->getRepository('BBLWebBundle:User');
     	$genreRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Konto');
     	$user = $userRepo->findOneByEmail($request->request->get('Email'));
+    	
     	//check if valid
     	if($user == null) {
     		$response = new Response();

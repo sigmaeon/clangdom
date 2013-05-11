@@ -1,5 +1,8 @@
 {% extends 'BBLWebBundle:Base:reg.html.twig' %}
 
+{% block header %}
+	{% include 'BBLWebBundle:Base:headerreg.html.twig' %}
+{% endblock %}
 {% block content %}
 <div id="whitebox">
   <div id="content" class="span-24">
@@ -19,7 +22,7 @@
 												<option value="Pop">Pop</option>
 												<option value="Funk">Funk</option>
 												<option value="Schlager">Schlager</option>
-												<option value="Hiphop">Hip Hop</option>
+												<option value="Oma?">Hip Hop</option>
 												<option value="House">House</option>
 											</select> 
 										<button id="plus"></button>
@@ -66,7 +69,6 @@
 {% endblock %}
 
 {% block javascript %}
-{{ parent() }}
 //<script>
 var val = false;
 $(document).ready(function(){
@@ -85,18 +87,23 @@ $(document).ready(function(){
   				  		 Genre: $("#regGenre").val(),
   				  		 Genre2: $("#regGenre2").val(),
   				  		 Type: "Artist"},
+  				  409: function() {
+  	  				  alert('uups something went wrong');
+  	  				  },
  				  success: function() {
  				   	 alert('Thanks for signing up! You`ll be redirected in a few seconds...');
  				  	 setTimeout(function() {
  				  	 			window.location = "{{ path('bbl_web_homepage') }}";
  				  	 		    }
  				  	 , 3000); 
+  				  },
+  				  error: function(jqXHR, error, errorThrown) {
+  				  	$("html").html(jqXHR.responseText);
+  				  
   				  }
 			});
 		}
 	});
-	hideLogos();
-	
 	
 	//-----+button-----
 	 $(function() {
@@ -118,13 +125,9 @@ function checkval(){
 		count++;	
 	}else{	alert("Please put in your name!");	}
 	
-	if($("#email_1").val().indexOf("@") >= 0){
+	if($("#email_1").val() == $("#email_2").val()){
 		count++;
-	}else{	alert("Please select an email!");	}	
-	
-	if($("#email_2").val().indexOf("@") >= 0){
-		count++;
-	}else{	alert("Please confirm your email!");	}	
+	}else{	alert("Please confirm your email again!");	}	
 	
 	if($("#regGenre").val()!==("")){
 		count++;
@@ -142,7 +145,7 @@ function checkval(){
 		count++;
 	}else{	alert("you have to agree the user agreement!");	}
 	
-	if(count == 7) return true;
+	if(count == 6) return true;
 	
 }  
 

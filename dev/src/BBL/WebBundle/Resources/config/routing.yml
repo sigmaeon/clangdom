@@ -8,7 +8,7 @@ profil:
     
 registry:
     pattern: /signup
-    defaults: { _controller: BBLWebBundle:Main:reg }
+    defaults: { _controller: BBLWebBundle:Main:signup }
     
 regart:
     pattern: /artist
@@ -21,15 +21,22 @@ regsou:
 ajax_load:
   pattern: /load
   defaults: { _controller: BBLWebBundle:Load:load }
+  requirements:
+    _method: POST
   
 login:
   pattern: /login
   defaults: { _controller: BBLWebBundle:Ajax:login}
+  requirements:
+    _method: POST
  
 logout:
   pattern: /logout
   defaults: { _controller: BBLWebBundle:Main:logout}
   
 signUp:
-   pattern: /signUp
-   defaults: { _controller: BBLWebBundle:Main:signUp}
+   pattern: /reg
+   defaults: { _controller: BBLWebBundle:Main:reg}
+   requirements:
+    _method: POST
+   

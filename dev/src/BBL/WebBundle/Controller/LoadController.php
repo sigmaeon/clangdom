@@ -2,6 +2,9 @@
 
 namespace BBL\WebBundle\Controller;
 
+use BBL\WebBundle\Exception\WrongParamsClangdomException;
+use BBL\WebBundle\Exception\NoAjaxClangdomException;
+use BBL\WebBundle\Exception\EntityNotFoundClangdomException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,10 +19,12 @@ class LoadController extends Controller
     {
     	//Objects for Managing
     	$request = $this->getRequest();
+    	if(!$request->isXmlHttpRequest()) throw new NoAjaxClangdomException();
     	$em = $this->getDoctrine()->getManager();
     	$userRepo = $this->getDoctrine()->getRepository('BBLWebBundle:User');
-    	
-    	switch ($request->request->get('Type')){ 
+    	$type = $request->request->get('Type');
+    	if($type == null) throw new WrongParamsClangdomException();
+    	switch ($type){ 
     	
     		case "bands": return $this->fillBand();
     		case "event": fillEvent();
@@ -34,6 +39,7 @@ class LoadController extends Controller
     	$em = $this->getDoctrine()->getManager();
     	$query = $em->createQuery('SELECT k FROM BBL\WebBundle\Entity\Konto k');
     	$kontos = $query->getResult();
+    	if($kontos == null) throw new EntityNotFoundClangdomException();
     	
     	$i = 0;
     	foreach ($kontos as $konto) {

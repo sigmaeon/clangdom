@@ -1,5 +1,8 @@
 {% extends 'BBLWebBundle:Base:reg.html.twig' %}
 
+{% block header %}
+	{% include 'BBLWebBundle:Base:headerreg.html.twig' %}
+{% endblock %}
 {% block content %}
 <div id="whitebox">
 <div id="content whitebox" class="span-24">
@@ -42,7 +45,6 @@
 </div>
 {% endblock %}
 {% block javascript %}
-{{ parent() }}
 //<script>
 var val = true;
 $(document).ready(function(){

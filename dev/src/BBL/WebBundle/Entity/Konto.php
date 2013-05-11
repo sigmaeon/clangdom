@@ -55,7 +55,7 @@ class Konto
      *
      * @ORM\ManyToOne(targetEntity="Profil")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Profil", referencedColumnName="idProfil")
+     * @ORM\JoinColumn(name="Profil", referencedColumnName="idProfil")
      * })
      */
     private $profil;

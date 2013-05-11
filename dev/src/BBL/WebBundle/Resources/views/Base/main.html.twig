@@ -1,5 +1,13 @@
 {% extends 'BBLWebBundle:Base:layout.html.twig' %}
 
+{% block header %}
+	{% if sesson == true %}
+			{% include 'BBLWebBundle:User:headeruser.html.twig' with { 'name' : name } %}
+		{% else %}
+			{% include 'BBLWebBundle:Base:headerguest.html.twig' %}
+	{% endif %}
+{% endblock %}
+
 {% block content %}
 
 <!-- Tabs
@@ -31,15 +39,181 @@
 		<div id="tabs-4" class="min" load="true"></div>
 	</div>
 	<button onclick="testfunc()" id="yobut"> Yoo </button>
+	
+	
+<!-- Pop ups --> 
+	<div id="logModal" class="reveal-modal span-24 showgrid">
+			<h3 class="alt">Log in to your CLANGDOM account here. </h3>
+			<hr>
+			<p>
+			Email or Nick: <input type="text" id="login_name" method="post"><br />
+			Password: <input type="text" id="login_password" method="post">Forgot your password? <a href="#"> Retrieve here.</a><br />
+			<input type="checkbox" id="remember" value="remember">Remember me.
+			<button id="logbut">logIN</button>
+			<a class="close-reveal-modal">&#215;</a>
+			</p>
+	</div>
+	<div id="filterModal" class="reveal-modal">
+			<a class="close-reveal-modal">&#215;</a>
+				<div id="accordion" class="span-24 showgrid">
+					<h3>Dashboard</h3>
+					<div>
+						<div class="span-22"><h2 class="alt">Genre:</h2></div>
+						<div class="span-22">
+							<table border="0">
+								<tr>
+									<td><input type="checkbox" name="genreDash" id="rockDash" value="rock">Rock</td>
+									<td><input type="checkbox" name="genreDash" id="metalDash" value="metal">Metal</td>
+									<td><input type="checkbox" name="genreDash" id="punkDash" value="punk">Punk</td>
+									<td><input type="checkbox" name="genreDash" id="jazzDash" value="jazz">Jazz</td>
+									<td><input type="checkbox" name="genreDash" id="classicDash" value="classic">Classic</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" name="genreDash" id="popDash" value="pop">Pop</td>
+									<td><input type="checkbox" name="genre" id="schlagerDash" value="schlager">Schlager</td>
+									<td><input type="checkbox" name="genre" id="hiphopDash" value="hiphop">Hip Hop</td>
+									<td><input type="checkbox" name="genre" id="rnbDash" value="rnb">RnB</td>
+									<td><input type="checkbox" name="genre" id="technoDash" value="techno">Techno</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" name="genre" id="houseDash" value="house">House</td>
+									<td><input type="checkbox" name="genre" id="drumnbaseDash" value="drumnbase">Drum n Bass</td>
+									<td><input type="checkbox" name="genre" id="neurofunkDash" value="neurofunk">Neurofunk</td>
+									<td><input type="checkbox" name="genre" id="dubstepDash" value="dubstep">Dubstep</td>
+								</tr>
+							</table>
+						</div>
+					
+						<div class="span-22 hidden">hidden</div>
+						<div class="span-22"><h2 class="alt">Location:</h2></div>
+						<div class="span-22">
+							<table border="0">
+								<tr>
+									<td><input type="checkbox" name="locationDash" id="IMDash" value="punk">Imst</td>
+									<td><input type="checkbox" name="locationDash" id="LADash" value="jazz">Landeck</td>
+									<td><input type="checkbox" name="locationDash" id="REDash" value="classic">Reutte</td>
+									<td><input type="checkbox" name="locationDash" id="SZDash" value="pop">Schwaz</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" name="locationDash" id="KUDash" value="classic">Kufstein</td>
+									<td><input type="checkbox" name="locationDash" id="KBDash" value="pop">Kitzbühel</td>
+									<td><input type="checkbox" name="locationDash" id="LZDash" value="classic">Lienz</td>
+									<td><input type="checkbox" name="locationDash" id="IDash" value="innsbruck">Innsbruck</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" name="locationDash" id="ILDash" value="metal">Innsbruck-Land</td>
+								</tr>
+							</table>
+						</div>
+						<div class="span-22 hidden">hidden</div>
+						<div class="span-22"><h2 class="alt">Your favorites:</h2></div>
+						<div class="span-22">
+							<table border="0">
+						<!-- twig ifloop!!! -->
+							<tr>
+								<td><input type="checkbox" name="favoriteDash" id="Fav1Dash">Camelized</td>
+								<td><button id="delFav1"><img src="images/trash.jpg"></button></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="favoriteDash" id="Fav2Dash">Notausgang</td>
+								<td><button id="delFav2"><img src="images/trash.jpg"></button></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="favoriteDash" id="Fav4Dash">64KModem</td>
+								<td><button id="delFav3"><img src="images/trash.jpg"></button></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="favoriteDash" id="Fav4Dash">Inseminoid</td>
+								<td><button id="delFav4"><img src="images/trash.jpg"></button></td>
+							</tr>
+							</table>
+							
+						</div>
+					</div>
+					<h3>Radio</h3>
+					<div>
+						<div class="span-22">
+						<div class="span-5 pfeffi"><p>Looking for a specific band?</p></div>
+							<div class="span-6"><input type="text" id="seaRad" name"searchradio"><button id="SRBut" name="searchradioButton">OK</button></div>
+						</div>
+						<div class="span-22"><h2 class="alt">Genre:</h2></div>
+						<div class="span-22">
+							<table border="0">
+								<tr>
+									<td><input type="checkbox" name="genreRadio" id="rocRad" value="rock">Rock</td>
+									<td><input type="checkbox" name="genreRadio" id="metRad" value="metal">Metal</td>
+									<td><input type="checkbox" name="genreRadio" id="punRad" value="punk">Punk</td>
+									<td><input type="checkbox" name="genreRadio" id="jazRad" value="jazz">Jazz</td>
+									<td><input type="checkbox" name="genreRadio" id="claRad" value="classic">Classic</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" name="genreRadio" id="popRad" value="pop">Pop</td>
+									<td><input type="checkbox" name="genreRadio" id="schRad" value="schlager">Schlager</td>
+									<td><input type="checkbox" name="genreRadio" id="hipRad" value="hiphop">Hip Hop</td>
+									<td><input type="checkbox" name="genreRadio" id="rnbRad" value="rnb">RnB</td>
+									<td><input type="checkbox" name="genreRadio" id="tecRad" value="techno">Techno</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" name="genreRadio" id="houRad" value="house">House</td>
+									<td><input type="checkbox" name="genreRadio" id="druRad" value="drumnbase">Drum n Bass</td>
+									<td><input type="checkbox" name="genreRadio" id="neuRad" value="neurofunk">Neurofunk</td>
+									<td><input type="checkbox" name="genreRadio" id="dubRad" value="dubstep">Dubstep</td>
+								</tr>
+							</table>
+						</div>
+						<div class="span-22 hidden">hidden</div>
+						<div class="span-22"><h2 class="alt">Location:</h2></div>
+						<div class="span-22">
+							<table border="0">
+								<tr>
+									<td><input type="checkbox" name="locationRadio" id="IMRad" value="punk">Imst</td>
+									<td><input type="checkbox" name="locationRadio" id="LARad" value="jazz">Landeck</td>
+									<td><input type="checkbox" name="locationRadio" id="RERad" value="classic">Reutte</td>
+									<td><input type="checkbox" name="locationRadio" id="SZRad" value="pop">Schwaz</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" name="locationRadio" id="KURad" value="classic">Kufstein</td>
+									<td><input type="checkbox" name="locationRadio" id="KBRad" value="pop">Kitzbühel</td>
+									<td><input type="checkbox" name="locationRadio" id="LZRad" value="classic">Lienz</td>
+									<td><input type="checkbox" name="locationRadio" id="IRad" value="innsbruck">Innsbruck</td>
+								</tr>
+								<tr>
+									<td><input type="checkbox" name="locationDash" id="ILRad" value="metal">Innsbruck-Land</td>
+								</tr>
+							</table>
+						</div>
+						<div class="span-22 hidden">hidden</div>
+						<div class="span-22"><h2 class="alt">Your favorites:</h2></div>
+						<div class="span-22">
+							<table border="0">
+							<tr>
+								<td><input type="checkbox" name="favoriteRadio" id="Fav1Rad">Camelized</td>
+								<td><button id="delFav1Rad"><img src="images/trash.jpg"></button></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="favoriteRadio" id="Fav2Dash">Notausgang</td>
+								<td><button id="delFav2Rad"><img src="images/trash.jpg"></button></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="favoriteRadio" id="Fav3Rad">64KModem</td>
+								<td><button id="delFav3Rad"><img src="images/trash.jpg"></button></td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="favoriteRadio" id="Fav4Rad">Inseminoid</td>
+								<td><button id="delFav4Rad"><img src="images/trash.jpg"></button></td>
+							</tr>
+							</table>
+							
+						</div>
+					</div>
+				</div>
+			</div>
 {% endblock %}
-{% block javascripts %}
-<script type="text/javascript" src="{{ asset('bundles/bblweb/js/test.js') }}"></script> 
-{% endblock %}
-{% block javascript %}
-{{  parent() }}
-<!-- <script> -->
-$(document).ready(function(){
 
+{% block javascript %}
+
+// <script>
+$(document).ready(function(){
 
 	// --------------- AJAX Loading -----------------
 		$( "#tabs" ).tabs({activate: function( event, ui) {
@@ -54,7 +228,12 @@ $(document).ready(function(){
    				  },
  				  success: function(data) {
      				 ui.newPanel.html(data);
+  				  },
+  				  error: function(jqXHR, error, errorThrown) {
+  				  	ui.newPanel.html(jqXHR.responseText);
+  				  
   				  }
+  				  
 			});
 		    }
 	    });
@@ -77,5 +256,26 @@ function testfunc()
 	alert('Surprise Mothafuckaa!!! ');
 }
 
+
+// --------------- Pop Up-------------------
+
+$(document).ready(function(){
+	$("#logbut").click(function(){
+		var passhash = CryptoJS.SHA3($("#login_password").val()).toString();
+		var url = '{{ path('login') }}';
+			$.ajax({
+ 				  type: "post",
+ 				  url: url,
+  				  data: {Email: $("#login_name").val(),
+  				  		 Pwd:   passhash},
+ 				  success: function() {
+     				 window.location = "{{ path('bbl_web_homepage') }}";
+  				  },
+  				  error: function() {
+  				     alert('No! This is wrong');
+  				  }
+			});
+	});
+});  
 {% endblock %}
 

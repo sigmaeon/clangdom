@@ -1,0 +1,114 @@
+﻿{% extends 'BBLWebBundle:Base:layout.html.twig' %}
+
+
+{% block header %}
+	{% include 'BBLWebBundle:Base:headerreg.html.twig' %}
+{% endblock %}
+{% block content %}	
+			<div id="accordion">
+				<h3>Name { name }</h3>
+				<div>
+					<form action="#">
+						<div class="span-24">
+							<div class="span-4 prepend-1 pfeffi">Current name:</div>
+							<div class="span-4 prepend-1 last"><input type="text" name="currentname" id="curNam" value="{ Curname }"></div>
+						</div>
+						<div class="span-24">
+							<div class="span-4 prepend-1 pfeffi">New name:</div>
+							<div class="span-4 prepend-1 last"><input type="text" name="newname" id="newNam"></div>
+						</div>
+						<div class="span-24">
+							<div class="span-4 prepend-1 pfeffi">Password to save changes:</div>
+							<div class="span-4 prepend-1 last"><input type="text" name="password_name" id="pasNam"></div>
+						</div>
+						<div class="span-24"><button id="namBut">Save</button></div>
+					</form>
+				</div>
+				<h3>E-Mail { email }</h3>
+				<div>
+					<form action="#">
+						<div class="span-24">
+							<div class="span-4 prepend-1 pfeffi">Current E-mail:</div>
+							<div class="span-4 prepend-1 last"><input type="text" name="currentemail" id="curEmail" value="{ CurEmail }"></div>
+						</div>
+						<div class="span-24">
+							<div class="span-4 prepend-1 pfeffi">New E-Mail:</div>
+							<div class="span-4 prepend-1 last"><input type="text" name="newemail" id="newEmail"></div>
+						</div>
+						<div class="span-24">
+							<div class="span-4 prepend-1 pfeffi">Password to save changes:</div>
+							<div class="span-4 prepend-1 last"><input type="text" name="password_email" id="pasMai"></div>
+						</div>
+						<div class="span-24"><button id="mailBut">Save</button></div>
+					</form>					
+				</div>
+				<h3>Password</h3>
+				<div>
+					<form action="#">
+						<div class="span-24">
+							<div class="span-4 prepend-1 pfeffi">Current password:</div>
+							<div class="span-4 prepend-1 last"><input type="password" name="currentpassword" id="curPas"></div>
+						</div>
+						<div class="span-24">
+							<div class="span-4 prepend-1 pfeffi">New password:</div>
+							<div class="span-4 prepend-1 last"><input type="text" name="newpassword" id="newPas"></div>
+						</div>
+						<div class="span-24">
+							<div class="span-4 prepend-1 pfeffi">Re-enter new password:</div>
+							<div class="span-4 prepend-1 last"><input type="text" name="newpassword_2" id="newPas_2"></div>
+						</div>
+						<div class="span-24"><button id="passBut">Save</button></div>
+					</form>
+				</div>
+				<h3>Info</h3>
+				<div>
+					<form action="#">
+						<div class="span-24">
+							<div class="span-4 prepend-1 pfeffi">New Info:</div>
+							<div class="span-4 prepend-1 last"><textarea name="bandinfo" id="banInf"></textarea></div>
+						</div>
+						<div class="span-24">
+							<div class="span-4 prepend-1 pfeffi">Password to save changes:</div>
+							<div class="span-4 prepend-1 last"><input type="text" name="password_infp" id="pasInf"></div>
+						</div>
+						<div class="span-24"><button id="infoBut">Save</button></div>
+					</form>
+				</div>
+				<h3>Profilpucture</h3>
+				<div>
+					<form action="#">
+						<div class="span-24">
+							<div class="span-4 prepend-1 pfeffi">Select new picture:</div>
+							<div class="span-4 prepend-1 last"><input type="file" name="profilpicture" id="proPic"></div>
+						</div>
+						<div class="span-24">
+							<div class="span-4 prepend-1 pfeffi">Password to save changes:</div>
+							<div class="span-4 prepend-1 last"><input type="text" name="password_pic" id="pasPic"></div>
+						</div>
+						<div class="span-24"><button id="picBut">Save</button></div>
+					</form>
+				</div>
+				<h3>Add new members to your band</h3>
+				<div>
+					<form action="#">
+						<div class="span-24">
+							<div class="span-4 prepend-1 pfeffi">Member name:</div>
+							<div class="span-4 prepend-1 last"><input type="text" name="membername" id="memNam"></div>
+						</div>
+						<div class="span-24">
+							<div class="span-4 prepend-1 pfeffi">Member E-mail:</div>
+							<div class="span-4 prepend-1 last"><input type="text" name="memberemail" id="memMai"></div>
+						</div>
+						<div class="span-24">
+							<div class="span-4 prepend-1 pfeffi">Member password:</div>
+							<div class="span-4 prepend-1 last"><input type="password" name="memberpassword" id="memPas"></div>
+						</div>							
+						<div class="span-24">
+							<div class="span-4 prepend-1 pfeffi">Password to save changes:</div>
+							<div class="span-4 prepend-1 last"><input type="text" name="password_mem" id="pasMem"></div>
+						</div>
+						<div class="span-24"><button id="memBut">Save</button></div>
+					</form>					
+				</div>
+			</div>
+{% endblock %}
