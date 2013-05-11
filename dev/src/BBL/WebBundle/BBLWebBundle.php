@@ -2,6 +2,8 @@
 
 namespace BBL\WebBundle;
 
+use BBL\WebBundle\Controller\MainController;
+
 use BBL\WebBundle\Entity\File;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Filesystem\Exception\IOException;
@@ -27,5 +29,6 @@ class BBLWebBundle extends Bundle
 			echo "An error occurred while creating your directory";
 		}
 		File::setUploadsDirectory($rootDir);
+		MainController::setUploadsDirectory($rootDir);
 	}
 }
