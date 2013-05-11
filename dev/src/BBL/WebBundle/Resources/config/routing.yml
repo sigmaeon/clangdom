@@ -39,4 +39,12 @@ signUp:
    defaults: { _controller: BBLWebBundle:Main:reg}
    requirements:
     _method: POST
+    
+events:
+  pattern: /events
+  defaults: { _controller: BBLWebBundle:Main:events}
+  
+settings:
+   pattern: /settings
+   defaults: { _controller: BBLWebBundle:Main:settings}
    
