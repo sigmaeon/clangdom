@@ -97,6 +97,10 @@ margin-bottom:7px;
 text-align:right;
 }
 
+.hidden{
+visibility:hidden;
+}
+
 .hiddenuser{
 visibility:hidden;
 width:208px;
@@ -307,10 +311,10 @@ box-shadow: inset 0px 0px 7px 2px rgba(0, 0, 0, .3);
 	
 	.reveal-modal {
 		visibility: hidden;
-		top: 100px; 
+		top: 25px; 
 		left: 50%;
-		margin-left: -300px;
-		width: 520px;
+		margin-left: -510px;
+		width: 950px;
 		background: #eee url(modal-gloss.png) no-repeat -200px -80px;
 		position: absolute;
 		z-index: 101;
