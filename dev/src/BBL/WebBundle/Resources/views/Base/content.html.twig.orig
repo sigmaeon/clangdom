@@ -4,9 +4,8 @@
 		<div class="abstand">
 		<div class="span-22 prepend-2 last">	<h3 class="alt">{{ title }}</h3></div>
 <<<<<<< HEAD
-		<div> sdfgsdfgsdf </div>
+			
 =======
-		<div> asdfdsfagsd </div>
 >>>>>>> uploads
 			<ul>
 				{% for object in objects %}

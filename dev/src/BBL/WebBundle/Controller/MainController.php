@@ -8,6 +8,8 @@ use BBL\WebBundle\Exception\EntityNotFoundClangdomException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\IOException;
 use BBL\WebBundle\Entity\User;
 use BBL\WebBundle\Entity\Konto;
 use BBL\WebBundle\Entity\Genre;
@@ -18,6 +20,13 @@ use BBL\WebBundle\Entity\Tasks;
 
 class MainController extends Controller
 {
+	static private $rootDir = null; 
+	
+	static public function setUploadsDirectory($dir)  // is that secure??
+	{
+		self::$rootDir = $dir;
+	}
+	
     public function indexAction()
     {
     	$this->get('session')->start();
@@ -77,6 +86,7 @@ class MainController extends Controller
     public function regAction()
     {
     	//Objects for managing
+    	$fs = new Filesystem();
     	$request = $this->getRequest();	
     	if(!$request->isXmlHttpRequest()) throw new NoAjaxClangdomException();
     	$em = $this->getDoctrine()->getManager();
@@ -109,6 +119,7 @@ class MainController extends Controller
     		$link = ($str.$i);
     	}
     	
+    	$fs->mkdir(self::$rootDir."/".$link); // make a dir for the User and i want an exception
     	$profil->setLink($link);
     	$konto->setProfil($profil);
     	
@@ -141,6 +152,7 @@ class MainController extends Controller
     	$session->set('user', $user->getIduser());
     	$session->set('name',$konto->getName());
     	$session->set('konto', $konto->getIdkonto());
+    	$session->set('link', $profil->getLink());
     	
     	//return
     	$response = new Response();
@@ -155,6 +167,7 @@ class MainController extends Controller
     	$session->set('user', '');
     	$session->set('name','');
     	$session->set('konto','');
+    	$session->set('link', '');
     	return $this->redirect($this->generateUrl('bbl_web_homepage'));
     }
     
