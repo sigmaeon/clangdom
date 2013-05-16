@@ -29,8 +29,7 @@ CREATE  TABLE IF NOT EXISTS `clangdom`.`File` (
   `idFile` INT NOT NULL AUTO_INCREMENT ,
   `Path` VARCHAR(45) NULL ,
   PRIMARY KEY (`idFile`) ,
-  UNIQUE INDEX `idFile_UNIQUE` (`idFile` ASC) ,
-  UNIQUE INDEX `Path_UNIQUE` (`Path` ASC) )
+  UNIQUE INDEX `idFile_UNIQUE` (`idFile` ASC) )
 ENGINE = InnoDB;
 
 
@@ -40,7 +39,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `clangdom`.`Picture` ;
 
 CREATE  TABLE IF NOT EXISTS `clangdom`.`Picture` (
-  `idPicture` INT NOT NULL ,
+  `idPicture` INT NOT NULL AUTO_INCREMENT ,
   `File` INT NOT NULL ,
   `Name` VARCHAR(45) NULL ,
   PRIMARY KEY (`idPicture`) ,
@@ -139,7 +138,7 @@ DROP TABLE IF EXISTS `clangdom`.`Post` ;
 
 CREATE  TABLE IF NOT EXISTS `clangdom`.`Post` (
   `idPost` INT NOT NULL AUTO_INCREMENT ,
-  `Datum` DATE NOT NULL ,
+  `Date` DATE NOT NULL ,
   `Name` VARCHAR(45) NOT NULL ,
   `Konto` INT NOT NULL ,
   PRIMARY KEY (`idPost`) ,
@@ -365,7 +364,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `clangdom`.`Picture` ;
 
 CREATE  TABLE IF NOT EXISTS `clangdom`.`Picture` (
-  `idPicture` INT NOT NULL ,
+  `idPicture` INT NOT NULL AUTO_INCREMENT ,
   `File` INT NOT NULL ,
   `Name` VARCHAR(45) NULL ,
   PRIMARY KEY (`idPicture`) ,

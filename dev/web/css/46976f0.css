@@ -1,13 +1,20 @@
+/*self made css*/
+
+/*rules for html elemts such a texts, lists, titles, etc.. */
 body{
-background-image:url('../bundles/bblweb/images/background.jpg');
-background-repeat:no-repeat;
-background-size:100% 100%;
+background-image:url('../../bundles/bblweb/images/background2.png');
+background-repeat:repeat-x;
+background-attachment:fixed;
 }
 
 h1{
-    color: black;
-    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+color: black;
+text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 
+}
+
+p{
+color:#999999;
 }
 
 hr {
@@ -24,10 +31,23 @@ ul{
 list-style-type:none;
 }
 
+/* sitelayout */
 #header{
-background-image:url('../bundles/bblweb/images/topbar.jpg');
-height:65px;
+background-image:url('../../bundles/bblweb/images/topbar.jpg');
+height:54px;
 margin-top:none;
+padding-top:none;
+position:fixed;
+z-index:1;
+}
+
+#content{
+margin-top:53px;
+background-color:none;
+}
+
+#footer{
+height:161px;
 }
 
 #whitebox{
@@ -36,15 +56,7 @@ height:450px;
 margin-top:50px;
 }
 
-#footer{
-width:950px;
-height:161px;
-}
-#searchfield{
-margin-top:3px;
-}
-
-
+/* Profile rules */
 #bandname{
 margin-top:12px;
 font-size:18px;
@@ -65,10 +77,12 @@ margin:10px;
 margin:20px;
 }
 
+/* fixing tabs (and accordion)*/
 #tabs{
 width:943px;
 }
 
+/* random rules*/
 .abstand{
 margin-top:30px;
 }
@@ -77,10 +91,56 @@ margin-top:30px;
 margin-bottom:5px;
 }
 
+.pfeffi{
+margin-top:8px;
+margin-bottom:7px;
+text-align:right;
+}
+
+.hidden{
+visibility:hidden;
+}
+
+.hiddenuser{
+visibility:hidden;
+width:208px;
+}
+
+.hiddenguest{
+visibility:hidden;
+width:227px;
+}
+
+.abstand{
+margin:20px;
+}
+
+.fixed{
+margin-left:0px;
+}
+
 .transparent {
 	zoom: 1;
 	filter: alpha(opacity=50);
 	opacity: 0.5;
+}
+
+
+.space{
+height:30px;
+width:30px;
+}
+
+.container{
+background-color:white;
+}
+
+
+.whitebox{
+position:center;
+width:950px;
+height:350px;
+background-color:white;
 }
 
 .min{
@@ -88,3 +148,214 @@ min-height:450px;
 overflow: auto;
 overflow-x:hidden;
 }
+
+/*Searchfield */
+#searchfield{
+margin-left:10px;
+margin-right:6px;
+padding-right:10px;
+margin-top:17px;
+background:url(../../bundles/bblweb/images/bg_search-field.png) no-repeat;
+}
+
+#searchfield .textBox {
+margin:1px;
+margin-left:5px;
+border:none;
+}
+
+#searchfield .button{
+padding-top:3px;
+}
+
+
+
+fieldset{
+border:none;
+}
+/*ende Searchfield */
+
+/* dropdown */
+.pic{
+margin-top:12px;
+margin-bottom:12px;
+padding:0px;
+}
+#radio{
+position:center;
+padding-top:13px;
+
+}
+
+#filter{
+padding-top:10px;
+}
+
+
+.menu{
+border:none;
+border:0px;
+margin:0px;
+padding:0px;
+font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
+font-size:14px;
+font-weight:bold;
+}
+
+.menu ul{
+background:#2d2d2f;
+height:54px;
+list-style:none;
+margin:0;
+padding:0;
+}
+
+.menu li{
+float:left;
+padding:0px 0px 0px 0px;
+}
+
+.menu li ul{
+display:none;
+height:auto;
+padding:0px;
+margin:0px;
+border:0px;
+position:absolute;
+width:200px;
+z-index:200;
+}
+
+.menu li a{
+color:#999999;
+display:block;
+font-weight:normal;
+line-height:54px;
+margin:0px;
+padding:0px 25px;
+text-align:center;
+text-decoration:none;
+}
+
+.menu li a:hover{
+background:#808082;
+color:#FFFFFF;
+text-decoration:none;
+-webkit-box-shadow: inset 0px 0px 7px 2px rgba(0, 0, 0, .3);
+-moz-box-shadow: inset 0px 0px 7px 2px rgba(0, 0, 0, .3);
+box-shadow: inset 0px 0px 7px 2px rgba(0, 0, 0, .3);
+}
+
+.menu ul li:hover a{
+background:#808082;
+color:#FFFFFF;
+text-decoration:none;
+height:54px;
+}
+
+.menu li:hover ul{
+display:block; 
+}
+
+.menu li li {
+display:block;
+float:none;
+margin:0px;
+padding:0px;
+width:200px;
+background:#2d2d2f;
+}
+
+.menu li:hover li a{
+background:none;
+}
+
+.menu li ul a{
+display:block;
+height:54px;
+font-size:12px;
+font-style:normal;
+margin:0px;
+padding:0px 10px 0px 15px;
+text-align:left;
+}
+
+.menu li ul a:hover, .menu li ul li:hover a{
+border:0px;
+color:#ffffff;
+text-decoration:none;
+background:#808082;
+-webkit-box-shadow: inset 0px 0px 7px 2px rgba(0, 0, 0, .3);
+-moz-box-shadow: inset 0px 0px 7px 2px rgba(0, 0, 0, .3);
+box-shadow: inset 0px 0px 7px 2px rgba(0, 0, 0, .3); 
+}
+/*ende dropdown */
+
+
+
+/*	--------------------------------------------------
+	Reveal Modals
+	-------------------------------------------------- */
+		
+	.reveal-modal-bg { 
+		position: fixed; 
+		height: 100%;
+		width: 100%;
+		background: #000;
+		background: rgba(0,0,0,.8);
+		z-index: 100;
+		display: none;
+		top: 0;
+		left: 0; 
+		}
+	
+	.reveal-modal {
+		visibility: hidden;
+		top: 25px; 
+		left: 50%;
+		margin-left: -510px;
+		width: 950px;
+		background: #eee url(../../bundles/bblweb/css/modal-gloss.png) no-repeat -200px -80px;
+		position: absolute;
+		z-index: 101;
+		padding: 30px 40px 34px;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		-moz-box-shadow: 0 0 10px rgba(0,0,0,.4);
+		-webkit-box-shadow: 0 0 10px rgba(0,0,0,.4);
+		-box-shadow: 0 0 10px rgba(0,0,0,.4);
+		}
+		
+	.reveal-modal.small 		{ width: 200px; margin-left: -140px;}
+	.reveal-modal.medium 		{ width: 400px; margin-left: -240px;}
+	.reveal-modal.large 		{ width: 600px; margin-left: -340px;}
+	.reveal-modal.xlarge 		{ width: 800px; margin-left: -440px;}
+	
+	.reveal-modal .close-reveal-modal {
+		font-size: 22px;
+		line-height: .5;
+		position: absolute;
+		top: 8px;
+		right: 11px;
+		color: #aaa;
+		text-shadow: 0 -1px 1px rbga(0,0,0,.6);
+		font-weight: bold;
+		cursor: pointer;
+		} 
+	/*
+		
+	NOTES
+	
+	Close button entity is &#215;
+	
+	Example markup
+	
+	<div id="myModal" class="reveal-modal">
+		<h2>Awesome. I have it.</h2>
+		<p class="lead">Your couch.  I it's mine.</p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices aliquet placerat. Duis pulvinar orci et nisi euismod vitae tempus lorem consectetur. Duis at magna quis turpis mattis venenatis eget id diam. </p>
+		<a class="close-reveal-modal">&#215;</a>
+	</div>
+	
+	*/

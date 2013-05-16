@@ -2,6 +2,7 @@
 
 namespace BBL\WebBundle\Entity;
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -69,14 +70,14 @@ class File
     {
     	return null === $this->path
     	? null
-    	: $this->getUploadRootDir().'/'.$this->path;
+    	: $this->getUploadRootDir().$this->path;
     }
     
     public function getWebPath()
     {
     	return null === $this->path
     	? null
-    	: $this->getUploadDir().'/'.$this->path;
+    	: $this->getUploadDir().$this->path;
     }
     
     protected function getUploadRootDir()
@@ -121,5 +122,42 @@ class File
     {
     	self::$uploadDirectory = $dir;
     }
+    
+    public function upload($filename = "", $path = "")
+    {
+
+    	// the file property can be empty if the field is not required
+    	if (null === $this->getFile()) {
+    		return;
+    	}
+    
+    	// use the original file name here but you should
+    	// sanitize it at least to avoid any security issues
+    
+    	// move takes the target directory and then the
+    	// target filename to move to
+    	if($filename == "")
+    	{
+    		$this->getFile()->move(
+    			$this->getUploadRootDir().$path,
+    			$this->getFile()->getClientOriginalName()
+    		);
+    	}
+    	else
+    	{
+    		$this->getFile()->move(
+    				$this->getUploadRootDir().$path,
+    				$filename
+    		);
+    	}
+    
+    	// set the path property to the filename where you've saved the file
+    	$this->path = $path."/".$filename;
+    
+    	// clean up the file property as you won't need it anymore
+    	$this->file = null;
+    }
+    
+    
     
 }

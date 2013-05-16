@@ -46,9 +46,19 @@ picupload:
    defaults: { _controller: BBLWebBundle:File:picUp}
    requirements:
     _method: POST
+   
+musicupload:
+   pattern: /musicup
+   defaults: { _controller: BBLWebBundle:File:musicUp}
+   requirements:
+    _method: POST
     
 test:
    pattern: /test
    defaults: { _controller: BBLWebBundle:File:test}
+   
+testm:
+   pattern: /testm
+   defaults: { _controller: BBLWebBundle:File:musicTest}
    
    

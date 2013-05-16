@@ -152,6 +152,7 @@ class MainController extends Controller
     	$session->set('user', $user->getIduser());
     	$session->set('name',$konto->getName());
     	$session->set('konto', $konto->getIdkonto());
+    	$session->set('link', $profil->getLink());
     	
     	//return
     	$response = new Response();
@@ -166,6 +167,7 @@ class MainController extends Controller
     	$session->set('user', '');
     	$session->set('name','');
     	$session->set('konto','');
+    	$session->set('link', '');
     	return $this->redirect($this->generateUrl('bbl_web_homepage'));
     }
     

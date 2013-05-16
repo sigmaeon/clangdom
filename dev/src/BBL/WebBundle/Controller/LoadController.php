@@ -44,7 +44,9 @@ class LoadController extends Controller
     	$i = 0;
     	foreach ($kontos as $konto) {
     		$objects['ob'.$i]['type'] = "simple";
-    		$objects['ob'.$i]['picture'] =  $konto->getProfil()->getPic();
+    		$pic = $konto->getProfil()->getPicture();
+    		if($pic != null) $objects['ob'.$i]['picture'] =  $pic->getFile()->getWebPath();
+    		else $objects['ob'.$i]['picture'] =  "..";
     		$objects['ob'.$i]['link'] = $konto->getProfil()->getLink();
     		$objects['ob'.$i]['info'] = "..";
     		$objects['ob'.$i]['name'] = $konto->getName();

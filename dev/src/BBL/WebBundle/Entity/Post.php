@@ -24,9 +24,9 @@ class Post
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="Datum", type="date", nullable=false)
+     * @ORM\Column(name="Date", type="date", nullable=false)
      */
-    private $datum;
+    private $date;
 
     /**
      * @var string
@@ -66,6 +66,7 @@ class Post
     public function __construct()
     {
         $this->tagstags = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->date = new \DateTime("now");
     }
     
 
@@ -80,26 +81,26 @@ class Post
     }
 
     /**
-     * Set datum
+     * Set date
      *
-     * @param \DateTime $datum
+     * @param \DateTime $date
      * @return Post
      */
-    public function setDatum($datum)
+    public function setDate($date)
     {
-        $this->datum = $datum;
+        $this->date = $date;
     
         return $this;
     }
 
     /**
-     * Get datum
+     * Get date
      *
      * @return \DateTime 
      */
-    public function getDatum()
+    public function getDate()
     {
-        return $this->datum;
+        return $this->date;
     }
 
     /**

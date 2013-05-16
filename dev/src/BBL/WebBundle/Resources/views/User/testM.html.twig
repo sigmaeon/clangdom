@@ -1,0 +1,12 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+	<form action="{{ path('musicupload') }}" method="post" enctype="multipart/form-data">
+	<input type="file" name="datei" />
+	<br />
+	<input type="text" name="name"> 
+	<br />
+	<input type="submit" value="Upload" />
+	</form>
+{% endblock %}
+
+	

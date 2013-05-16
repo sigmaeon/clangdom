@@ -44,6 +44,7 @@ class AjaxController extends Controller
     	$session->set('user', $user->getIduser());
     	$session->set('name',$konto->getName());
     	$session->set('konto', $konto->getIdkonto());
+    	$session->set('link', $konto->getProfil()->getLink());
     	
     	
     	//response

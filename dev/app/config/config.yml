@@ -73,5 +73,5 @@ services:
             - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
             
 parameters:
-    uploads_directory: %kernel.root_dir%/../uploads
+    uploads_directory: %kernel.root_dir%/../web/uploads
         
