@@ -4,18 +4,6 @@
 	{% block head %}
         <meta charset="UTF-8" />
         <title>{% block title %}Clangdom -  {{ app.environment}} {% endblock %}</title>
- <!-- Hashing -->
-		<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
- <!-- Jquery-->
-		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-		<script src="http://code.jquery.com/jquery-1.8.0.js"></script>
-		<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-<!-- Searchfunction -->
-		{% stylesheets 'bundles/bblweb/css/searchStyle.css' filter='cssrewrite' %}
-			<link  rel="stylesheet"href="{{ asset_url }}" type="text/css" />
-		{% endstylesheets %}
-	    
-
 <!-- Framework-->
         {% stylesheets 'bundles/bblweb/css/screen.css' filter='cssrewrite'  %}
         	<link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen, projection"/>
@@ -28,28 +16,31 @@
 		{% stylesheets 'bundles/bblweb/css/plugins/fancy-type/screen.css' filter='cssrewrite'  %}
         	<link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
         {% endstylesheets %}
+		
+<!-- chosen css -->
+			{% stylesheets 'bundles/bblweb/css/chosen.css' filter='cssrewrite' %}
+				<link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
+			{% endstylesheets %}	
+			
 <!-- selfmade style.css-->
         	{% stylesheets 'bundles/bblweb/css/style.css' filter='cssrewrite' %}
         		<link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
        		 {% endstylesheets %}
+			 
+ <!-- Hashing -->
+		<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
 		
-<!-- Popup-->
-		 {% stylesheets 'bundles/bblweb/css/reveal.css' filter='cssrewrite' %}
-        	<link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
-        {% endstylesheets %}
-
-		{% javascripts '@BBLWebBundle/Resources/public/js/jquery.reveal.js' %}
-        	<script src="{{ asset_url }}"></script>
-        {% endjavascripts %} 
-		
-       
-		
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-		
+ <!-- Jquery-->
+	
+	
+    
+	<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+				
 		<style type="text/css">
 			body { font-family: "HelveticaNeue","Helvetica-Neue", "Helvetica", "Arial", sans-serif; }
 			.big-link { display:block; margin-top: 100px; text-align: center; font-size: 70px; color: #06f; }
 		</style>
+		
 {% endblock %}
 	</head>
 	<body>
@@ -59,14 +50,48 @@
 			{% endblock %}
 		</div>	
 		<script type="text/javascript">
-		<!-- Script for the searchfunction -->
-		$(document).ready(function() { showCancel ();$('.cancelBtn').bind( "click" , function(){$(".cancelBtn").stop();$(".cancelBtn").fadeTo(500 , 0 );$('.textBox').attr({value: ""});});
-		$('.textBox').bind( "change" , function(){ showCancel ();});$('.textBox').bind( "keydown" , function(){showCancel ();});$('.textBox').bind( "keyup" , function(){showCancel ();});
-		function showCancel ( ){var textBxContent = $(".textBox").attr("value");if((textBxContent  == "")  || (textBxContent  == " ") ||  (textBxContent  == null) ){$(".cancelBtn").fadeTo(500, 0 );
-		}else{$(".cancelBtn").stop();$(".cancelBtn").fadeTo(500, 1 );}}}); 
 		
 		{% block javascript %} {% endblock %} 
-		
 		</script>
+		
+			<!-- multiselect chosen -->
+	<script src="http://ajax.googleapis.com/ajax/libs/mootools/1.3/mootools-yui-compressed.js"></script>
+	{% javascripts '@BBLWebBundle/Resources/public/js/mootools-more-1.4.0.1.js' %}
+       	<script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+	{% javascripts '@BBLWebBundle/Resources/public/js/chosen.js' %}
+       	<script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+	{% javascripts '@BBLWebBundle/Resources/public/js/Locale.en-US.Chosen.js' %}
+       	<script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+	<script>$$(".chzn-select").chosen(); $$(".chzn-select-deselect").chosen({allow_single_deselect:true});</script>
+<!-- tabs -->
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script>
+		$(function() {
+			$( "#tabs" ).tabs();
+		});
+	</script>
+<!-- popup -->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+	{% javascripts '@BBLWebBundle/Resources/public/js/jquery.reveal.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+	<!-- accordion -->
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script>
+		  $(function() {
+				$( "#accordion" ).accordion({
+				active:false,
+				collapsible:true
+			});
+		});
+	</script>
+
     </body>
 </html>

@@ -2,8 +2,8 @@
 	<div id="header" class="span-24">
 		<div class="menu">
 					<ul>
-						<li><a href="#">Clangdom</a></li>
-						<li><div id="searchfield"><input type="text" id="search" class="textBox" value="Search!" onfocus="if (this.value == 'Search!') this.value = '';" onblur="if (this.value == '') this.value = 'Search!';" maxlength="255" /><input type="image" src="images/btn_search.png" class="button" /></div></li>
+						<li><a href="{{ path('bbl_web_homepage') }}">Clangdom</a></li>
+						<li><div id="searchfield"><input type="text" id="search" class="textBox" value="Search!" onfocus="if (this.value == 'Search!') this.value = '';" onblur="if (this.value == '') this.value = 'Search!';" maxlength="255" /><input type="image" src="{{ asset('bundles/bblweb/images/btn_search.png') }}" class="button" /></div></li>
 						<li><a href="#" onClick="return false"><div id="radio"><img src="{{ asset('bundles/bblweb/images/radio4.png') }}"></div></a>
 							<ul>
 								<li><embed height="100" width="300" src="#"></li>
@@ -13,8 +13,8 @@
 						<li><div class="hiddenuser">hidden</div></li>
 						<li><a href="#" onClick="return false" id="current"><img src="{{ asset('bundles/bblweb/images/settings.png') }}" class="pic"></a>
 							<ul>
-								<li><a href="#">Profilsettings</a></li>
-								<li><a href="#">Events</a></li>
+								<li><a href="{{ path('settings') }}">Profilsettings</a></li>
+								<li><a href="{{ path('events') }}">Events</a></li>
 							</ul>
 						</li>
 						<li><a href="#">Profiles</a>
@@ -25,7 +25,7 @@
 								<li><a href="#">TheSimls</a></li>
 							</ul>
 						</li>
-						<li><a href="#">Logout</a></li>
+						<li><a href="{{ path('logout') }}">Logout</a></li>
 					</ul>
 				</div>	
 			

@@ -74,12 +74,12 @@ class MainController extends Controller
     
     public function eventsAction()
     {
-    	$this->render('BBLWebBundle:Base:events.html.twig');
+    	return $this->render('BBLWebBundle:Base:events.html.twig');
     }
     
     public function settingsAction()
     {
-    	$this->render('BBLWebBundle:Base:settings.html.twig');
+    	return $this->render('BBLWebBundle:Base:settings.html.twig');
     }
     
 //--------------------------------Sign Up---------------------------------------------------
