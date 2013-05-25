@@ -42,7 +42,7 @@ z-index:1;
 }
 
 #content{
-margin-top:53px;
+margin-top:54px;
 background-color:none;
 }
 
@@ -79,7 +79,10 @@ margin:20px;
 
 /* fixing tabs (and accordion)*/
 #tabs{
+padding:none;
 width:943px;
+height:16000px;
+border-color:grey;
 }
 
 /* random rules*/
@@ -91,6 +94,16 @@ margin-top:30px;
 margin-bottom:5px;
 }
 /* Content rules*/
+.footext{
+display:block;
+text-align:center;
+vertical-align:center;
+height:10px;
+}
+.fixed{
+margin-left:0px;
+}
+
 .mp3content{
 background-color:#ededed;
 border: 1px solid;
@@ -120,6 +133,31 @@ margin-top:10px;
 margin-bottom:10px;
 margin-left:15px;
 }
+
+.bandcontent{
+background-color:#ededed;
+border: 1px solid;
+border-radius:5px;
+box-shadow:6px 6px 3px #888888;
+margin-top:10px;
+margin-bottom:10px;
+margin-left:15px;
+}
+
+.eventcontent{
+background-color:#ededed;
+border: 1px solid;
+border-radius:5px;
+box-shadow:6px 6px 3px #888888;
+margin-top:10px;
+margin-bottom:10px;
+margin-left:15px;
+}
+
+.eventBox{
+margin-bottom:5px;
+
+}
 .contenttitle{
 
 }
@@ -127,9 +165,8 @@ margin-left:15px;
 margin:5px;
 }
 
-
 .accordionHeight{
-height:250px;
+height:850px;
 }
 
 .pfeffi{
@@ -144,7 +181,7 @@ visibility:hidden;
 
 .hiddenuser{
 visibility:hidden;
-width:208px;
+width:133px;
 }
 
 .hiddenguest{
@@ -154,10 +191,6 @@ width:227px;
 
 .abstand{
 margin:20px;
-}
-
-.fixed{
-margin-left:0px;
 }
 
 .transparent {
@@ -182,12 +215,6 @@ position:center;
 width:950px;
 height:350px;
 background-color:white;
-}
-
-.min{
-min-height:450px;
-overflow: auto;
-overflow-x:hidden;
 }
 
 /*Searchfield */
@@ -217,6 +244,21 @@ border:none;
 /*ende Searchfield */
 
 /* dropdown */
+.picM{
+margin-top:16px;
+margin-bottom:12px;
+padding:0px;
+}
+
+.picR{
+margin-bottom:20px;
+padding:0px;
+}
+.picS{
+margin-top:13px;
+margin-bottom:12px;
+padding:0px;
+}
 .pic{
 margin-top:12px;
 margin-bottom:12px;
@@ -331,72 +373,3 @@ background:#808082;
 box-shadow: inset 0px 0px 7px 2px rgba(0, 0, 0, .3); 
 }
 /*ende dropdown */
-
-
-
-/*	--------------------------------------------------
-	Reveal Modals
-	-------------------------------------------------- */
-		
-	.reveal-modal-bg { 
-		position: fixed; 
-		height: 100%;
-		width: 100%;
-		background: #000;
-		background: rgba(0,0,0,.8);
-		z-index: 100;
-		display: none;
-		top: 0;
-		left: 0; 
-		}
-	
-	.reveal-modal {
-		visibility: hidden;
-		top: 25px; 
-		left: 50%;
-		margin-left: -510px;
-		width: 950px;
-		background: #eee url(modal-gloss.png) no-repeat -200px -80px;
-		position: absolute;
-		z-index: 101;
-		padding: 30px 40px 34px;
-		-moz-border-radius: 5px;
-		-webkit-border-radius: 5px;
-		border-radius: 5px;
-		-moz-box-shadow: 0 0 10px rgba(0,0,0,.4);
-		-webkit-box-shadow: 0 0 10px rgba(0,0,0,.4);
-		-box-shadow: 0 0 10px rgba(0,0,0,.4);
-		}
-		
-	.reveal-modal.small 		{ width: 200px; margin-left: -140px;}
-	.reveal-modal.medium 		{ width: 400px; margin-left: -240px;}
-	.reveal-modal.large 		{ width: 600px; margin-left: -340px;}
-	.reveal-modal.xlarge 		{ width: 800px; margin-left: -440px;}
-	
-	.reveal-modal .close-reveal-modal {
-		font-size: 22px;
-		line-height: .5;
-		position: absolute;
-		top: 8px;
-		right: 11px;
-		color: #aaa;
-		text-shadow: 0 -1px 1px rbga(0,0,0,.6);
-		font-weight: bold;
-		cursor: pointer;
-		} 
-	/*
-		
-	NOTES
-	
-	Close button entity is &#215;
-	
-	Example markup
-	
-	<div id="myModal" class="reveal-modal">
-		<h2>Awesome. I have it.</h2>
-		<p class="lead">Your couch.  I it's mine.</p>
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices aliquet placerat. Duis pulvinar orci et nisi euismod vitae tempus lorem consectetur. Duis at magna quis turpis mattis venenatis eget id diam. </p>
-		<a class="close-reveal-modal">&#215;</a>
-	</div>
-	
-	*/

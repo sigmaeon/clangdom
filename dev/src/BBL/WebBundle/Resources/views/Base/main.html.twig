@@ -40,183 +40,113 @@
 	
 	
 <!-- Pop ups --> 
-	<div id="logModal" class="reveal-modal span-24 showgrid">
-			<div class="spab-24"><h3 class="alt">Log in to your CLANGDOM account here. </h3></div>
-			<hr>
-			<p>
-			<div class="span-24">
-				<div class="span-2 prepend-1 pfeffi">Email:</div>
-				<div class="span-5"><input type="text" id="login_name" method="post"></div>
-			</div>
-			<div class="span-24">
-				<div class="span-2 prepend-1 pfeffi">Password:</div>
-				<div class="span-5"><input type="password" id="login_password" method="post"></div>
-			</div>
-			<div class="span-24 prepend-3">Forgot your password? <a href="#"> Retrieve here.</a></div>
-			<div class="span-24 prepend-3"><input type="checkbox" id="remember" value="remember">Remember me.</div>
-			<div class="span-24 prepend-3"><button id="logbut">logIN</button></div>
-			<a class="close-reveal-modal">&#215;</a>
-			</p>
-	</div>
+	<div id="dialog_l" style="display:none" title="Filter" class="span-20">
+            <form>
+                <fieldset>
+                    <div class="span-3"><label for="email">Email:</label></div>
+                    <div class="span-17"><input type="text" name="email" id="email"></div>
+                    <div class="span-3"><label for="password">Password:</label></div>
+                    <div class="span-17"><input type="password" name="password" id="password"></div>
+		</fieldset>
+            </form>
+        </div>
 	
-		<div id="filterModal" class="reveal-modal">
-			<a class="close-reveal-modal">&#215;</a>
-			<div id="container">
-			<form>
-				<div id="accordion" class="span-24">
-						<h3>Hotspot</h3>
-						<div>
-							<div class="accordionHeight">
-			<!-- Genre Hotspot -->
-								<div class="span-22">
-									<div class="span-5 pfeffi">Genre:</div>
-									<div class="span-10">
-										<div class="side-by-side clearfix">
-											<select data-placeholder="Choose a Genre..." class="chzn-select" multiple style="width:350px;" tabindex="4">
-												<option value=""></option>
-													<option value="Rock" id="rocHot">Rock</option>
-													<option value="Metal" id="metHot">Metal</option>
-													<option value="Punk" id="punHot">Punk</option>
-													<option value="Jazz" id="jazHot">Jazz</option>
-													<option value="Classic" id="claHot">Classic</option>
-													<option value="Pop" id="popHot">Pop</option>
-													<option value="Schlager" id="schHot">Schlager</option>
-													<option value="Hiphop" id="hipHot">Hip Hop</option>
-													<option value="Rnb" id="rnbHot">RnB</option>
-													<option value="Techno" id="tecHot">Techno</option>
-													<option value="House" id="houHot">House</option>
-													<option value="Drumnbass" id="dnbHot">Drum n Bass</option>
-													<option value="Neurofunk" id="neuHot"> Neurofunk</option>
-													<option value="Dubstep" id="dubHot">Dubstep</option>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="span-22">
-			<!-- Location Hotspot -->
-									<div class="span-5 pfeffi">Locations:</div>
-									<div class="span-10">
-										<div class="side-by-side clearfix">
-											<select data-placeholder="Choose a Genre..." class="chzn-select" multiple style="width:350px;" tabindex="4">
-												<option value=""></option>
-													<option value="Reutte" id="reHot">Ruette</option>
-													<option value="Landeck" id="laHot">Landeck</option>
-													<option value="Imst" id="imHot">Imst</option>
-													<option value="Innsbruck-Stadt" id="ibkHot">Innsbruck-Stadt</option>
-													<option value="Innsbruck-Land"id="inlHot">Innsbruck-Land</option>
-													<option value="Schwaz" id="szHot">Schwaz</option>
-													<option value="Kufstein" id="kuHot">Kufstein</option>
-													<option value="Kitzbühel" id="kbHot">Kitzbühel</option>
-													<option value="Lienz" id="liHot">Lienz</option>
-											</select>
-										</div>
-									</div>
-								</div>
-			<!-- Favorites Hotspot-->
-								<div class="span-22">
-									<div class="span-5 pfeffi">Favorites:</div>
-									<div class="span-10">
-										<div class="side-by-side clearfix">
-											<select data-placeholder="Choose your Favorites..." class="chzn-select" multiple style="width:350px;" tabindex="4">
-												<option value=""></option>
-												<!-- Twig schleife hier-->
-													<option value="Rock" id="rockDash">Notausgang</option>
-													<option value="Metal">Camelized</option>
-													<option value="Punk">Inseminoid</option>
-													<option value="Jazz">People die out</option>
-													<option value="Classic">64k modem</option>
-												<!-- ende schleife-->
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="span-22">
-									<div class="span-5 hidden">hidden</div>
-									<div class="span-10"><button id="HotFil" name="HotspotFilterButton">Ok</button></div>
-								</div>
-							</div>
-						</div>
-						<h3>Radio</h3>
-						<div>
-							<div class="accordionHeight">
-								<div class="span-22">
-									<div class="span-5 pfeffi"><p>Looking for a specific band?</p></div>
-									<div class="span-6"><input type="text" id="seaRad" name="searchradio"></div>
-								</div>
-			<!-- Genre Radio -->
-								<div class="span-22">
-									<div class="span-5 pfeffi">Genre:</div>
-									<div class="span-10">
-										<div class="side-by-side clearfix">
-											<select data-placeholder="Choose a Genre..." class="chzn-select" multiple style="width:350px;" tabindex="4">
-												<option value=""></option>
-													<option value="Rock" id="rocRad">Rock</option>
-													<option value="Metal" id="metRad">Metal</option>
-													<option value="Punk" id="punRad">Punk</option>
-													<option value="Jazz" id="jazRad">Jazz</option>
-													<option value="Classic" id="claRad">Classic</option>
-													<option value="Pop" id="popRad">Pop</option>
-													<option value="Schlager" id="schRad">Schlager</option>
-													<option value="Hiphop" id="hipRad">Hip Hop</option>
-													<option value="Rnb" id="rnbRad">RnB</option>
-													<option value="Techno" id="tecRad">Techno</option>
-													<option value="House" id="houRad">House</option>
-													<option value="Drumnbass" id="dnbRad">Drum n Bass</option>
-													<option value="Neurofunk" id="neuRad"> Neurofunk</option>
-													<option value="Dubstep" id="dubRad">Dubstep</option>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div class="span-22">
-			<!-- Location Radio -->
-									<div class="span-5 pfeffi">Locations:</div>
-									<div class="span-10">
-										<div class="side-by-side clearfix">
-											<select data-placeholder="Choose a Genre..." class="chzn-select" multiple style="width:350px;" tabindex="4">
-												<option value=""></option>
-													<option value="Reutte" id="reRad">Ruette</option>
-													<option value="Landeck" id="laRad">Landeck</option>
-													<option value="Imst" id="imRad">Imst</option>
-													<option value="Innsbruck-Stadt" id="ibkRad">Innsbruck-Stadt</option>
-													<option value="Innsbruck-Land" id="inlRad">Innsbruck-Land</option>
-													<option value="Schwaz" id="szRad">Schwaz</option>
-													<option value="Kufstein" id="kuRad">Kufstein</option>
-													<option value="Kitzbühel" id="kbRad">Kitzbühel</option>
-													<option value="Lienz" id="liRad">Lienz</option>
-											</select>
-										</div>
-									</div>
-								</div>
-			<!-- Favorites Radio-->
-								<div class="span-22">
-									<div class="span-5 pfeffi">Favorites:</div>
-									<div class="span-10">
-										<div class="side-by-side clearfix">
-											<select data-placeholder="Choose your Favorites..." class="chzn-select" multiple style="width:350px;" tabindex="4">
-												<option value=""></option>
-												<!-- twig schleife hier -->
-													<option value="Rock" id="rockDash">Notausgang</option>
-													<option value="Metal">Camelized</option>
-													<option value="Punk">Inseminoid</option>
-													<option value="Jazz">People die out</option>
-													<option value="Classic">64k modem</option>
-												<!-- ende schleife-->
-											</select>
-										</div>
-									</div>
-								</div>	
-								<div class="span-22">
-									<div class="span-5 hidden">hidden</div>
-									<div class="span-10"><button id="RadFil" name="RadioFilterButton">Ok</button></div>
-								</div>
-							</div>
-						</div>
-				</div>
-			</form>
-			</div>
-				
-		</div>
+        <div id="dialog_f" style="display:none" title="Filter" class="span-20">
+                        <form>
+                                <div id="accordion" class="span-20">
+                                        <h3>Hotspot</h3>
+                                        <div>
+                                                <fieldset>
+                                                        <div class="span-3"><label for="genHot">Genres:</label></div>
+                                                        <div class="span-17"><select name="genHot" id="genHot" data-placeholder="Choose genres..." class="dialog-multiselect" multiple style="width:350px;" tabindex="4">
+                                                                <option value=""></option>
+                                                                                <option value="Rock" id="rocHot">Rock</option>
+                                                                                <option value="Metal" id="metHot">Metal</option>
+                                                                                <option value="Punk" id="punHot">Punk</option>
+                                                                                <option value="Jazz" id="jazHot">Jazz</option>
+                                                                                <option value="Classic" id="claHot">Classic</option>
+                                                                                <option value="Pop" id="popHot">Pop</option>
+                                                                                <option value="Schlager" id="schHot">Schlager</option>
+                                                                                <option value="Hiphop" id="hipHot">Hip Hop</option>
+                                                                                <option value="Rnb" id="rnbHot">RnB</option>
+                                                                                <option value="Techno" id="tecHot">Techno</option>
+                                                                                <option value="House" id="houHot">House</option>
+                                                                                <option value="Drumnbass" id="dnbHot">Drum n Bass</option>
+                                                                                <option value="Neurofunk" id="neuHot"> Neurofunk</option>
+                                                                                <option value="Dubstep" id="dubHot">Dubstep</option>
+                                                        </select></div>
+                                                        <div class="span-3"><label for="locHot">Locations:</label><br /></div>
+                                                        <div class="span-17"><select name="locHot" id="locHot" data-placeholder="Choose locations..." class="dialog-multiselect" multiple style="width:350px;" tabindex="4">
+                                                                <option value=""></option>
+                                                                                <option value="Reutte" id="reHot">Ruette</option>
+                                                                                <option value="Landeck" id="laHot">Landeck</option>
+                                                                                <option value="Imst" id="imHot">Imst</option>
+                                                                                <option value="Innsbruck-Stadt" id="ibkHot">Innsbruck-Stadt</option>
+                                                                                <option value="Innsbruck-Land"id="inlHot">Innsbruck-Land</option>
+                                                                                <option value="Schwaz" id="szHot">Schwaz</option>
+                                                                                <option value="Kufstein" id="kuHot">Kufstein</option>
+                                                                                <option value="KitzbÃ¼hel" id="kbHot">KitzbÃ¼hel</option>
+                                                                                <option value="Lienz" id="liHot">Lienz</option>
+                                                        </select></div>
+                                                        <div class="span-3"><label for="favHot">Favorites:</label><br /></div>
+                                                        <div class="span-17"><select name="favHot" id="favHot" data-placeholder="Choose your favorites..." class="dialog-multiselect" multiple style="width:350px;" tabindex="4">
+                                                                <option value=""></option>
+                                                                                <option value="Rock" id="rockDash">Notausgang</option>
+                                                                                <option value="Metal">Camelized</option>
+                                                                                <option value="Punk">Inseminoid</option>
+                                                                                <option value="Jazz">People die out</option>
+                                                                                <option value="Classic">64k modem</option>
+                                                        </select></div>
+                                                </fieldset>
+                                        </div>
+                                        <h3>Radio</h3>
+                                        <div>
+                                                <fieldset>
+                                                        <div class="span-3"><label for="genRad">Genres:</label></div>
+                                                        <div class="span-17"><select id="genRad" name="genRad" data-placeholder="Choose genres..." class="dialog-multiselect" multiple style="width:350px;" tabindex="4">
+                                                                <option value=""></option>
+                                                                                <option value="Rock" id="rocRad">Rock</option>
+                                                                                <option value="Metal" id="metRad">Metal</option>
+                                                                                <option value="Punk" id="punRad">Punk</option>
+                                                                                <option value="Jazz" id="jazRad">Jazz</option>
+                                                                                <option value="Classic" id="claRad">Classic</option>
+                                                                                <option value="Pop" id="popRad">Pop</option>
+                                                                                <option value="Schlager" id="schRad">Schlager</option>
+                                                                                <option value="Hiphop" id="hipRad">Hip Hop</option>
+                                                                                <option value="Rnb" id="rnbRad">RnB</option>
+                                                                                <option value="Techno" id="tecRad">Techno</option>
+                                                                                <option value="House" id="houRad">House</option>
+                                                                                <option value="Drumnbass" id="dnbRad">Drum n Bass</option>
+                                                                                <option value="Neurofunk" id="neuRad"> Neurofunk</option>
+                                                                                <option value="Dubstep" id="dubRad">Dubstep</option>
+                                                        </select></div>
+                                                        <div class="span-3"><label for="locRad">Locations:</label></div>
+                                                        <div class="span-17"><select id="locRad" name="locRad" data-placeholder="Choose locations..." class="dialog-multiselect" multiple style="width:350px;" tabindex="4">
+                                                                <option value=""></option>
+                                                                                <option value="Reutte" id="reRad">Ruette</option>
+                                                                                <option value="Landeck" id="laRad">Landeck</option>
+                                                                                <option value="Imst" id="imRad">Imst</option>
+                                                                                <option value="Innsbruck-Stadt" id="ibkRad">Innsbruck-Stadt</option>
+                                                                                <option value="Innsbruck-Land" id="inlRad">Innsbruck-Land</option>
+                                                                                <option value="Schwaz" id="szRad">Schwaz</option>
+                                                                                <option value="Kufstein" id="kuRad">Kufstein</option>
+                                                                                <option value="KitzbÃ¼hel" id="kbRad">KitzbÃ¼hel</option>
+                                                                                <option value="Lienz" id="liRad">Lienz</option>
+                                                        </select></div>
+                                                        <div class="span-3"><label for="locRad">Favorites:</label></div>
+                                                        <div class="span-17"><select id="locRad" name="locRad" data-placeholder="Choose your favorites..." class="dialog-multiselect" multiple style="width:350px;" tabindex="4">
+                                                                <option value=""></option>
+                                                                                <option value="Rock" id="rockDash">Notausgang</option>
+                                                                                <option value="Metal">Camelized</option>
+                                                                                <option value="Punk">Inseminoid</option>
+                                                                                <option value="Jazz">People die out</option>
+                                                                                <option value="Classic">64k modem</option>
+                                                        </select></div>
+                                                </fieldset>
+                                        </div>
+                                </div>
+                        </form>
+                </div>
 {% endblock %}
 
 {% block javascript %}
