@@ -22,16 +22,16 @@ class Event
     private $idevent;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="Startdate", type="string", length=45, nullable=true)
+     * @ORM\Column(name="Startdate", type="date", nullable=true)
      */
     private $startdate;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="Enddate", type="string", length=45, nullable=true)
+     * @ORM\Column(name="Enddate", type="date", nullable=true)
      */
     private $enddate;
 
@@ -99,7 +99,7 @@ class Event
     /**
      * Set startdate
      *
-     * @param string $startdate
+     * @param \DateTime $startdate
      * @return Event
      */
     public function setStartdate($startdate)
@@ -112,7 +112,7 @@ class Event
     /**
      * Get startdate
      *
-     * @return string 
+     * @return \DateTime 
      */
     public function getStartdate()
     {
@@ -122,7 +122,7 @@ class Event
     /**
      * Set enddate
      *
-     * @param string $enddate
+     * @param \DateTime $enddate
      * @return Event
      */
     public function setEnddate($enddate)
@@ -135,7 +135,7 @@ class Event
     /**
      * Get enddate
      *
-     * @return string 
+     * @return \DateTime 
      */
     public function getEnddate()
     {

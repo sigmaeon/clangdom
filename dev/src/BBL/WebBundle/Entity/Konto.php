@@ -29,11 +29,33 @@ class Konto
     private $name;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="Confirmed", type="boolean", nullable=false)
+     */
+    private $confirmed;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Event", mappedBy="konto")
      */
     private $event;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Konto", inversedBy="konto")
+     * @ORM\JoinTable(name="konto_has_favorit",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="Konto", referencedColumnName="idKonto")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="Favorit", referencedColumnName="idKonto")
+     *   }
+     * )
+     */
+    private $favorit;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -68,11 +90,22 @@ class Konto
     private $profil;
 
     /**
+     * @var \Location
+     *
+     * @ORM\ManyToOne(targetEntity="Location")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Location", referencedColumnName="idLocation")
+     * })
+     */
+    private $location;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->event = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->favorit = new \Doctrine\Common\Collections\ArrayCollection();
         $this->tagstags = new \Doctrine\Common\Collections\ArrayCollection();
         $this->iduser = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -112,6 +145,29 @@ class Konto
     }
 
     /**
+     * Set confirmed
+     *
+     * @param boolean $confirmed
+     * @return Konto
+     */
+    public function setConfirmed($confirmed)
+    {
+        $this->confirmed = $confirmed;
+    
+        return $this;
+    }
+
+    /**
+     * Get confirmed
+     *
+     * @return boolean 
+     */
+    public function getConfirmed()
+    {
+        return $this->confirmed;
+    }
+
+    /**
      * Add event
      *
      * @param \BBL\WebBundle\Entity\Event $event
@@ -142,6 +198,39 @@ class Konto
     public function getEvent()
     {
         return $this->event;
+    }
+
+    /**
+     * Add favorit
+     *
+     * @param \BBL\WebBundle\Entity\Konto $favorit
+     * @return Konto
+     */
+    public function addFavorit(\BBL\WebBundle\Entity\Konto $favorit)
+    {
+        $this->favorit[] = $favorit;
+    
+        return $this;
+    }
+
+    /**
+     * Remove favorit
+     *
+     * @param \BBL\WebBundle\Entity\Konto $favorit
+     */
+    public function removeFavorit(\BBL\WebBundle\Entity\Konto $favorit)
+    {
+        $this->favorit->removeElement($favorit);
+    }
+
+    /**
+     * Get favorit
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFavorit()
+    {
+        return $this->favorit;
     }
 
     /**
@@ -231,5 +320,28 @@ class Konto
     public function getProfil()
     {
         return $this->profil;
+    }
+
+    /**
+     * Set location
+     *
+     * @param \BBL\WebBundle\Entity\Location $location
+     * @return Konto
+     */
+    public function setLocation(\BBL\WebBundle\Entity\Location $location = null)
+    {
+        $this->location = $location;
+    
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return \BBL\WebBundle\Entity\Location 
+     */
+    public function getLocation()
+    {
+        return $this->location;
     }
 }

@@ -13,13 +13,13 @@
 		</div>
 		<div class="span-24">
 			<div class="span-3 prepend-1 pfeffi">Location:</div>
-			<div class="span-6 prepend-1 last"><select name="Location" id="regLoc">
+			<div class="span-6 prepend-1 last"><select name="Location" id="regCou">
 													<option value="Austria">Austria</option>
 												</select>
-												<select name="Location1" id="regLoc1">
+												<select name="Location1" id="regSta">
 													<option value="Tirol">Tirol</option>
 												</select>
-												<select name="Location2" id="regLoc2">
+												<select name="Location2" id="regReg">
 													<option value="Innsbruck">Innsbruck</option>
 												</select></div>
 												
@@ -61,31 +61,53 @@
 //<script>
 var val = true;
 $(document).ready(function(){
-     $("#subbut").click(function(){
-		checkval();
+	getFormData();
+	signUpAction();
+    
+});
+//---- Fill Html with Ajax ----
+function getFormData(){
+	$.ajax({
+		 type: "post",
+		 url: "{{ path('fillSource') }}",
+		 success: function(data) {
+			/* var length = Country.length;
+			 element = null;
+			 for(var i = 0; i < length; i++){
+			 	$("#regCou").append('<option value="' + Country[i] + '">' + Country[i] + '</option>');
+		 	 }*/
+		}
+	});
+}
+
+
+// ----- Sign Up -----
+function signUpAction() {
+	 $("#subbut").click(function(){
+		//checkval();
 		var passhash = CryptoJS.SHA3($("#pwd_1").val()).toString();
 		//if(val == true) {
 		var url = '{{ path('signUp') }}';
 		var tasks = getTasks();
-			$.ajax({
- 				  type: "post",
- 				  url: url,
-  				  data: {Name: $("#accName").val(),
-  				  		 Email: $("#email_1").val(),
-  				  		 Pwd: passhash,
-  				  		 Tasks: tasks,
-  				  		 Type: "Source"},
- 				  success: function() {
- 				   	 alert('Thanks for signing up! You`ll be redirected in a few seconds...');
- 				  	 setTimeout(function() {
- 				  	 			window.location = "{{ path('bbl_web_homepage') }}";
- 				  	 		    }
- 				  	 , 3000); 
-  				  }
-			});
-		//}
-	});
-});
+		$.ajax({
+	 		 type: "post",
+	 		 url: url,
+	  		 data: {Name: $("#accName").val(),
+	  				Email: $("#email_1").val(),
+	  				Pwd: passhash,
+	  		 		Tasks: tasks,
+	  		 		Type: "Source"},
+	 		 success: function() {
+	 			 alert('Thanks for signing up! You`ll be redirected in a few seconds...');
+	 				/* setTimeout(function() {
+	 				  	 	window.location = "{{ path('bbl_web_homepage') }}";
+	 				  	  }
+	 				  	 , 3000); */
+	  				  }
+				});
+			//}
+		});
+}
 /*
 function checkval(){
 
@@ -118,13 +140,15 @@ function checkval(){
 	}else{	alert("you have to agree the user agreement!");	}
 }  
 */
+
+//------    Helping Methodes ----
 function getTasks()
 {	
 	var tasks = new Array();
-	if($("#task1").is(':checked') tasks.push($("#task1").val());
-	if($("#task2").is(':checked') tasks.push($("#task2").val());
-	if($("#task3").is(':checked') tasks.push($("#task3").val());
-	if($("#task4").is(':checked') tasks.push($("#task4").val());
+	if($("#task1").is(':checked')) tasks.push($("#task1").prop("name"));
+	if($("#task2").is(':checked')) tasks.push($("#task2").prop("name"));
+	if($("#task3").is(':checked')) tasks.push($("#task3").prop("name"));
+	if($("#task4").is(':checked')) tasks.push($("#task4").prop("name"));
 
 	return tasks;
 }

@@ -61,4 +61,8 @@ testm:
    pattern: /testm
    defaults: { _controller: BBLWebBundle:File:musicTest}
    
+fillSource:
+   pattern: /fillsource
+   defaults: { _controller: BBLWebBundle:Load:fillSource}
+   
    

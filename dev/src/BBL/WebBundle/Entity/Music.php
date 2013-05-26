@@ -66,9 +66,9 @@ class Music
         return $this;
     }
 
-    /** 
-     * 
-     *Get post
+    /**
+     * Get post
+     *
      * @return \BBL\WebBundle\Entity\Post 
      */
     public function getPost()
@@ -76,7 +76,6 @@ class Music
         return $this->post;
     }
 
-   
     /**
      * Set file
      *

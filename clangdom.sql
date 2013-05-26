@@ -41,7 +41,6 @@ DROP TABLE IF EXISTS `clangdom`.`Picture` ;
 CREATE  TABLE IF NOT EXISTS `clangdom`.`Picture` (
   `idPicture` INT NOT NULL AUTO_INCREMENT ,
   `File` INT NOT NULL ,
-  `Name` VARCHAR(45) NULL ,
   PRIMARY KEY (`idPicture`) ,
   INDEX `fk_Picture_File1_idx` (`File` ASC) ,
   CONSTRAINT `fk_Picture_File1`
@@ -74,6 +73,20 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `clangdom`.`Location`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `clangdom`.`Location` ;
+
+CREATE  TABLE IF NOT EXISTS `clangdom`.`Location` (
+  `idLocation` INT NOT NULL AUTO_INCREMENT ,
+  `Country` VARCHAR(45) NOT NULL ,
+  `Federal_State` VARCHAR(45) NOT NULL ,
+  `Region` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`idLocation`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `clangdom`.`Konto`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `clangdom`.`Konto` ;
@@ -82,12 +95,20 @@ CREATE  TABLE IF NOT EXISTS `clangdom`.`Konto` (
   `idKonto` INT NOT NULL AUTO_INCREMENT ,
   `Name` VARCHAR(45) NOT NULL ,
   `Profil` INT NOT NULL ,
+  `Location` INT NOT NULL ,
+  `Confirmed` TINYINT(1) NOT NULL DEFAULT False ,
   PRIMARY KEY (`idKonto`) ,
   UNIQUE INDEX `idKonto_UNIQUE` (`idKonto` ASC) ,
   INDEX `Profil_idx` (`Profil` ASC) ,
+  INDEX `fk_Konto_Location1_idx` (`Location` ASC) ,
   CONSTRAINT `Profil`
     FOREIGN KEY (`Profil` )
     REFERENCES `clangdom`.`Profil` (`idProfil` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Konto_Location1`
+    FOREIGN KEY (`Location` )
+    REFERENCES `clangdom`.`Location` (`idLocation` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -138,9 +159,10 @@ DROP TABLE IF EXISTS `clangdom`.`Post` ;
 
 CREATE  TABLE IF NOT EXISTS `clangdom`.`Post` (
   `idPost` INT NOT NULL AUTO_INCREMENT ,
-  `Date` DATE NOT NULL ,
+  `Date` DATETIME NOT NULL ,
   `Name` VARCHAR(45) NOT NULL ,
   `Konto` INT NOT NULL ,
+  `Rating` INT NULL ,
   PRIMARY KEY (`idPost`) ,
   UNIQUE INDEX `idPost_UNIQUE` (`idPost` ASC) ,
   INDEX `fk_Post_Konto1_idx` (`Konto` ASC) ,
@@ -366,7 +388,6 @@ DROP TABLE IF EXISTS `clangdom`.`Picture` ;
 CREATE  TABLE IF NOT EXISTS `clangdom`.`Picture` (
   `idPicture` INT NOT NULL AUTO_INCREMENT ,
   `File` INT NOT NULL ,
-  `Name` VARCHAR(45) NULL ,
   PRIMARY KEY (`idPicture`) ,
   INDEX `fk_Picture_File1_idx` (`File` ASC) ,
   CONSTRAINT `fk_Picture_File1`
@@ -386,8 +407,8 @@ CREATE  TABLE IF NOT EXISTS `clangdom`.`Event` (
   `idEvent` INT NOT NULL AUTO_INCREMENT ,
   `Post` INT NOT NULL ,
   `Profil` INT NOT NULL ,
-  `Startdate` VARCHAR(45) NULL ,
-  `Enddate` VARCHAR(45) NULL ,
+  `Startdate` DATE NULL ,
+  `Enddate` DATE NULL ,
   `Info` TEXT NULL ,
   PRIMARY KEY (`idEvent`) ,
   UNIQUE INDEX `idEvent_UNIQUE` (`idEvent` ASC) ,
@@ -424,6 +445,79 @@ CREATE  TABLE IF NOT EXISTS `clangdom`.`Event_has_Konto` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Event_has_Konto_Konto1`
     FOREIGN KEY (`Konto` )
+    REFERENCES `clangdom`.`Konto` (`idKonto` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `clangdom`.`Proposal`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `clangdom`.`Proposal` ;
+
+CREATE  TABLE IF NOT EXISTS `clangdom`.`Proposal` (
+  `idProposal` INT NOT NULL ,
+  `Info_Text` VARCHAR(45) NULL ,
+  `Post_idPost` INT NOT NULL ,
+  PRIMARY KEY (`idProposal`) ,
+  INDEX `fk_Proposal_Post1_idx` (`Post_idPost` ASC) ,
+  CONSTRAINT `fk_Proposal_Post1`
+    FOREIGN KEY (`Post_idPost` )
+    REFERENCES `clangdom`.`Post` (`idPost` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `clangdom`.`Konto_has_Favorit`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `clangdom`.`Konto_has_Favorit` ;
+
+CREATE  TABLE IF NOT EXISTS `clangdom`.`Konto_has_Favorit` (
+  `Konto` INT NOT NULL ,
+  `Favorit` INT NOT NULL ,
+  PRIMARY KEY (`Konto`, `Favorit`) ,
+  INDEX `fk_Konto_has_Konto_Konto2_idx` (`Favorit` ASC) ,
+  INDEX `fk_Konto_has_Konto_Konto1_idx` (`Konto` ASC) ,
+  CONSTRAINT `fk_Konto_has_Konto_Konto1`
+    FOREIGN KEY (`Konto` )
+    REFERENCES `clangdom`.`Konto` (`idKonto` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Konto_has_Konto_Konto2`
+    FOREIGN KEY (`Favorit` )
+    REFERENCES `clangdom`.`Konto` (`idKonto` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `clangdom`.`Nachricht`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `clangdom`.`Nachricht` ;
+
+CREATE  TABLE IF NOT EXISTS `clangdom`.`Nachricht` (
+  `idNachricht` INT NOT NULL AUTO_INCREMENT ,
+  `Subject` VARCHAR(45) NULL ,
+  `Text` TEXT NOT NULL ,
+  `Sender` INT NOT NULL ,
+  `Recipient` INT NOT NULL ,
+  `Date` DATE NOT NULL ,
+  `Checked` TINYINT(1) NOT NULL DEFAULT False ,
+  PRIMARY KEY (`idNachricht`) ,
+  UNIQUE INDEX `idNachricht_UNIQUE` (`idNachricht` ASC) ,
+  INDEX `fk_Nachricht_Konto1_idx` (`Sender` ASC) ,
+  INDEX `fk_Nachricht_Konto2_idx` (`Recipient` ASC) ,
+  CONSTRAINT `fk_Nachricht_Konto1`
+    FOREIGN KEY (`Sender` )
+    REFERENCES `clangdom`.`Konto` (`idKonto` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Nachricht_Konto2`
+    FOREIGN KEY (`Recipient` )
     REFERENCES `clangdom`.`Konto` (`idKonto` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)

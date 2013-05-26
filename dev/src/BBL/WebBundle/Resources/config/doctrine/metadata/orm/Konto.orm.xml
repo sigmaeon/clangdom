@@ -5,9 +5,15 @@
       <generator strategy="IDENTITY"/>
     </id>
     <field name="name" type="string" column="Name" length="45" nullable="false"/>
+    <field name="confirmed" type="boolean" column="Confirmed" nullable="false"/>
     <many-to-one field="profil" target-entity="Profil">
       <join-columns>
         <join-column name="Profil" referenced-column-name="idProfil"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="location" target-entity="Location">
+      <join-columns>
+        <join-column name="Location" referenced-column-name="idLocation"/>
       </join-columns>
     </many-to-one>
     <many-to-many field="iduser" target-entity="User" mapped-by="idkonto"/>
@@ -18,6 +24,16 @@
         </join-columns>
         <inverse-join-columns>
           <join-column name="Tags_idTags" referenced-column-name="idTags"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+    <many-to-many field="favorit" target-entity="Konto" inversed-by="konto">
+      <join-table name="konto_has_favorit">
+        <join-columns>
+          <join-column name="Konto" referenced-column-name="idKonto"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="Favorit" referenced-column-name="idKonto"/>
         </inverse-join-columns>
       </join-table>
     </many-to-many>

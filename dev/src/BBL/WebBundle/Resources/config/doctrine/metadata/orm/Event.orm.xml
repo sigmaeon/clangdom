@@ -4,8 +4,8 @@
     <id name="idevent" type="integer" column="idEvent">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="startdate" type="string" column="Startdate" length="45" nullable="true"/>
-    <field name="enddate" type="string" column="Enddate" length="45" nullable="true"/>
+    <field name="startdate" type="date" column="Startdate" nullable="true"/>
+    <field name="enddate" type="date" column="Enddate" nullable="true"/>
     <field name="info" type="text" column="Info" nullable="true"/>
     <many-to-one field="profil" target-entity="Profil">
       <join-columns>

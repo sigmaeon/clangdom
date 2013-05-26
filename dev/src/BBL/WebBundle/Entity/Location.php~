@@ -1,0 +1,46 @@
+<?php
+
+namespace BBL\WebBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Location
+ *
+ * @ORM\Table(name="location")
+ * @ORM\Entity
+ */
+class Location
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idLocation", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idlocation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Country", type="string", length=45, nullable=false)
+     */
+    private $country;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Federal_State", type="string", length=45, nullable=false)
+     */
+    private $federalState;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Region", type="string", length=45, nullable=false)
+     */
+    private $region;
+
+
+}

@@ -22,16 +22,16 @@ class Event
     private $idevent;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="Startdate", type="string", length=45, nullable=true)
+     * @ORM\Column(name="Startdate", type="date", nullable=true)
      */
     private $startdate;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="Enddate", type="string", length=45, nullable=true)
+     * @ORM\Column(name="Enddate", type="date", nullable=true)
      */
     private $enddate;
 

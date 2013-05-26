@@ -22,13 +22,6 @@ class Picture
     private $idpicture;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="Name", type="string", length=45, nullable=true)
-     */
-    private $name;
-
-    /**
      * @var \File
      *
      * @ORM\ManyToOne(targetEntity="File")
@@ -48,29 +41,6 @@ class Picture
     public function getIdpicture()
     {
         return $this->idpicture;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return Picture
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 
     /**

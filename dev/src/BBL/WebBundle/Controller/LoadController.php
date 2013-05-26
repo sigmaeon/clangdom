@@ -63,4 +63,26 @@ class LoadController extends Controller
     	 
     
     }
+    
+    public function fillSourceAction()
+    {
+    	$return = $this->getLocations();
+    	return new Response($return);
+    }
+    
+    public function getLocations()
+    {
+    	$return = array("Country" => array(), "State" => array(), "Region" => array());
+    	$em = $this->getDoctrine()->getManager();
+    	$locRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Location');
+    	$locs = $locRepo->findAll();
+    	foreach($locs as $loc)
+    	{
+    		$return["Country"][] = $loc->getCountry();
+    		$return["State"][] = $loc->getFederalState();
+    		$return["Region"][] = $loc->getRegion();
+    	}
+    	$return = json_encode($return);
+    	return $return;
+    }
 }

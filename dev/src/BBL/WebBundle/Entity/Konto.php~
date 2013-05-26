@@ -29,11 +29,33 @@ class Konto
     private $name;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="Confirmed", type="boolean", nullable=false)
+     */
+    private $confirmed;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Event", mappedBy="konto")
      */
     private $event;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Konto", inversedBy="konto")
+     * @ORM\JoinTable(name="konto_has_favorit",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="Konto", referencedColumnName="idKonto")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="Favorit", referencedColumnName="idKonto")
+     *   }
+     * )
+     */
+    private $favorit;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -68,11 +90,22 @@ class Konto
     private $profil;
 
     /**
+     * @var \Location
+     *
+     * @ORM\ManyToOne(targetEntity="Location")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Location", referencedColumnName="idLocation")
+     * })
+     */
+    private $location;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->event = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->favorit = new \Doctrine\Common\Collections\ArrayCollection();
         $this->tagstags = new \Doctrine\Common\Collections\ArrayCollection();
         $this->iduser = new \Doctrine\Common\Collections\ArrayCollection();
     }

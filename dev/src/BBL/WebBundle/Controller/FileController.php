@@ -92,7 +92,7 @@ class FileController extends Controller
     	$music->setPost($post);
     	$file = new File();
     	$file->setFile($upFile);
-    	$file->upload(microtime().'.'.'mp3'/*$upFile->guessExtension()*/, $session->get('link'));//Landerer fragen ob es nicht anders geht
+    	$file->upload(microtime().'.'.'mp3' /*$upFile->guessExtension()*/, $session->get('link'));
     	$music->setFile($file);
     	$em->persist($file);
     	$em->persist($music);

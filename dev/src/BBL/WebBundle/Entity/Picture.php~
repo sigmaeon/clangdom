@@ -22,13 +22,6 @@ class Picture
     private $idpicture;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="Name", type="string", length=45, nullable=true)
-     */
-    private $name;
-
-    /**
      * @var \File
      *
      * @ORM\ManyToOne(targetEntity="File")
