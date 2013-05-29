@@ -29,11 +29,14 @@ class Profil
     private $link;
 
     /**
-     * @var string
+     * @var \Picture
      *
-     * @ORM\Column(name="Pic", type="string", length=45, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Picture")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Picture", referencedColumnName="idPicture")
+     * })
      */
-    private $pic;
+    private $picture;
 
 
 }

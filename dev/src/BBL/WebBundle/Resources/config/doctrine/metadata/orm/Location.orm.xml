@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="Profil" table="profil">
-    <id name="idprofil" type="integer" column="idProfil">
+  <entity name="Location" table="location">
+    <id name="idlocation" type="integer" column="idLocation">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="link" type="string" column="Link" length="45" nullable="false"/>
-    <many-to-one field="picture" target-entity="Picture">
-      <join-columns>
-        <join-column name="Picture" referenced-column-name="idPicture"/>
-      </join-columns>
-    </many-to-one>
+    <field name="country" type="string" column="Country" length="45" nullable="false"/>
+    <field name="federalState" type="string" column="Federal_State" length="45" nullable="false"/>
+    <field name="region" type="string" column="Region" length="45" nullable="false"/>
   </entity>
 </doctrine-mapping>

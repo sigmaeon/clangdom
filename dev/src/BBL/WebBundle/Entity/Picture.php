@@ -5,31 +5,21 @@ namespace BBL\WebBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Music
+ * Picture
  *
- * @ORM\Table(name="music")
+ * @ORM\Table(name="picture")
  * @ORM\Entity
  */
-class Music
+class Picture
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="idMusic", type="integer", nullable=false)
+     * @ORM\Column(name="idPicture", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idmusic;
-
-    /**
-     * @var \Post
-     *
-     * @ORM\ManyToOne(targetEntity="Post")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="Post", referencedColumnName="idPost")
-     * })
-     */
-    private $post;
+    private $idpicture;
 
     /**
      * @var \File
@@ -44,43 +34,20 @@ class Music
 
 
     /**
-     * Get idmusic
+     * Get idpicture
      *
      * @return integer 
      */
-    public function getIdmusic()
+    public function getIdpicture()
     {
-        return $this->idmusic;
-    }
-
-    /**
-     * Set post
-     *
-     * @param \BBL\WebBundle\Entity\Post $post
-     * @return Music
-     */
-    public function setPost(\BBL\WebBundle\Entity\Post $post = null)
-    {
-        $this->post = $post;
-    
-        return $this;
-    }
-
-    /**
-     * Get post
-     *
-     * @return \BBL\WebBundle\Entity\Post 
-     */
-    public function getPost()
-    {
-        return $this->post;
+        return $this->idpicture;
     }
 
     /**
      * Set file
      *
      * @param \BBL\WebBundle\Entity\File $file
-     * @return Music
+     * @return Picture
      */
     public function setFile(\BBL\WebBundle\Entity\File $file = null)
     {

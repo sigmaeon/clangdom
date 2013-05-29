@@ -24,9 +24,9 @@ class Post
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="Datum", type="date", nullable=false)
+     * @ORM\Column(name="Date", type="datetime", nullable=false)
      */
-    private $datum;
+    private $date;
 
     /**
      * @var string
@@ -34,6 +34,13 @@ class Post
      * @ORM\Column(name="Name", type="string", length=45, nullable=false)
      */
     private $name;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Rating", type="integer", nullable=true)
+     */
+    private $rating;
 
     /**
      * @var \Doctrine\Common\Collections\Collection

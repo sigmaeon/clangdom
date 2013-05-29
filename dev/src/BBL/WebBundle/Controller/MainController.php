@@ -2,12 +2,16 @@
 
 namespace BBL\WebBundle\Controller;
 
+use BBL\WebBundle\Exception\WrongParamsClangdomException;
+
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use BBL\WebBundle\Exception\EntityNotFoundClangdomException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Filesystem\Exception\IOException;
 use BBL\WebBundle\Entity\User;
 use BBL\WebBundle\Entity\Konto;
 use BBL\WebBundle\Entity\Genre;
@@ -18,6 +22,13 @@ use BBL\WebBundle\Entity\Tasks;
 
 class MainController extends Controller
 {
+	static private $rootDir = null; 
+	
+	static public function setUploadsDirectory($dir)  // is that secure??
+	{
+		self::$rootDir = $dir;
+	}
+	
     public function indexAction()
     {
     	$this->get('session')->start();
@@ -87,16 +98,19 @@ class MainController extends Controller
     public function regAction()
     {
     	//Objects for managing
+    	$fs = new Filesystem();
     	$request = $this->getRequest();	
     	if(!$request->isXmlHttpRequest()) throw new NoAjaxClangdomException();
     	$em = $this->getDoctrine()->getManager();
     	$userRepo = $this->getDoctrine()->getRepository('BBLWebBundle:User');
     	$profilRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Profil');
+    	$locRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Location');
     	
     	//------value check---
     	$email = $request->request->get('Email');
     	if(strpos($email, '@') === false) return new Response('mail', 409);
-    	
+    	$name = $request->request->get('Name');
+    //	if(strpos($name, '?') === true || strpos($name, '<') === true, strpos($name, '>') === true || )
     	
     	
        //-----------Fill the DB--------
@@ -117,6 +131,7 @@ class MainController extends Controller
     		$link = ($str.$i);
     	}
     	
+    	$fs->mkdir(self::$rootDir."/".$link); // make a dir for the User and i want an exception
     	$profil->setLink($link);
     	$konto->setProfil($profil);
     	
@@ -125,10 +140,19 @@ class MainController extends Controller
     	if($userhere != null) $user = $userhere;
     	else{
     		$user = new User();
-    		$user->setEmail($request->request->get('Email'));
+    		$user->setEmail($email);
     		$user->setPassword($request->request->get('Pwd'));
     	}
     	$konto->addIduser($user);
+    	$konto->setConfirmed(false);
+    	
+    	//Location handling
+    	$location = $locRepo->findOneBy(array('country' => ($request->request->get('Country')), 
+    										  'federalState' => ($request->request->get('State')),
+    										  'region' => ($request->request->get('Region'))));
+    	if($location == null) throw new EntityNotFoundClangdomException();
+    	$konto->setLocation($location);
+    	
     	
     	//Define Konto
     	if($request->request->get('Type') == "Artist") $this->signArtist($konto);
@@ -149,6 +173,7 @@ class MainController extends Controller
     	$session->set('user', $user->getIduser());
     	$session->set('name',$konto->getName());
     	$session->set('konto', $konto->getIdkonto());
+    	$session->set('link', $profil->getLink());
     	
     	//return
     	$response = new Response();
@@ -163,6 +188,7 @@ class MainController extends Controller
     	$session->set('user', '');
     	$session->set('name','');
     	$session->set('konto','');
+    	$session->set('link', '');
     	return $this->redirect($this->generateUrl('bbl_web_homepage'));
     }
     
@@ -179,22 +205,14 @@ class MainController extends Controller
     	$artist->setKonto($konto);
     	
     //Genre
-    try{
     	$genre = $genreRepo->findOneByName($request->request->get('Genre'));
-    	//if($genre == null) throw new EntityNotFoundClangdomException();
+    	if($genre == null) throw new EntityNotFoundClangdomException();
     	$artist->addGenregenre($genre);
     	if($request->request->get('Genre2') != '') {
     		$genre2 = $genreRepo->findOneByName($request->request->get('Genre2'));
-    	//	if($genre2 == null) throw new EntityNotFoundClangdomException(); 
+    	if($genre2 == null) throw new EntityNotFoundClangdomException(); 
     		$artist->addGenregenre($genre2);
     	}
-    }
-    catch(Exception $e)
-    {
-    	throw new EntityNotFoundClangdomException(); 
-    }
-        $genre->addArtistartist($artist);
-    	
 		$em->persist($artist);
 	}
 	
@@ -210,14 +228,19 @@ class MainController extends Controller
 		$source->setKonto($konto);
 		
 	//Task
-		if($request->request->get('Tasks') != '')
-			$task = $taskRepo->findOneByName($request->request->get('Tasks'));
-		else $task = $taskRepo->findOneByName("studio"); // task-not-found exception GOES here
-		$task->addSourcesource($source);
-		$source->addTaskstask($task);
-		 
+		$tasks = $request->request->get('Tasks');
+		if($tasks == null) throw new WrongParamsClangdomException();
+		$taskObs = null;
+		foreach($tasks as $task)
+		{
+			$taskOb = $taskRepo->findOneByName($task);
+			if($taskOb == null) throw new EntityNotFoundClangdomException();
+			$taskOb->addSourcesource($source);
+			$source->addTaskstask($taskOb);
+			
+		}
+		
 		$em->persist($source);
-		$em->persist($task);
 	}
 
 //--------------------------------SIGN UP---------------------------------------

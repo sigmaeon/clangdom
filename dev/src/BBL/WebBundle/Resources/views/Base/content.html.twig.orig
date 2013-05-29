@@ -1,0 +1,27 @@
+
+<div id="content">
+<<<<<<< HEAD
+		{% block tabcontent %} 			
+=======
+		{% block tabcontent %} 
+		<div class="abstand">
+		<div class="span-22 prepend-2 last">	<h3 class="alt">{{ title }}</h3></div>
+>>>>>>> b5607295ea3d6b07b638f6f3a3d9b60be82a8d9b
+			<ul>
+				{% for object in objects %}
+					{% if object.type == "simple" %}
+					    {% include 'BBLWebBundle:Content:simple.html.twig' 
+						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'info': object.info} %}
+						
+					{% elseif object.type == "mp3" %}
+						{% include 'BBLWebBundle:Content:mp3.html.twig'
+						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'info': object.info} %}
+						
+					{% elseif object.type == "video" %}
+					    {% include 'BBLWebBundle:Content:video.html.twig' 
+						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'info': object.info} %}
+					{% endif %}
+				{% endfor %}
+			</ul>
+		{% endblock %}
+</div> 

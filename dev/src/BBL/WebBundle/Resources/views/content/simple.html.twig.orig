@@ -1,0 +1,19 @@
+<<<<<<< HEAD
+<div class="bandcontent span-22">
+	<div class="contentbox">
+		<div class="span-2 contentpic "><a href="{{ path('bbl_web_homepage') }}profil{{ link }}"><img src="{{ picture }}" height="120px" width="120px"></a></div>
+		<div class="span-17 prepend-2"><a href="{{ path('bbl_web_homepage') }}profil{{ link }}"><h3 class="alt">{{ name }}</h3></a></div>
+		<div class="span-17 prepend-2"><hr></div>
+		<div class="span-17 prepend-2 last"><p>{{ info }}</p></div>
+	</div>
+</div>
+=======
+
+
+
+<!-- title: Überschrift des jeweiligen Tabs(Bands, Events, Forum)-->
+<div class="span-20 prepend-2 box"><li><div class="span-2 colborder"><img src="{{ asset(picture) }}" height="80px" width="80px"></div> 
+<!-- name: Band bzw. Event name, info: Band bzw. Event information -->
+<div class="span-6 last alt"><a href="{{ path('bbl_web_homepage') }}profil{{ link }}"><h3> {{ name }}</h3></a><br />{{ info }}<br /></div></li></div><hr> 
+				
+>>>>>>> b5607295ea3d6b07b638f6f3a3d9b60be82a8d9b

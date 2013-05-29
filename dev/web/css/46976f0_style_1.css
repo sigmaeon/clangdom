@@ -90,6 +90,47 @@ margin-top:30px;
 .moveup{
 margin-bottom:5px;
 }
+/* Content rules*/
+.mp3content{
+background-color:#ededed;
+border: 1px solid;
+border-radius:5px;
+box-shadow: 6px 6px 3px #888888;
+margin-top:10px;
+margin-bottom:10px;
+margin-left:15px;
+}
+
+.vid{
+margin:10px;
+}
+
+.contentbox{
+display:block;
+padding:10px;
+padding-bottom:10px;
+}
+
+.youtubecontent{
+background-color:#ededed;
+border: 1px solid;
+border-radius:5px;
+box-shadow:6px 6px 3px #888888;
+margin-top:10px;
+margin-bottom:10px;
+margin-left:15px;
+}
+.contenttitle{
+
+}
+.contentpic{
+margin:5px;
+}
+
+
+.accordionHeight{
+height:250px;
+}
 
 .pfeffi{
 margin-top:8px;
