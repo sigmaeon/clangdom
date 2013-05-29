@@ -64,10 +64,38 @@ class LoadController extends Controller
     
     }
     
+    public function fillArtistAction()
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$genRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Genre');
+    	$gensOjs = $genRepo->findAll();
+    	$gens = array();
+    	$return = array();
+    	foreach($gensOjs as $gen)
+    	{
+    		$gens[] = $gen->getName();
+    	}
+    	$return = array("Genre" => $gens);
+    	//$return = $this->getLocations();
+    	$return = json_encode($return);
+    	return new Response($return,200,array('Content-Type'=>'application/json'));
+    }
+    
     public function fillSourceAction()
     {
-    	$return = $this->getLocations();
-    	return new Response($return);
+    	$em = $this->getDoctrine()->getManager();
+    	$taskRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Tasks');
+    	$tasksOjs = $taskRepo->findAll();
+    	$tasks = array();
+    	$return = array();
+    	foreach($tasksOjs as $task)
+    	{
+    		$tasks[] = $task->getName();
+    	}
+    	$return = array("Tasks" => $tasks);
+    	//$return = $this->getLocations();
+    	$return = json_encode($return);
+    	return new Response($return,200,array('Content-Type'=>'application/json'));
     }
     
     public function getLocations()

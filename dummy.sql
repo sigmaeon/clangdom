@@ -13,7 +13,7 @@ insert into Genre (Name) values('House');
 
 insert into Tasks (Name) values('Seller');
 insert into Tasks (Name) values('Organizer');
-insert into Tasks (Name) values('Mediator');
+insert into Tasks (Name) values('Sponsor');
 insert into Tasks (Name) values('Teacher');
 
 

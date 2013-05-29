@@ -64,5 +64,13 @@ testm:
 fillSource:
    pattern: /fillsource
    defaults: { _controller: BBLWebBundle:Load:fillSource}
+   requirements:
+    _method: POST
+   
+fillArtist:
+   pattern: /fillartist
+   defaults: { _controller: BBLWebBundle:Load:fillArtist}
+   requirements:
+    _method: POST
    
    

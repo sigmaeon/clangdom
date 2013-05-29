@@ -2,6 +2,8 @@
 
 namespace BBL\WebBundle\Controller;
 
+use BBL\WebBundle\Exception\WrongParamsClangdomException;
+
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use BBL\WebBundle\Exception\EntityNotFoundClangdomException;
@@ -193,22 +195,14 @@ class MainController extends Controller
     	$artist->setKonto($konto);
     	
     //Genre
-    try{
     	$genre = $genreRepo->findOneByName($request->request->get('Genre'));
-    	//if($genre == null) throw new EntityNotFoundClangdomException();
+    	if($genre == null) throw new EntityNotFoundClangdomException();
     	$artist->addGenregenre($genre);
     	if($request->request->get('Genre2') != '') {
     		$genre2 = $genreRepo->findOneByName($request->request->get('Genre2'));
-    	//	if($genre2 == null) throw new EntityNotFoundClangdomException(); 
+    	if($genre2 == null) throw new EntityNotFoundClangdomException(); 
     		$artist->addGenregenre($genre2);
     	}
-    }
-    catch(Exception $e)
-    {
-    	throw new EntityNotFoundClangdomException(); 
-    }
-        $genre->addArtistartist($artist);
-    	
 		$em->persist($artist);
 	}
 	
@@ -224,15 +218,19 @@ class MainController extends Controller
 		$source->setKonto($konto);
 		
 	//Task
-		//if($request->request->get('Tasks') != '') 
-			//$tasks = $taskRepo->findOneByName($request->request->get('Tasks'));
-		return new Response(print_r($request->request->get('Tasks')));
-		/*else $task = $taskRepo->findOneByName("studio"); // task-not-found exception GOES here
-		$task->addSourcesource($source);
-		$source->addTaskstask($task);
-		 
+		$tasks = $request->request->get('Tasks');
+		if($tasks == null) throw new WrongParamsClangdomException();
+		$taskObs = null;
+		foreach($tasks as $task)
+		{
+			$taskOb = $taskRepo->findOneByName($task);
+			if($taskOb == null) throw new EntityNotFoundClangdomException();
+			$taskOb->addSourcesource($source);
+			$source->addTaskstask($taskOb);
+			
+		}
+		
 		$em->persist($source);
-		$em->persist($task);*/
 	}
 
 //--------------------------------SIGN UP---------------------------------------
