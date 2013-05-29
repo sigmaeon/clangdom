@@ -13,7 +13,11 @@ insert into Genre (Name) values('House');
 
 insert into Tasks (Name) values('Seller');
 insert into Tasks (Name) values('Organizer');
+<<<<<<< HEAD
+insert into Tasks (Name) values('Mediator');
+=======
 insert into Tasks (Name) values('Sponsor');
+>>>>>>> exceptions
 insert into Tasks (Name) values('Teacher');
 
 

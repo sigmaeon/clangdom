@@ -22,6 +22,16 @@ class Music
     private $idmusic;
 
     /**
+<<<<<<< HEAD
+     * @var string
+     *
+     * @ORM\Column(name="URL", type="string", length=45, nullable=false)
+     */
+    private $path;
+
+    /**
+=======
+>>>>>>> exceptions
      * @var \Post
      *
      * @ORM\ManyToOne(targetEntity="Post")
@@ -54,18 +64,34 @@ class Music
     }
 
     /**
+<<<<<<< HEAD
+     * Set path
+=======
      * Set post
+>>>>>>> exceptions
      *
      * @param \BBL\WebBundle\Entity\Post $post
      * @return Music
      */
+<<<<<<< HEAD
+    public function setPath($url)
+=======
     public function setPost(\BBL\WebBundle\Entity\Post $post = null)
+>>>>>>> exceptions
     {
         $this->post = $post;
     
         return $this;
     }
+    
 
+<<<<<<< HEAD
+    public function getAbsolutePath()
+    {
+        return null === $this->path
+            ? null
+            : $this->getUploadRootDir().'/'.$this->path;
+=======
     /**
      * Get post
      *
@@ -74,8 +100,31 @@ class Music
     public function getPost()
     {
         return $this->post;
+>>>>>>> exceptions
     }
 
+    public function getWebPath()
+    {
+    	return null === $this->path
+    	? null
+    	: $this->getUploadDir().'/'.$this->path;
+    }
+    
+    
+    protected function getUploadRootDir()
+    {
+    	// the absolute directory path where uploaded
+    	// documents should be saved
+    	return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+    
+    protected function getUploadDir()
+    {
+    	// get rid of the __DIR__ so it doesn't screw up
+    	// when displaying uploaded doc/image in the view.
+    	return 'uploads/music';
+    }
+    
     /**
      * Set file
      *

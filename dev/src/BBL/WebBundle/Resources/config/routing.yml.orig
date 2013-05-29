@@ -41,6 +41,15 @@ signUp:
    requirements:
     _method: POST
     
+<<<<<<< HEAD
+events:
+  pattern: /events
+  defaults: { _controller: BBLWebBundle:Main:events}
+  
+settings:
+   pattern: /settings
+   defaults: { _controller: BBLWebBundle:Main:settings}
+=======
 picupload:
    pattern: /picup
    defaults: { _controller: BBLWebBundle:File:picUp}
@@ -73,12 +82,5 @@ fillArtist:
    requirements:
     _method: POST
    
-    
-events:
-  pattern: /events
-  defaults: { _controller: BBLWebBundle:Main:events}
-  
-settings:
-   pattern: /settings
-   defaults: { _controller: BBLWebBundle:Main:settings}
+>>>>>>> exceptions
    

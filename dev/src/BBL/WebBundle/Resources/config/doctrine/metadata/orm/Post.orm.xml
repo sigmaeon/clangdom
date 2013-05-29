@@ -4,8 +4,9 @@
     <id name="idpost" type="integer" column="idPost">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="datum" type="date" column="Datum" nullable="false"/>
+    <field name="date" type="datetime" column="Date" nullable="false"/>
     <field name="name" type="string" column="Name" length="45" nullable="false"/>
+    <field name="rating" type="integer" column="Rating" nullable="true"/>
     <many-to-one field="konto" target-entity="Konto">
       <join-columns>
         <join-column name="Konto" referenced-column-name="idKonto"/>

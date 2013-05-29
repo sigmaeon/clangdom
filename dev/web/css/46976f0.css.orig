@@ -2,9 +2,15 @@
 
 /*rules for html elemts such a texts, lists, titles, etc.. */
 body{
-background-image:url('../../bundles/bblweb/images/background.jpg');
+<<<<<<< HEAD
+background-image:url('../../bundles/bblweb/images/background2.png');
 background-repeat:repeat-x;
 background-attachment:fixed;
+=======
+background-image:url('../../bundles/bblweb/images/background.jpg');
+background-repeat:no-repeat;
+background-size:100% 100%;
+>>>>>>> exceptions
 }
 
 h1{
@@ -34,7 +40,11 @@ list-style-type:none;
 /* sitelayout */
 #header{
 background-image:url('../../bundles/bblweb/images/topbar.jpg');
+<<<<<<< HEAD
 height:54px;
+=======
+height:65px;
+>>>>>>> exceptions
 margin-top:none;
 padding-top:none;
 position:fixed;

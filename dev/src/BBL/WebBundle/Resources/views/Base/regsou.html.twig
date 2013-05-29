@@ -12,11 +12,21 @@
 			<div class="span-4 prepend-1 last"><input type="text" name="accname" id="accName"></div>
 		</div>
 		<div class="span-24">
+			<div class="span-3 prepend-1 pfeffi">Location:</div>
+			<div class="span-6 prepend-1 last"><select name="Location" id="regCou">
+													<option value="Austria">Austria</option>
+												</select>
+												<select name="Location1" id="regSta">
+													<option value="Tirol">Tirol</option>
+												</select>
+												<select name="Location2" id="regReg">
+													<option value="Innsbruck">Innsbruck</option>
+												</select></div>
+												
+		</div>
+		<div class="span-24">
 			<div class="span-3 prepend-1 pfeffi">Task:</div>
-			<div class="span-3 prepend-1"><input type="checkbox" id="task1" name="Seller">Seller<br />
-										  <input type="checkbox" id="task2" name="Organizer">Organizer<br />
-										  <input type="checkbox" id="task3" name="Mediator">Mediator<br />
-										  <input type="checkbox" id="task4" name="Teacher">Teacher</div>
+			<div class="span-3 prepend-1" id="checks"></div>
 		</div>
 		<div class="span-24">
 			<div class="span-3 prepend-1 pfeffi">Email:</div>
@@ -48,31 +58,60 @@
 //<script>
 var val = true;
 $(document).ready(function(){
-     $("#subbut").click(function(){
-		checkval();
+	getFormData();
+	signUpAction();
+    
+});
+//---- Fill Html with Ajax ----
+function getFormData(){
+	$.ajax({
+		 type: "post",
+		 url: "{{ path('fillSource') }}",
+		 success: function(data) {
+			 var length = data.Tasks.length;
+			 for(var i = 0; i < length; i++){
+			 	$("#checks").append('<input type="checkbox" id="task' + i + '" name="' + data.Tasks[i] + '">' + data.Tasks[i] + '</input> <br />');
+			 }
+			/* var length = Country.length;
+			 element = null;
+			 for(var i = 0; i < length; i++){
+			 	$("#regCou").append('<option value="' + Country[i] + '">' + Country[i] + '</option>');
+		 	 }*/
+		}
+	});
+}
+
+
+// ----- Sign Up -----
+function signUpAction() {
+	 $("#subbut").click(function(){
+		//checkval();
 		var passhash = CryptoJS.SHA3($("#pwd_1").val()).toString();
 		//if(val == true) {
 		var url = '{{ path('signUp') }}';
 		var tasks = getTasks();
-			$.ajax({
- 				  type: "post",
- 				  url: url,
-  				  data: {Name: $("#accName").val(),
-  				  		 Email: $("#email_1").val(),
-  				  		 Pwd: passhash,
-  				  		 Tasks: tasks,
-  				  		 Type: "Source"},
- 				  success: function() {
- 				   	 alert('Thanks for signing up! You`ll be redirected in a few seconds...');
- 				  	 setTimeout(function() {
- 				  	 			window.location = "{{ path('bbl_web_homepage') }}";
- 				  	 		    }
- 				  	 , 3000); 
-  				  }
-			});
-		//}
-	});
-});
+		$.ajax({
+	 		 type: "post",
+	 		 url: url,
+	  		 data: {Name: $("#accName").val(),
+	  				Email: $("#email_1").val(),
+	  				Pwd: passhash,
+	  		 		Tasks: tasks,
+	  		 		Type: "Source",
+	  		 		Country: $("#regCou").val(),
+	  				State:   $("#regSta").val(),
+					Region:  $("#regReg").val()},
+	 		 success: function() {
+	 			 alert('Thanks for signing up! You`ll be redirected in a few seconds...');
+	 					 setTimeout(function() {
+	 				  	 	window.location = "{{ path('bbl_web_homepage') }}";
+	 				  	  }
+	 				  	 , 3000); 
+	  				  }
+				});
+			//}
+		});
+}
 /*
 function checkval(){
 
@@ -105,14 +144,14 @@ function checkval(){
 	}else{	alert("you have to agree the user agreement!");	}
 }  
 */
+
+//------    Helping Methodes ----
 function getTasks()
 {	
 	var tasks = new Array();
-	if($("#task1").is(':checked') tasks.push($("#task1").val());
-	if($("#task2").is(':checked') tasks.push($("#task2").val());
-	if($("#task3").is(':checked') tasks.push($("#task3").val());
-	if($("#task4").is(':checked') tasks.push($("#task4").val());
-
+	$('input[id^="task"]').each(function() {
+		if($(this).is(':checked')) tasks.push($(this).prop("name"));
+	});
 	return tasks;
 }
 {% endblock %}

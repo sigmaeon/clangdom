@@ -12,32 +12,25 @@
 			<div class="span-4 prepend-1 last"><input type="text" name="accname" id="accName"></div>
 		</div>
 		<div class="span-24">
+			<div class="span-3 prepend-1 pfeffi">Location:</div>
+			<div class="span-6 prepend-1 last"><select name="Location" id="regCou">
+													<option value="Austria">Austria</option>
+												</select>
+												<select name="Location1" id="regSta">
+													<option value="Tirol">Tirol</option>
+												</select>
+												<select name="Location2" id="regReg">
+													<option value="Innsbruck">Innsbruck</option>
+												</select></div>
+												
+		</div>
+		<div class="span-24">
 			<div class="span-3 prepend-1 pfeffi">Genre:</div>
 			<div class="span-6 prepend-1 last"><select name="genre" id="regGenre">
-												<option value="Rock">Rock</option>
-												<option value="Metal">Metal</option>
-												<option value="Punk">Punk</option>
-												<option value="Jazz">Jazz</option>
-												<option value="Classic">Classic</option>
-												<option value="Pop">Pop</option>
-												<option value="Funk">Funk</option>
-												<option value="Schlager">Schlager</option>
-												<option value="Oma?">Hip Hop</option>
-												<option value="House">House</option>
-											</select> 
+											   </select>
 										<button id="plus"></button>
 										<select name="genre" id="regGenre2" style="display: none">
 											<option value=""></option>
-											<option value="Rock">Rock</option>
-											<option value="Metal">Metal</option>
-											<option value="Punk">Punk</option>
-											<option value="Jazz">Jazz</option>
-											<option value="Classic">Classic</option>
-											<option value="Pop">Pop</option>
-											<option value="Funk">Funk</option>
-											<option value="Schlager">Schlager</option>
-											<option value="Hiphop">Hip Hop</option>
-											<option value="House">House</option>
 										</select></div>
 		</div>
 		<div class="span-24">
@@ -72,40 +65,56 @@
 //<script>
 var val = false;
 $(document).ready(function(){
-     $("#subbut").click(function(){
-		checkval();
-		var passhash = CryptoJS.SHA3($("#pwd_1").val()).toString();
-		val = checkval();
-		if(val == true) {
-			var url = '{{ path('signUp') }}';
-			$.ajax({
- 				  type: "post",
- 				  url: url,
-  				  data: {Name: $("#accName").val(),
-  				  		 Email: $("#email_1").val(),
-  				  		 Pwd: passhash,
-  				  		 Genre: $("#regGenre").val(),
-  				  		 Genre2: $("#regGenre2").val(),
-  				  		 Type: "Artist"},
-  				  409: function() {
-  	  				  alert('uups something went wrong');
-  	  				  },
- 				  success: function() {
- 				   	 alert('Thanks for signing up! You`ll be redirected in a few seconds...');
- 				  	 setTimeout(function() {
- 				  	 			window.location = "{{ path('bbl_web_homepage') }}";
- 				  	 		    }
- 				  	 , 3000); 
-  				  },
-  				  error: function(jqXHR, error, errorThrown) {
-  				  	$("html").html(jqXHR.responseText);
-  				  
-  				  }
-			});
-		}
-	});
+	signUpAction();
+	button();
+	getFormData()
 	
-	//-----+button-----
+});
+
+//----- Sign Up -----
+function signUpAction()
+{
+	 $("#subbut").click(function(){
+			checkval();
+			var passhash = CryptoJS.SHA3($("#pwd_1").val()).toString();
+			val = checkval();
+			if(val == true) {
+				var url = '{{ path('signUp') }}';
+				$.ajax({
+	 				  type: "post",
+	 				  url: url,
+	  				  data: {Name: $("#accName").val(),
+	  				  		 Email: $("#email_1").val(),
+	  				  		 Pwd: passhash,
+	  				  		 Genre: $("#regGenre").val(),
+	  				  		 Genre2: $("#regGenre2").val(),
+	  				  		 Type: "Artist",
+	  				  		 Country: $("#regCou").val(),
+	  	  				  	 State:   $("#regSta").val(),
+	  						 Region:  $("#regReg").val()},
+	 				  success: function() {
+	 				   	 alert('Thanks for signing up! You`ll be redirected in a few seconds...');
+	 				  	 setTimeout(function() {
+	 				  	 			window.location = "{{ path('bbl_web_homepage') }}";
+	 				  	 		    }
+	 				  	 , 3000); 
+	  				  },
+	  				  error: function(jqXHR, error, errorThrown) {
+	  				     	if (jqXHR.status == '409') {
+	  	  				     	if(jqXHR.responseText == 'mail') alert('It works');
+	  	  				     	else alert('it didnt work');
+	  				      	}
+	  				    	else //server returned Exception
+	  				  		$("html").html(jqXHR.responseText);
+	  				  }
+				});
+			}
+		});
+}
+
+//-----Helping Methodes
+function button()
+{
 	 $(function() {
 			    $( "#plus" ).button({
 			      icons: {
@@ -117,7 +126,28 @@ $(document).ready(function(){
 		 $("#regGenre2").show();
 		 $("#plus").hide();
 				             });
-});
+}
+
+function getFormData(){
+	$.ajax({
+		 type: "post",
+		 url: "{{ path('fillArtist') }}",
+		 success: function(data) {
+			 var length = data.Genre.length;
+			 for(var i = 0; i < length; i++){
+				 $('select[id^="regGenre"]').each(function() { 
+					 		$(this).append('<option value="' + data.Genre[i] + '">' + data.Genre[i] + '</option> <br />');
+				 });
+			 }
+			/* var length = Country.length;
+			 element = null;
+			 for(var i = 0; i < length; i++){
+			 	$("#regCou").append('<option value="' + Country[i] + '">' + Country[i] + '</option>');
+		 	 }*/
+		}
+	});
+}
+
 
 function checkval(){
 	var count = 0;
@@ -148,5 +178,4 @@ function checkval(){
 	if(count == 6) return true;
 	
 }  
-
 {% endblock %}

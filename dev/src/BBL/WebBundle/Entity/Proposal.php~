@@ -1,0 +1,42 @@
+<?php
+
+namespace BBL\WebBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Proposal
+ *
+ * @ORM\Table(name="proposal")
+ * @ORM\Entity
+ */
+class Proposal
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idProposal", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idproposal;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Info_Text", type="string", length=45, nullable=true)
+     */
+    private $infoText;
+
+    /**
+     * @var \Post
+     *
+     * @ORM\ManyToOne(targetEntity="Post")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Post_idPost", referencedColumnName="idPost")
+     * })
+     */
+    private $postpost;
+
+
+}
