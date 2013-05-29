@@ -4,11 +4,11 @@
 	{% block head %}
         <meta charset="UTF-8" />
         <title>{% block title %}Clangdom -  {{ app.environment}} {% endblock %}</title>
-<!-- chosen css -->
+        <!-- chosen css -->
         {% stylesheets 'bundles/bblweb/css/chosen.css' filter='cssrewrite' %}
                 <link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
         {% endstylesheets %}
-<!-- Framework-->
+        <!-- Framework-->
         {% stylesheets 'bundles/bblweb/css/screen.css' filter='cssrewrite'  %}
         	<link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen, projection"/>
         {% endstylesheets %}
@@ -22,102 +22,46 @@
         {% endstylesheets %}
 			
 			
-<!-- selfmade style.css-->
-        	{% stylesheets 'bundles/bblweb/css/style.css' filter='cssrewrite' %}
-        		<link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
-       		 {% endstylesheets %}
+        <!-- selfmade style.css-->
+        {% stylesheets 'bundles/bblweb/css/style.css' filter='cssrewrite' %}
+                <link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
+         {% endstylesheets %}
 			 
- <!-- Hashing -->
-		<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
+        <!-- Hashing -->
+        <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
 		
- <!-- Jquery-->
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
- {% javascripts '@BBLWebBundle/Resources/public/js/chosen.jquery.min.js' %}
-       	<script src="{{ asset_url }}"></script>
- {% endjavascripts %}
-	
-	
-    
-<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-				
-<style type="text/css">
-        body { font-family: "HelveticaNeue","Helvetica-Neue", "Helvetica", "Arial", sans-serif; }
-        .big-link { display:block; margin-top: 100px; text-align: center; font-size: 70px; color: #06f; }
-</style>
-<style>
-        /* ToDo: auslagern */
-        .ui-accordion .ui-accordion-content {
-                overflow: visible;
-                overflow-x:hidden;
-        }
-</style>
+        <!-- Jquery-->
+       <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+       <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+       <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+       
+        {% javascripts '@BBLWebBundle/Resources/public/js/chosen.jquery.min.js' %}
+               <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+
+
+       <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+       <style type="text/css">
+               body { font-family: "HelveticaNeue","Helvetica-Neue", "Helvetica", "Arial", sans-serif; }
+               .big-link { display:block; margin-top: 100px; text-align: center; font-size: 70px; color: #06f; }
+               .ui-accordion .ui-accordion-content {
+                       overflow: visible;
+               }
+       </style>
+      	
+    {% endblock %}
+    </head>
+    <body>
+	<div class="container">
+            {% block body %}
+
+            {% endblock %}
+	</div>	
+	<script type="text/javascript">
 		
-{% endblock %}
-	</head>
-	<body>
-		<div class="container">
-			{% block body %}
-
-			{% endblock %}
-		</div>	
-		<script type="text/javascript">
-		
-		{% block javascript %} {% endblock %} 
-		</script>
-<script> 
-$(function() {
-                $("#tabs").tabs();
-
-                 $("#open_l").on("click", function(e) {
-        $("#dialog_l").dialog({
-            draggable:false,
-            resizable: false,
-            modal: true,
-            width: 400,
-            height: 300,
-                                buttons:{
-                                "Change Filter": function(){
-                                        $( this ).dialog( "close" );
-                                },
-                                Cancel: function() {
-                                        $( this ).dialog( "close" );
-                                        }
-                                }
-
-        });
-    });
-
-    $("#open").on("click", function(e) {
-        $("#dialog_f").dialog({
-            draggable:false,
-            resizable: false,
-            modal: true,
-            width: 820,
-            height: 500,
-                                buttons:{
-                                "Change Filter": function(){
-                                        $( this ).dialog( "close" );
-                                },
-                                Cancel: function() {
-                                        $( this ).dialog( "close" );
-                                        }
-                                }
-
-        });
-
-        $(".dialog-multiselect").chosen();
-
-                         $("#accordion").accordion({
-        heightStyle: "content",
-                        collapsible:true,
-                        active: false
-                        });
-    });
-
-
-});
-</script>
+	{% block javascript %} {% endblock %} 
+	</script>
     </body>
 </html>

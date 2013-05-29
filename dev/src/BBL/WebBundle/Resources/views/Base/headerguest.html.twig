@@ -4,13 +4,13 @@
     <div class="menu">
         <ul>
             <li><a href="{{ path('bbl_web_homepage') }}">Clangdom</a></li>
-            <li><div id="searchfield"><input type="text" id="search" class="textBox" value="Search!" onfocus="if (this.value == 'Search!') this.value = '';" onblur="if (this.value == '') this.value = 'Search!';" maxlength="255" /><input type="image" src="images/btn_search.png" class="button" /></div></li>
-            <li><a href="javascript:void(0);"><div id="radio"><img src="images/radio.png" class="picR"></div></a>
+            <li><div id="searchfield"><input type="text" id="search" class="textBox" value="Search!" onfocus="if (this.value == 'Search!') this.value = '';" onblur="if (this.value == '') this.value = 'Search!';" maxlength="255" /><input type="image" src="{{ asset('bundles/bblweb/images/btn_search.png') }}" class="button" /></div></li>
+            <li><a href="javascript:void(0);"><div id="radio"><img src="{{ asset('bundles/bblweb/images/radio4.png') }}" class="picR"></div></a>
                 <ul>
                     <li><embed height="100" width="300" src="stuff/legohouse.mp3"></li>
                 </ul>
             </li>
-            <li><a id="open_f" href="javascript:void(0);"><div id="filter"><img src="images/filter.png" class="picF"></div></a></li>
+            <li><a id="open_f" href="javascript:void(0);"><div id="filter"><img src="{{ asset('bundles/bblweb/images/filter2.png') }}" class="picF"></div></a></li>
             <li><div class="hiddenguest">hidden</div></li>
             <li><a href="{{ path('registry') }}">JOIN CLANGDOM</a><li>
             <li><a id="open_l" href="javascript:void(0);">LOGIN</a></li>
@@ -27,4 +27,3 @@
 			<div class="span-5"><div id="bandname">  </div></div>
 			<div class="span-4"><a href="{{ path('registry') }}" id="regLogo"><img src="{{ asset('bundles/bblweb/images/joinclang.jpg') }}"></a></div>
 			<div class="span-2 last"><a href="#" data-reveal-id="logModal" data-animation="fade" id="logLogo"><img src="{{ asset('bundles/bblweb/images  /loginnew.jpg') }}"></a></div> -->
-		</div>
