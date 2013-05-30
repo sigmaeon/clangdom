@@ -39,8 +39,8 @@ position:fixed;
 z-index:1;
 }
 #content{
-background-color:none;
-
+background:none;
+padding-top:54px;
 }
 
 #footer{
@@ -80,8 +80,6 @@ padding:none;
 width:943px;
 height:16000px;
 border-color:grey;
-padding-top:54px;
-
 }
 
 
