@@ -11,11 +11,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use BBL\WebBundle\Entity\User;
 use BBL\WebBundle\Entity\Konto;
+use BBL\WebBundle\Entity\Music;
 
 class LoadController extends Controller
 {
-
-    public function loadAction()
+	
+//--------------Load Tabs---------------	
+   public function loadAction()
     {
     	//Objects for Managing
     	$request = $this->getRequest();
@@ -26,12 +28,54 @@ class LoadController extends Controller
     	if($type == null) throw new WrongParamsClangdomException();
     	switch ($type){ 
     	
+    		case "hot":   return $this->fillMusic(); //return $this->fillHot();
     		case "bands": return $this->fillBand();
-    		case "event": fillEvent();
-    	
-    	return $this->render('BBLWebBundle:Base:content.html.twig', 
-    							array('objects' => $objects, 'title' => "A band of Omas"));
+    		case "event": return $this->fillEvent();
+    		case "music": return $this->fillMusic();
+    		default: throw new WrongParamsClangdomException();
     	}
+    }
+    
+    public function fillHot()
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$musicRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Music');
+    	$vidRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Video');
+    	$eventRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Event');
+    	
+    	$query = $em->createQuery('SELECT p FROM BBL\WebBundle\Entity\Post p ORDER BY p.date DESC');
+    	$posts = $query->getResult();
+    	if($posts == null) throw new EntityNotFoundClangdomException();
+    	
+    	
+    	$i = 0;
+    	foreach ($posts as $post) {
+    		if($musicRepo->findOneByPost($post->getIdpost()) != null)
+    		{
+    			$objects['ob'.$i]['type'] = "mp3";
+    			$konto = $music->getPost()->getKonto();
+    			$pic = $konto->getProfil()->getPicture();
+    			if($pic != null) $objects['ob'.$i]['picture'] =  $pic->getFile()->getWebPath();
+    			else $objects['ob'.$i]['picture'] =  ".."; //default pic link goes here
+    			$objects['ob'.$i]['link'] = $konto->getProfil()->getLink();
+    			$objects['ob'.$i]['info'] = "..";
+    			$objects['ob'.$i]['name'] = $konto->getName();
+    			$objects['ob'.$i]['song'] = $music->getPost()->getName();
+    			$objects['ob'.$i]['songlink'] = $music->getFile()->getWebPath();
+    		}
+    		else if($musicRepo->findOneByPost($post) != null)
+    		{
+    			 
+    		}
+    		else if($musicRepo->findOneByPost($post) != null)
+    		{
+    			 
+    		}
+    		$i++;
+    	}
+    	
+    	return $this->render('BBLWebBundle:Base:content.html.twig',
+    			array('objects' => $objects));
     }
     
     public function fillBand()
@@ -61,9 +105,59 @@ class LoadController extends Controller
     public function fillEvent()
     {
     	 
-    
+   		
     }
     
+    public function fillMusic()
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$query = $em->createQuery('SELECT m FROM BBL\WebBundle\Entity\Music m JOIN m.post p ORDER BY p.date DESC');
+    	$musics = $query->getResult();
+    	if($musics == null) throw new EntityNotFoundClangdomException();
+    	 
+    	$i = 0;
+    	foreach ($musics as $music) {
+    		$objects['ob'.$i]['type'] = "mp3";
+    		$konto = $music->getPost()->getKonto();
+    		$pic = $konto->getProfil()->getPicture();
+    		if($pic != null) $objects['ob'.$i]['picture'] =  $pic->getFile()->getWebPath();
+    		else $objects['ob'.$i]['picture'] =  ".."; //default pic link goes here
+    		$objects['ob'.$i]['link'] = $konto->getProfil()->getLink();
+    		$objects['ob'.$i]['info'] = "..";
+    		$objects['ob'.$i]['name'] = $konto->getName();
+    		$objects['ob'.$i]['song'] = $music->getPost()->getName();
+    		$objects['ob'.$i]['songlink'] = $music->getFile()->getWebPath();
+    		$i++;
+    	}
+    	return $this->render('BBLWebBundle:Base:content.html.twig',
+    			array('objects' => $objects, 'title' => "Bands"));
+    }
+    
+    
+    public function fillProfMusic()
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$query = $em->createQuery('SELECT k FROM BBL\WebBundle\Entity\Konto k');
+    	$kontos = $query->getResult();
+    	if($kontos == null) throw new EntityNotFoundClangdomException();
+    	 
+    	$i = 0;
+    	foreach ($kontos as $konto) {
+    		$objects['ob'.$i]['type'] = "simple";
+    		$pic = $konto->getProfil()->getPicture();
+    		if($pic != null) $objects['ob'.$i]['picture'] =  $pic->getFile()->getWebPath();
+    		else $objects['ob'.$i]['picture'] =  "..";
+    		$objects['ob'.$i]['link'] = $konto->getProfil()->getLink();
+    		$objects['ob'.$i]['info'] = "..";
+    		$objects['ob'.$i]['name'] = $konto->getName();
+    		$i++;
+    	}
+    	return $this->render('BBLWebBundle:Base:content.html.twig',
+    			array('objects' => $objects, 'title' => "Bands"));
+    }
+    
+    
+//----------------- Response Form Data----------
     public function fillArtistAction()
     {
     	$em = $this->getDoctrine()->getManager();

@@ -227,7 +227,7 @@ DROP TABLE IF EXISTS `clangdom`.`Tags` ;
 
 CREATE  TABLE IF NOT EXISTS `clangdom`.`Tags` (
   `idTags` INT NOT NULL AUTO_INCREMENT ,
-  `name` VARCHAR(45) NOT NULL ,
+  `Name` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`idTags`) ,
   UNIQUE INDEX `idTags_UNIQUE` (`idTags` ASC) )
 ENGINE = InnoDB;
@@ -352,7 +352,9 @@ DROP TABLE IF EXISTS `clangdom`.`Tasks` ;
 CREATE  TABLE IF NOT EXISTS `clangdom`.`Tasks` (
   `idTasks` INT NOT NULL AUTO_INCREMENT ,
   `Name` VARCHAR(45) NOT NULL ,
-  PRIMARY KEY (`idTasks`) )
+  PRIMARY KEY (`idTasks`) ,
+  UNIQUE INDEX `idTasks_UNIQUE` (`idTasks` ASC) ,
+  UNIQUE INDEX `Name_UNIQUE` (`Name` ASC) )
 ENGINE = InnoDB;
 
 

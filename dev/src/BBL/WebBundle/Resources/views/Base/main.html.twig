@@ -57,20 +57,6 @@
                                                     <div class="span-3"><label for="genHot">Genres:</label></div>
                                                     <div class="span-17"><select name="genHot" id="genHot" data-placeholder="Choose genres..." class="dialog-multiselect" multiple style="width:350px;" tabindex="4">
                                                             <option value=""></option>
-                                                                            <option value="Rock" id="rocHot">Rock</option>
-                                                                            <option value="Metal" id="metHot">Metal</option>
-                                                                            <option value="Punk" id="punHot">Punk</option>
-                                                                            <option value="Jazz" id="jazHot">Jazz</option>
-                                                                            <option value="Classic" id="claHot">Classic</option>
-                                                                            <option value="Pop" id="popHot">Pop</option>
-                                                                            <option value="Schlager" id="schHot">Schlager</option>
-                                                                            <option value="Hiphop" id="hipHot">Hip Hop</option>
-                                                                            <option value="Rnb" id="rnbHot">RnB</option>
-                                                                            <option value="Techno" id="tecHot">Techno</option>
-                                                                            <option value="House" id="houHot">House</option>
-                                                                            <option value="Drumnbass" id="dnbHot">Drum n Bass</option>
-                                                                            <option value="Neurofunk" id="neuHot"> Neurofunk</option>
-                                                                            <option value="Dubstep" id="dubHot">Dubstep</option>
                                                     </select></div>
                                                     <div class="span-3"><label for="locHot">Locations:</label><br /></div>
                                                     <div class="span-17"><select name="locHot" id="locHot" data-placeholder="Choose locations..." class="dialog-multiselect" multiple style="width:350px;" tabindex="4">
@@ -102,21 +88,7 @@
                                                     <div class="span-3"><label for="genRad">Genres:</label></div>
                                                     <div class="span-17"><select id="genRad" name="genRad" data-placeholder="Choose genres..." class="dialog-multiselect" multiple style="width:350px;" tabindex="4">
                                                             <option value=""></option>
-                                                                            <option value="Rock" id="rocRad">Rock</option>
-                                                                            <option value="Metal" id="metRad">Metal</option>
-                                                                            <option value="Punk" id="punRad">Punk</option>
-                                                                            <option value="Jazz" id="jazRad">Jazz</option>
-                                                                            <option value="Classic" id="claRad">Classic</option>
-                                                                            <option value="Pop" id="popRad">Pop</option>
-                                                                            <option value="Schlager" id="schRad">Schlager</option>
-                                                                            <option value="Hiphop" id="hipRad">Hip Hop</option>
-                                                                            <option value="Rnb" id="rnbRad">RnB</option>
-                                                                            <option value="Techno" id="tecRad">Techno</option>
-                                                                            <option value="House" id="houRad">House</option>
-                                                                            <option value="Drumnbass" id="dnbRad">Drum n Bass</option>
-                                                                            <option value="Neurofunk" id="neuRad"> Neurofunk</option>
-                                                                            <option value="Dubstep" id="dubRad">Dubstep</option>
-                                                    </select></div>
+                                                            </select></div>
                                                     <div class="span-3"><label for="locRad">Locations:</label></div>
                                                     <div class="span-17"><select id="locRad" name="locRad" data-placeholder="Choose locations..." class="dialog-multiselect" multiple style="width:350px;" tabindex="4">
                                                             <option value=""></option>
@@ -149,46 +121,79 @@
 
 // <script>
 $(document).ready(function(){
+	initLoad();
+	loadTabs();
+	loadFormData();
 
-	// --------------- AJAX Loading -----------------
-		$( "#tabs" ).tabs({activate: function( event, ui) {
-			var url = '{{ path('ajax_load') }}';
-			  $.ajax({
- 				  url: url,
- 				  type: "post",
-  				  data: {Type: "bands"/*ui.newTab.attr('type')*/,
-  				  		 Num: 10 /* maybe gets moded*/},
-  				  beforeSend: function(){
-  				  	if(ui.newPanel.html() == "") ui.newPanel.html(genLoad());
-   				  },
- 				  success: function(data) {
-     				 ui.newPanel.html(data);
-  				  },
-  				  error: function(jqXHR, error, errorThrown) {
-  				  	ui.newPanel.html(jqXHR.responseText);
-  				  
-  				  }
-  				  
-			});
-		    }
-	    });
-        //initial Load
-		 var url = "{{ path('ajax_load') }}";
-		 $.post(url,{typ: "Plan"}, 
-		 function(data){
-			$("#tabs-1").html(data);
-	      });	
+	
 });
-		 
-function genLoad()
+
+
+  //------------------ Ajax Methodes------------------------------
+function loadTabs()
 {
-	return "<p> Loading, please wait....</p>";
+	$( "#tabs" ).tabs({activate: function( event, ui) {
+		var url = '{{ path('ajax_load') }}';
+		  $.ajax({
+				  url: url,
+				  type: "post",
+				  data: {Type: ui.newTab.find('a').attr('type'),
+				  		 Num: 10 /* maybe gets moded*/},
+				  beforeSend: function(){
+				  	if(ui.newPanel.html() == "") ui.newPanel.html(genLoad());
+				  },
+				  success: function(data) {
+ 				 ui.newPanel.html(data);
+				  },
+				  error: function(jqXHR, error, errorThrown) {
+				  	ui.newPanel.html(jqXHR.responseText);
+				  }
+				  
+		});
+	    }
+    });
 }
 
- 
-function testfunc()
+function initLoad()
 {
-	alert('Surprise Mothafuckaa!!! ');
+	$.ajax({
+		  url: '{{ path('ajax_load') }}',
+		  type: "post",
+		  data: {Type: "hot",
+		  		 Num: 10 /* maybe gets moded*/},
+		  beforeSend: function(){
+		  	$("#tabs-1").html(genLoad());
+		  },
+		  success: function(data) {
+			  $("#tabs-1").html(data);
+		  },
+		  error: function(jqXHR, error, errorThrown) {
+			  $("#tabs-1").html(jqXHR.responseText);
+		  
+		  }
+		  
+});
+}
+
+function loadFormData()
+{
+	$.ajax({
+		 type: "post",
+		 url: "{{ path('fillArtist') }}",
+		 success: function(data) {
+			 var length = data.Genre.length;
+			 for(var i = 0; i < length; i++){
+				 $('select[id^="gen"]').each(function() { 
+					 		$(this).append('<option value="' + data.Genre[i] + '">' + data.Genre[i] + '</option> <br />');
+				 });
+			 }
+			/* var length = Country.length;
+			 element = null;
+			 for(var i = 0; i < length; i++){
+			 	$("#regCou").append('<option value="' + Country[i] + '">' + Country[i] + '</option>');
+		 	 }*/
+		}
+	});
 }
 
 
@@ -275,5 +280,20 @@ $(function() {
         });
     });
 });
+
+
+  //---------------Helping methods----------------
+function genLoad()
+{
+	return "<p> Loading, please wait....</p>";
+}
+
+ 
+function testfunc()
+{
+	alert('Surprise Mothafuckaa!!! ');
+}
+  
+  
 {% endblock %}
 

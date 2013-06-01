@@ -8,12 +8,34 @@
 						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'info': object.info} %}
 						
 					{% elseif object.type == "mp3" %}
-						{% include 'BBLWebBundle:Content:mp3.html.twig'
-						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'info': object.info} %}
+						{% include 'BBLWebBundle:Content:mp3content.html.twig'
+						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'songname': object.song, 'songlink': object.songlink,} %}
 						
 					{% elseif object.type == "video" %}
 					    {% include 'BBLWebBundle:Content:video.html.twig' 
 						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'info': object.info} %}
+					
+					{% elseif object.type == "event" %}
+					    {% include 'BBLWebBundle:Content:video.html.twig' 
+						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'info': object.info} %}
+						
+					{% elseif object.type == "profMp3" %}
+					    {% include 'BBLWebBundle:Content:video.html.twig' 
+						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'info': object.info} %}
+					
+					{% elseif object.type == "profVideo" %}
+					    {% include 'BBLWebBundle:Content:video.html.twig' 
+						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'info': object.info} %}
+						
+					{% elseif object.type == "ownMp3" %}
+					    {% include 'BBLWebBundle:Content:video.html.twig' 
+						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'info': object.info} %}
+						
+					{% elseif object.type == "ownVideo" %}
+					    {% include 'BBLWebBundle:Content:video.html.twig' 
+						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'info': object.info} %}
+					
+						
 					{% endif %}
 				{% endfor %}
 			</ul>

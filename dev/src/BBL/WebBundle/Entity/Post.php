@@ -24,7 +24,7 @@ class Post
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="Date", type="date", nullable=false)
+     * @ORM\Column(name="Date", type="datetime", nullable=false)
      */
     private $date;
 

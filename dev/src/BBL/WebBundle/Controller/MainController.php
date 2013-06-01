@@ -2,6 +2,8 @@
 
 namespace BBL\WebBundle\Controller;
 
+use BBL\WebBundle\Entity\Tags;
+
 use BBL\WebBundle\Exception\WrongParamsClangdomException;
 
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -105,12 +107,19 @@ class MainController extends Controller
     	$userRepo = $this->getDoctrine()->getRepository('BBLWebBundle:User');
     	$profilRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Profil');
     	$locRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Location');
+    	$tagRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Tags');
     	
     	//------value check---
     	$email = $request->request->get('Email');
     	if(strpos($email, '@') === false) return new Response('mail', 409);
     	$name = $request->request->get('Name');
     //	if(strpos($name, '?') === true || strpos($name, '<') === true, strpos($name, '>') === true || )
+    	$tag = $tagRepo->findOneByName(mb_strtolower($request->request->get('Name')));
+    	if($tag == null){
+    		$tag = new Tags();
+    		$tag->setName(mb_strtolower($request->request->get('Name')));
+    		$em->persist($tag);
+    	}
     	
     	
        //-----------Fill the DB--------
@@ -118,6 +127,7 @@ class MainController extends Controller
     	//Konto
     	$konto = new Konto();
     	$konto->setName($request->request->get('Name'));
+    	$konto->addTagstag($tag);
     	
     	//Profil
     	$profil = new Profil();   
@@ -159,7 +169,6 @@ class MainController extends Controller
     	else if($request->request->get('Type') == "Source") $this->signSource($konto);  //wrong-type Exception GOES here
     	$user->addIdkonto($konto);
     	
-    	//Tag handling GOES here
     	
     	//Persist
     	$em->persist($user);
@@ -199,6 +208,7 @@ class MainController extends Controller
     	$request = $this->getRequest();
     	$em = $this->getDoctrine()->getManager();
     	$genreRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Genre');
+    	$tagRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Tags');
     	
     //artist
     	$artist = new Artist();
@@ -208,10 +218,20 @@ class MainController extends Controller
     	$genre = $genreRepo->findOneByName($request->request->get('Genre'));
     	if($genre == null) throw new EntityNotFoundClangdomException();
     	$artist->addGenregenre($genre);
+    	$tag = $tagRepo->findOneByName($request->request->get('Genre'));
+    	if($tag == null) throw new EntityNotFoundClangdomException();
+    	$tag->addKontokonto($konto);
+    	$konto->addTagstag($tag);
+    	
     	if($request->request->get('Genre2') != '') {
     		$genre2 = $genreRepo->findOneByName($request->request->get('Genre2'));
-    	if($genre2 == null) throw new EntityNotFoundClangdomException(); 
-    		$artist->addGenregenre($genre2);
+    		if($genre2 == null) throw new EntityNotFoundClangdomException(); 
+    			$artist->addGenregenre($genre2);
+    			
+    		$tag = $tagRepo->findOneByName($request->request->get('Genre2'));
+    		if($tag == null) throw new EntityNotFoundClangdomException();
+    		$tag->addKontokonto($konto);
+    		$konto->addTagstag($tag);
     	}
 		$em->persist($artist);
 	}
@@ -222,6 +242,7 @@ class MainController extends Controller
 		$request = $this->getRequest();
 		$em = $this->getDoctrine()->getManager();
 		$taskRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Tasks');
+		$tagRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Tags');
 		 
 	//source
 		$source = new Source();
@@ -238,8 +259,12 @@ class MainController extends Controller
 			$taskOb->addSourcesource($source);
 			$source->addTaskstask($taskOb);
 			
+			$tag = $tagRepo->findOneByName($task);
+			if($tag == null) throw new EntityNotFoundClangdomException();
+			$tag->addKontokonto($konto);
+			$konto->addTagstag($tag);
+			
 		}
-		
 		$em->persist($source);
 	}
 

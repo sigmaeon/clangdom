@@ -26,3 +26,18 @@ insert into Location (Country, Federal_State, Region) values('Austria', 'Tirol',
 insert into Location (Country, Federal_State, Region) values('Austria', 'Tirol', 'Kufstein');
 insert into Location (Country, Federal_State, Region) values('Austria', 'Tirol', 'Kitzbühl');
 insert into Location (Country, Federal_State, Region) values('Austria', 'Tirol', 'Lienz');
+
+insert into Tags (Name) values('Rock');
+insert into Tags (Name) values('Metal');
+insert into Tags (Name) values('Punk');
+insert into Tags (Name) values('Jazz');
+insert into Tags (Name) values('Classic');
+insert into Tags (Name) values('Pop');
+insert into Tags (Name) values('Funk');
+insert into Tags (Name) values('Schlager');
+insert into Tags (Name) values('Hip-Hop');
+insert into Tags (Name) values('House');
+insert into Tags (Name) values('Seller');
+insert into Tags (Name) values('Organizer');
+insert into Tags (Name) values('Sponsor');
+insert into Tags (Name) values('Teacher');
