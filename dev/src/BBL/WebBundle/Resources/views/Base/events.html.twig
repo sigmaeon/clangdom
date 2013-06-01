@@ -29,7 +29,7 @@
 						</div>
 						<div class="span-24">
 							<div class="span-4 prepend-1 pfeffi">Date:</div>
-							<div class="span-4 prepend-1 last"><input type="date" name="date" id="date" placeholder="DD/MM/YYYY"	></div>
+							<div class="span-4 prepend-1 last"><input name="date" id="date"></div>
 						</div>
 						<div class="span-24">
 							<div class="span-4 prepend-1 pfeffi">Time:</div>
@@ -51,5 +51,8 @@
 				active:false,
 				collapsible:true
 			});
+		});
+		 $(function() {
+			   $( "#date" ).datepicker();
 		});
 {% endblock %}
