@@ -4,10 +4,6 @@
 	{% block head %}
         <meta charset="UTF-8" />
         <title>{% block title %}Clangdom -  {{ app.environment}} {% endblock %}</title>
-        <!-- chosen css -->
-        {% stylesheets 'bundles/bblweb/css/chosen.css' filter='cssrewrite' %}
-                <link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
-        {% endstylesheets %}
         <!-- Framework-->
         {% stylesheets 'bundles/bblweb/css/screen.css' filter='cssrewrite'  %}
         	<link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen, projection"/>
@@ -26,6 +22,16 @@
         {% stylesheets 'bundles/bblweb/css/style.css' filter='cssrewrite' %}
                 <link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
          {% endstylesheets %}
+         <!--chosen.css-->
+         {% stylesheets 'bundles/bblweb/css/chosen.css' filter='cssrewrite' %}
+                <link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
+         {% endstylesheets %}
+         {% stylesheets 'bundles/bblweb/css/radio-rater-base.css' filter='cssrewrite' %}
+                <link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
+        {% endstylesheets %}
+        {% stylesheets 'bundles/bblweb/css/jquery.dropdown.css' filter='cssrewrite' %}
+                <link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
+         {% endstylesheets %}
 			 
         <!-- Hashing -->
         <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
@@ -35,12 +41,26 @@
        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
        
+       <!-- chosen multiselect -->
         {% javascripts '@BBLWebBundle/Resources/public/js/chosen.jquery.min.js' %}
-               <script src="{{ asset_url }}"></script>
+            <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
-
-
-
+       <!-- dropdown -->
+        {% javascripts '@BBLWebBundle/Resources/public/js/jquery.dropdown.js' %}
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        <!-- rating-->
+        {% javascripts '@BBLWebBundle/Resources/public/js/jquery.radio-rater.js' %}
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+         <script type="text/javascript" charset="utf-8">
+                $().ready(function() {
+                        $("body").addClass("js");
+                        $(".radio-rater").createRadioRaters({imageWidth: 16});
+                });
+        </script>
+                
+        
        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
        <style type="text/css">
@@ -59,8 +79,7 @@
 
             {% endblock %}
 	</div>	
-	<script type="text/javascript">
-		
+	<script type="text/javascript">	
 	{% block javascript %} {% endblock %} 
 	</script>
     </body>

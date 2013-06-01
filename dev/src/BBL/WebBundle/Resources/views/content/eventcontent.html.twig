@@ -1,4 +1,4 @@
-﻿<div class="eventcontent span-22">
+<!--﻿<div class="eventcontent span-22">
 	<div class="contentbox">
 		<div class="span-2 contentpic "><img src="{ bandimglink }" height="80px" width="80px"></div>
 		<div class="span-17 prepend-1"><div class="contenttitle">{ bandname }</div><p>created an event</a></p></div>
@@ -7,4 +7,41 @@
 		<div class="span-2 eventpic"><img src="{eventimglink }" height="80px" width="80px"></div>
 		<div class="span-5 prepend-1"><div class="eventtitle"><a href="#">{ eventname }</a></div><p>{ date }</p></div></div>
 	</div>
+</div>-->
+<div class="c_container span-22 effect7">
+    <div class="c_header span-22">
+            <div class="c_pic span-2"><img src="{{ asset(picture) }}" height="60" width="60"></div>
+            <div class="c_name span-17"><h6>{{ name }}</h6></div>
+            <div class="c_button span-1 prepend-1 last"><img data-dropdown="#dropdown-1" src="{{ asset('bundles/bblweb/images/button.png') }}"></div>
+            <div class="created span-16 last"><p> created </p></div>
+    </div>
+    <hr>
+    <div class="c_content span-22">
+            <div class="c_event span-20 prepend-1">
+                    <div class="e_header span-18">
+                            <div class="e_pic span-2"><img src="assets{ eventpic }" height="60" width="60"></div>
+                            <div class="e_name"><h5>{{ eventname }}</h5></div>
+                    </div>
+                    <hr>
+                    <div class="e_content span-18">
+                    <div class="e_date span-16 prepend-2"><p>{{ date }}</p></div>
+                    <div class="e_info span-16 prepend-2"><p> {{ info }}</p></div>
+                    </div>
+            </div>
+    </div>
+    <hr>
+    <div class="c_footer span-22">
+            <div class="c_judge span-11">
+                            <ul class="radio-rater">
+                                    <li><input type="radio" name="poem[rating]" value="1" id="pr-1"><label for="pr-1">... God ..</label></li>
+                                    <li><input type="radio" checked="checked" name="poem[rating]" value="2" id="pr-2"><label for="mr-2">Not impressed</label></li>
+                                    <li><input type="radio" name="poem[rating]" value="3" id="pr-3"><label for="pr-3">Fair</label></li>
+                                    <li><input type="radio" name="poem[rating]" checked="checked" value="4" id="pr-4"><label for="pr-4">Damn Good</label></li>
+                                    <li><input type="radio" name="poem[rating]" value="5" id="pr-5"><label for="pr-5">Brilliant!</label></li>
+                                    <li class="unrate"><input type="radio" name="poem[rating]" value="" id="pr-unrate"><label for="pr-unrate">[clear rating]</label></li>
+                            </ul>
+                            <!--<input type="submit" value="rate it!">-->
+            </div>
+            <div class="c_tags span-10">{ tags }</div>	
+    </div>
 </div>
