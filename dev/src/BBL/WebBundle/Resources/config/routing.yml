@@ -27,7 +27,7 @@ ajax_load:
   
 login:
   pattern: /login
-  defaults: { _controller: BBLWebBundle:Ajax:login}
+  defaults: { _controller: BBLWebBundle:Main:login}
   requirements:
     _method: POST
  
