@@ -28,7 +28,7 @@ class LoadController extends Controller
     	if($type == null) throw new WrongParamsClangdomException();
     	switch ($type){ 
     	
-    		case "hot":   return $this->fillMusic(); //return $this->fillHot();
+    		case "hot":   return $this->fillHot(); //return $this->fillHot();
     		case "bands": return $this->fillBand();
     		case "event": return $this->fillEvent();
     		case "music": return $this->fillMusic();
@@ -47,11 +47,11 @@ class LoadController extends Controller
     	$posts = $query->getResult();
     	if($posts == null) throw new EntityNotFoundClangdomException();
     	
-    	
     	$i = 0;
     	foreach ($posts as $post) {
     		if($musicRepo->findOneByPost($post->getIdpost()) != null)
     		{
+    			$music = $musicRepo->findOneByPost($post->getIdpost());
     			$objects['ob'.$i]['type'] = "mp3";
     			$konto = $music->getPost()->getKonto();
     			$pic = $konto->getProfil()->getPicture();
@@ -63,15 +63,26 @@ class LoadController extends Controller
     			$objects['ob'.$i]['song'] = $music->getPost()->getName();
     			$objects['ob'.$i]['songlink'] = $music->getFile()->getWebPath();
     		}
-    		else if($musicRepo->findOneByPost($post) != null)
+    		else if($vidRepo->findOneByPost($post->getIdpost()) != null)
     		{
-    			 
+    			$video = $vidRepo->findOneByPost($post->getIdpost());
+    			$objects['ob'.$i]['type'] = "video";
+    			$konto = $video->getPost()->getKonto();
+    			$pic = $konto->getProfil()->getPicture();
+    			if($pic != null) $objects['ob'.$i]['picture'] =  $pic->getFile()->getWebPath();
+    			else $objects['ob'.$i]['picture'] =  ".."; //default pic link goes here
+    			$objects['ob'.$i]['link'] = $konto->getProfil()->getLink();
+    			$objects['ob'.$i]['info'] = "..";
+    			$objects['ob'.$i]['name'] = $konto->getName();
+    			$objects['ob'.$i]['song'] = $video->getPost()->getName();
+    			$objects['ob'.$i]['youtube'] = $video->getUrl();
     		}
-    		else if($musicRepo->findOneByPost($post) != null)
+    		else if($eventRepo->findOneByPost($post->getIdpost()) != null)
     		{
     			 
     		}
     		$i++;
+    		
     	}
     	
     	return $this->render('BBLWebBundle:Base:content.html.twig',

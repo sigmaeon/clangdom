@@ -53,6 +53,12 @@ musicupload:
    requirements:
     _method: POST
     
+videoupload:
+   pattern: /videoup
+   defaults: { _controller: BBLWebBundle:File:videoUp}
+   requirements:
+    _method: POST    
+    
 test:
    pattern: /test
    defaults: { _controller: BBLWebBundle:File:test}
@@ -61,6 +67,10 @@ testm:
    pattern: /testm
    defaults: { _controller: BBLWebBundle:File:musicTest}
    
+testv:
+   pattern: /testv
+   defaults: { _controller: BBLWebBundle:File:videoTest}
+
 fillSource:
    pattern: /fillsource
    defaults: { _controller: BBLWebBundle:Load:fillSource}

@@ -74,6 +74,7 @@ class MainController extends Controller
     	//here goes logic for own profil
     	if($konto->getIdkonto() == $session->get('konto')) return$this->render('BBLWebBundle:User:profil.html.twig',
     				 array('sesson' => true, 'profname' => $konto->getName(), 'pic' => $pic, 'name' => $session->get('name')));
+    	
     	//Guest or User?
     	if( $session->get('state') == 'logged') return $this->render('BBLWebBundle:User:profil.html.twig',
     				 array('sesson' => true, 'profname' => $konto->getName(), 'pic' => $pic, 'name' => $session->get('name')));
@@ -81,10 +82,6 @@ class MainController extends Controller
     				 array('sesson' => false, 'profname' => $konto->getName(), 'pic' => $pic));
     }
     
-    public function getOwnAction()
-    {
-    	
-    }
     
     public function eventsAction()
     {

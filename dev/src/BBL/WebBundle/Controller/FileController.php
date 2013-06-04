@@ -2,6 +2,8 @@
 
 namespace BBL\WebBundle\Controller;
 
+use BBL\WebBundle\Entity\Video;
+
 use BBL\WebBundle\Entity\Music;
 
 use BBL\WebBundle\Entity\Post;
@@ -37,6 +39,13 @@ class FileController extends Controller
     	if($session->get('state') == 'logged') return $this->render('BBLWebBundle:User:testM.html.twig');
     	else return new Response('<html> <body>Not checked in </body> </html>');
     }
+    
+	public function videoTestAction()
+    {
+    	$session = $this->get('session');
+    	if($session->get('state') == 'logged') return $this->render('BBLWebBundle:User:testV.html.twig');
+    	else return new Response('<html> <body>Not checked in </body> </html>');
+    } 
     
     public function picUpAction()
     {
@@ -78,15 +87,17 @@ class FileController extends Controller
     
     public function musicUpAction()
     {
+    	$name = $this->getRequest()->get("name");
+    	if(trim($name) == "") throw new WrongParamsClangdomException();
     	$upFile = $this->getRequest()->files->get("datei");
     	//if(!ValueCheck::checkExtension($upFile, array("mp3"))) throw new WrongParamsClangdomException(); //another exception pls
     	$session = $this->get('session');
-    	//if($session->get('state') == 'logged') exception!!!
+    	//if($session->get('state') == 'logged') throw new no
     	$em = $this->getDoctrine()->getManager();
     	$kontoRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Konto');
     	$konto = $kontoRepo->findOneByIdkonto($session->get('konto'));
     	$post = new Post();
-    	$post->setName($this->getRequest()->get("name"));
+    	$post->setName($name);
     	$post->setKonto($konto);
     	$music = new Music();
     	$music->setPost($post);
@@ -102,4 +113,29 @@ class FileController extends Controller
     	return new Response("Thats just for testing");
     }
    
+    
+    public function videoUpAction()
+    {
+    	$session = $this->get('session');
+    	//if session not allowed
+    	$name = $this->getRequest()->get("name");
+    	if(trim($name) == "") throw new WrongParamsClangdomException();
+    	$link = $this->getRequest()->get("link");
+    	if(trim($link) == "") throw new WrongParamsClangdomException();
+    	
+    	$em = $this->getDoctrine()->getManager();
+    	$kontoRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Konto');
+    	$konto = $kontoRepo->findOneByIdkonto($session->get('konto'));
+    	$post = new Post();
+    	$post->setName($name);
+    	$post->setKonto($konto);
+    	$video = new Video();
+    	$video->setUrl($link);
+    	$video->setPost($post);
+    	$em->persist($video);
+    	$em->persist($post);
+    	$em->persist($konto);
+    	$em->flush();
+    	return new Response("Thats just for testing");
+    }
 }

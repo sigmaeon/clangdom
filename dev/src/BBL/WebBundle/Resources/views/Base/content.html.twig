@@ -13,7 +13,7 @@
 						
 					{% elseif object.type == "video" %}
 					    {% include 'BBLWebBundle:Content:video.html.twig' 
-						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'info': object.info} %}
+						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'info': object.info, 'youtubelink': object.youtube, 'songname': object.song} %}
 					
 					{% elseif object.type == "event" %}
 					    {% include 'BBLWebBundle:Content:video.html.twig' 
