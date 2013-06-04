@@ -32,6 +32,7 @@ class LoadController extends Controller
     		case "bands": return $this->fillBand();
     		case "event": return $this->fillEvent();
     		case "music": return $this->fillMusic();
+    		case "dash":  return $this->fillDash();
     		default: throw new WrongParamsClangdomException();
     	}
     }
@@ -165,6 +166,68 @@ class LoadController extends Controller
     	}
     	return $this->render('BBLWebBundle:Base:content.html.twig',
     			array('objects' => $objects, 'title' => "Bands"));
+    }
+    
+    public function fillDash()
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$musicRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Music');
+    	$vidRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Video');
+    	$eventRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Event');
+    	$link = $this->getRequest()->request->get('Link');
+    	if(trim($link) == "") throw new WrongParamsClangdomException();
+    	
+    	$query = $em->createQuery(
+    			"SELECT p FROM BBL\WebBundle\Entity\Post p JOIN p.konto k JOIN k.profil pr WHERE pr.link = '". $link .
+    			 "' ORDER BY p.date DESC");
+    	$posts = $query->getResult();
+    	if($posts == null) throw new EntityNotFoundClangdomException();
+    	
+    	$i = 0;
+    	foreach ($posts as $post) {
+    		if($musicRepo->findOneByPost($post->getIdpost()) != null)
+    		{
+    			$music = $musicRepo->findOneByPost($post->getIdpost());
+    			$objects['ob'.$i]['type'] = "mp3";
+    			$konto = $music->getPost()->getKonto();
+    			$pic = $konto->getProfil()->getPicture();
+    			if($pic != null) $objects['ob'.$i]['picture'] =  $pic->getFile()->getWebPath();
+    			else $objects['ob'.$i]['picture'] =  ".."; //default pic link goes here
+    			$objects['ob'.$i]['link'] = $konto->getProfil()->getLink();
+    			$objects['ob'.$i]['info'] = "..";
+    			$objects['ob'.$i]['name'] = $konto->getName();
+    			$objects['ob'.$i]['song'] = $music->getPost()->getName();
+    			$objects['ob'.$i]['songlink'] = $music->getFile()->getWebPath();
+    		}
+    		else if($vidRepo->findOneByPost($post->getIdpost()) != null)
+    		{
+    			$video = $vidRepo->findOneByPost($post->getIdpost());
+    			$objects['ob'.$i]['type'] = "video";
+    			$konto = $video->getPost()->getKonto();
+    			$pic = $konto->getProfil()->getPicture();
+    			if($pic != null) $objects['ob'.$i]['picture'] =  $pic->getFile()->getWebPath();
+    			else $objects['ob'.$i]['picture'] =  ".."; //default pic link goes here
+    			$objects['ob'.$i]['link'] = $konto->getProfil()->getLink();
+    			$objects['ob'.$i]['info'] = "..";
+    			$objects['ob'.$i]['name'] = $konto->getName();
+    			$objects['ob'.$i]['song'] = $video->getPost()->getName();
+    			$objects['ob'.$i]['youtube'] = $video->getUrl();
+    		}
+    		else if($eventRepo->findOneByPost($post->getIdpost()) != null)
+    		{
+    			
+    		}
+    		$i++;
+    	
+    	}
+    	
+    	if($link == $this->get('session')->get("link"))
+    				
+   		return $this->render('BBLWebBundle:Base:content.html.twig',
+    			array('objects' => $objects));
+    	 
+    	
+    	
     }
     
     

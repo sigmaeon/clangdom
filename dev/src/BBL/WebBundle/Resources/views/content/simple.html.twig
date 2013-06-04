@@ -1,8 +1,15 @@
-<div class="bandcontent span-22">
-	<div class="contentbox">
-		<div class="span-2 contentpic "><a href="{{ path('bbl_web_homepage') }}profil{{ link }}"><img src="{{ asset(picture) }}" height="120px" width="120px"></a></div>
-		<div class="span-17 prepend-2"><a href="{{ path('bbl_web_homepage') }}profil{{ link }}"><h3 class="alt">{{ name }}</h3></a></div>
-		<div class="span-17 prepend-2"><hr></div>
-		<div class="span-17 prepend-2 last"><p>{{ info }}</p></div>
+<div class="c_container span-22 effect7">
+	<div class="c_header span-22">
+		<div class="c_pic span-2"><img src="{{ asset(picture) }}" height="60" width="60"></div>
+		<div class="c_name span-17"><a href="{{ path('bbl_web_homepage') }}profil{{ link }}"><h6>{{ name }}</h6></a></div>
+		<div class="c_delete span-1 prepend-1 last"><button class="delbut" ><img src="images/delete.png"></button></div>
+	</div>
+	<hr>
+	<div class="c_content span-22">
+		<div class="c_info span-20 prepend-2"><p>{{ info }}</p></div>
+	</div>
+	<hr>
+	<div class="c_footer span-22">
+		<div class="c_tags span-10">{ tags }</div>	
 	</div>
 </div>
