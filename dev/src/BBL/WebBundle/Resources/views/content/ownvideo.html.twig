@@ -1,0 +1,22 @@
+﻿<!-- own Youtube -->	
+<div class="c_container span-22 effect7">
+	<div class="c_header span-22">
+		<div class="c_pic span-2"><img src="{{ asset(picture) }}" height="60" width="60"></div>
+		<div class="c_name span-17"><h6>{{ name }}</h6></div>
+		<div class="c_delete span-1 prepend-1 last"><button class="delbut" ><img src="{{ asset('bundles/bblweb/images/delete.png') }}"></button></div>
+	</div>
+	<hr>
+	<div class="c_content span-22">
+		<div class="c_songtitle span-20 prepend-1"><p>{{ songname }}</p></div>
+		<div class="c_video span-20 prepend-1">
+			<iframe width="560" height="315" src="{{asset(youtubelink) }}" frameborder="0" allowfullscreen></iframe>
+			</div>
+	</div>
+	<hr>
+	<div class="c_footer span-22">
+		<div class="c_ownrating span-11">
+				<ul></ul>
+		</div>
+		<div class="c_tags span-10">{ tags }</div>	
+	</div>
+</div>

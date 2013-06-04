@@ -188,7 +188,8 @@ class LoadController extends Controller
     		if($musicRepo->findOneByPost($post->getIdpost()) != null)
     		{
     			$music = $musicRepo->findOneByPost($post->getIdpost());
-    			$objects['ob'.$i]['type'] = "mp3";
+    			if($link == $this->get('session')->get("link")) $objects['ob'.$i]['type'] = "ownmp3";
+    			else $objects['ob'.$i]['type'] = "mp3";
     			$konto = $music->getPost()->getKonto();
     			$pic = $konto->getProfil()->getPicture();
     			if($pic != null) $objects['ob'.$i]['picture'] =  $pic->getFile()->getWebPath();
@@ -202,7 +203,8 @@ class LoadController extends Controller
     		else if($vidRepo->findOneByPost($post->getIdpost()) != null)
     		{
     			$video = $vidRepo->findOneByPost($post->getIdpost());
-    			$objects['ob'.$i]['type'] = "video";
+    			if($link == $this->get('session')->get("link")) $objects['ob'.$i]['type'] = "video";
+    			else $objects['ob'.$i]['type'] = "video";
     			$konto = $video->getPost()->getKonto();
     			$pic = $konto->getProfil()->getPicture();
     			if($pic != null) $objects['ob'.$i]['picture'] =  $pic->getFile()->getWebPath();
@@ -220,8 +222,6 @@ class LoadController extends Controller
     		$i++;
     	
     	}
-    	
-    	if($link == $this->get('session')->get("link"))
     				
    		return $this->render('BBLWebBundle:Base:content.html.twig',
     			array('objects' => $objects));
