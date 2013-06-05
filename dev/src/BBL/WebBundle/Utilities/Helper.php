@@ -3,7 +3,7 @@ namespace BBL\WebBundle\Utilities;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class ValueCheck {
+class Helper{
 
 	public static function checkSpecials($string)
 	{

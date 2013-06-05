@@ -13,7 +13,7 @@ use BBL\WebBundle\Exception\WrongParamsClangdomException;
 use BBL\WebBundle\Entity\File;
 
 use BBL\WebBundle\Entity\Picture;
-use BBL\WebBundle\Utilities\ValueCheck;
+use BBL\WebBundle\Utilities\Helper;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -90,7 +90,7 @@ class FileController extends Controller
     	$name = $this->getRequest()->get("name");
     	if(trim($name) == "") throw new WrongParamsClangdomException();
     	$upFile = $this->getRequest()->files->get("datei");
-    	//if(!ValueCheck::checkExtension($upFile, array("mp3"))) throw new WrongParamsClangdomException(); //another exception pls
+    	//if(!Helper::checkExtension($upFile, array("mp3"))) throw new WrongParamsClangdomException(); //another exception pls
     	$session = $this->get('session');
     	//if($session->get('state') == 'logged') throw new no
     	$em = $this->getDoctrine()->getManager();

@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use BBL\WebBundle\Utilities\Helper;
 use BBL\WebBundle\Entity\User;
 use BBL\WebBundle\Entity\Konto;
 use BBL\WebBundle\Entity\Music;
@@ -268,17 +269,40 @@ class LoadController extends Controller
     
     public function getLocations()
     {
-    	$return = array("Country" => array(), "State" => array(), "Region" => array());
+    	$return = array();
     	$em = $this->getDoctrine()->getManager();
     	$locRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Location');
     	$locs = $locRepo->findAll();
     	foreach($locs as $loc)
     	{
-    		$return["Country"][] = $loc->getCountry();
-    		$return["State"][] = $loc->getFederalState();
-    		$return["Region"][] = $loc->getRegion();
+    		$return[] = toArray($loc);
     	}
+    	$return = structureArray($locs);
     	$return = json_encode($return);
     	return $return;
+    }
+    
+    private function toArray($locs)
+    {
+    	if(array_key_exists($loc->getCountry(), $return))
+    	{
+    		if(array_key_exists($loc->getCountry(), $return))
+    		{
+    			
+    		}
+    		else{
+    			$return[ "$loc->getCountry()"] = array();
+    			$this->fillLocReturn();
+    		}
+    	}
+    	else{
+    		$return[ "$loc->getCountry()"] = array();
+    		$this->fillLocReturn();
+    	}
+    	
+    	
+    	{
+    		$this->fillLocReturn();
+    	}
     }
 }
