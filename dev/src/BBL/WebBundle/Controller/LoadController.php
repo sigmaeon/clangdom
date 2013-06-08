@@ -244,7 +244,7 @@ class LoadController extends Controller
     	{
     		$gens[] = $gen->getName();
     	}
-    	$return = array("Genre" => $gens);
+    	$return = array("Genre" => $gens, "Locations" => $this->getLocations());
     	//$return = $this->getLocations();
     	$return = json_encode($return);
     	return new Response($return,200,array('Content-Type'=>'application/json'));
@@ -261,8 +261,7 @@ class LoadController extends Controller
     	{
     		$tasks[] = $task->getName();
     	}
-    	$return = array("Tasks" => $tasks);
-    	//$return = $this->getLocations();
+    	$return = array("Tasks" => $tasks, "Locations" => $this->getLocations());
     	$return = json_encode($return);
     	return new Response($return,200,array('Content-Type'=>'application/json'));
     }
@@ -275,34 +274,29 @@ class LoadController extends Controller
     	$locs = $locRepo->findAll();
     	foreach($locs as $loc)
     	{
-    		$return[] = toArray($loc);
+    		$return = $this->toArray($loc, $return);
     	}
-    	$return = structureArray($locs);
-    	$return = json_encode($return);
     	return $return;
     }
     
-    private function toArray($locs)
+    private function toArray($loc, $return)
     {
     	if(array_key_exists($loc->getCountry(), $return))
     	{
-    		if(array_key_exists($loc->getCountry(), $return))
+    		if(array_key_exists($loc->getFederalState(), $return[$loc->getCountry()]))
     		{
-    			
+    			$return[$loc->getCountry()][$loc->getFederalState()][] = $loc->getRegion();
     		}
     		else{
-    			$return[ "$loc->getCountry()"] = array();
-    			$this->fillLocReturn();
+    			$return[$loc->getCountry()][$loc->getFederalState()] = array();
+    			$this->toArray($loc, $return);
     		}
     	}
     	else{
-    		$return[ "$loc->getCountry()"] = array();
-    		$this->fillLocReturn();
+    		$return[$loc->getCountry()] = array();
+    		$this->toArray($loc, $return);
     	}
     	
-    	
-    	{
-    		$this->fillLocReturn();
-    	}
+    	return $return;
     }
 }

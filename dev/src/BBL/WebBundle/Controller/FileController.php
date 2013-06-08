@@ -2,6 +2,10 @@
 
 namespace BBL\WebBundle\Controller;
 
+use BBL\WebBundle\Exception\EntityNotFoundClangdomException;
+
+use BBL\WebBundle\Exception\UnauthorizedClangdomException;
+
 use BBL\WebBundle\Entity\Video;
 
 use BBL\WebBundle\Entity\Music;
@@ -25,6 +29,15 @@ use BBL\WebBundle\Entity\Konto;
 
 class FileController extends Controller
 {
+	public function createEventAction()
+	{
+		$session = $this->get('session');
+		if($session->get('state') == 'logged') throw new UnauthorizedClangdomException();
+		$name = $this->getRequest()->get("name");
+		$info = $this->getRequest()->get("info");
+		
+		
+	}
  
     public function testAction()
     {
@@ -52,12 +65,12 @@ class FileController extends Controller
     	$upFile =  $this->getRequest()->files->get("datei");
     	if(!ValueCheck::checkExtension($upFile, array("jpg", "jpeg", "gif", "png"))) throw new WrongParamsClangdomException(); //another exception pls
     	$session = $this->get('session');
-    	//if($session->get('state') == 'logged') exception!!!
+    	if($session->get('state') == 'logged') throw new UnauthorizedClangdomException();
     	$em = $this->getDoctrine()->getManager();
     	$kontoRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Konto');
     	$konto = $kontoRepo->findOneByIdkonto($session->get('konto'));
     	$profil = $konto->getProfil();
-    	if($konto == null) return new Response("Fuck"); //exception instead
+    	if($konto == null) throw new EntityNotFoundClangdomException();
     	
     	$oldPic = $konto->getProfil()->getPicture();
     	if($oldPic == null){
@@ -92,7 +105,7 @@ class FileController extends Controller
     	$upFile = $this->getRequest()->files->get("datei");
     	//if(!Helper::checkExtension($upFile, array("mp3"))) throw new WrongParamsClangdomException(); //another exception pls
     	$session = $this->get('session');
-    	//if($session->get('state') == 'logged') throw new no
+    	if($session->get('state') == 'logged') throw new UnauthorizedClangdomException();
     	$em = $this->getDoctrine()->getManager();
     	$kontoRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Konto');
     	$konto = $kontoRepo->findOneByIdkonto($session->get('konto'));

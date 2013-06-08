@@ -139,11 +139,22 @@ function getFormData(){
 					 		$(this).append('<option value="' + data.Genre[i] + '">' + data.Genre[i] + '</option> <br />');
 				 });
 			 }
-			/* var length = Country.length;
-			 element = null;
-			 for(var i = 0; i < length; i++){
-			 	$("#regCou").append('<option value="' + Country[i] + '">' + Country[i] + '</option>');
-		 	 }*/
+
+			 //var locs = $.parseJSON(data.Locations);	LANDERER
+			 //alert(locs.Austria.Tirol[2]); 
+			 /*for(var i = 0; i < length; i++){
+				var locs = $.parseJSON(data.Locations);
+				$('#regCou').append('<option value="' + data.Locations[i] + '">' + data.Locations[i] + '</option> <br />');
+
+				$.each(locs[0], function(key, value){
+				    alert(key);
+				});
+				var length2 = data.Locations.length;
+				for(var i2 = 0; i2 < length2; i2++){
+					$('#regSta').append('<option country="'+ data.Locations[i] + '" value="' + data.Locations[i][i2] + '">' 
+							+ data.Locations[i][i2] + '</option> <br />');
+				 }
+			 }*/
 		}
 	});
 }
