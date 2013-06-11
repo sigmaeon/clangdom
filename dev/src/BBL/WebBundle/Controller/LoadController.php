@@ -288,13 +288,11 @@ class LoadController extends Controller
     			$return[$loc->getCountry()][$loc->getFederalState()][] = $loc->getRegion();
     		}
     		else{
-    			$return[$loc->getCountry()][$loc->getFederalState()] = array();
-    			$this->toArray($loc, $return);
+    			$return[$loc->getCountry()][$loc->getFederalState()][] =  $loc->getRegion();
     		}
     	}
     	else{
-    		$return[$loc->getCountry()] = array();
-    		$this->toArray($loc, $return);
+    		$return[$loc->getCountry()] = array($loc->getFederalState() => array($loc->getRegion()));
     	}
     	
     	return $return;
