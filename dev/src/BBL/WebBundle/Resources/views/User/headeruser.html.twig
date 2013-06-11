@@ -1,35 +1,3 @@
-<!-- THIS IS THE USER HEADER!!!!! -->
-<!--<div id="header" class="span-24">
-    <div class="menu">
-        <ul>
-            <li><a href="{{ path('bbl_web_homepage') }}">Clangdom</a></li>
-            <li><div id="searchfield"><input type="text" id="search" class="textBox" value="Search!" onfocus="if (this.value == 'Search!') this.value = '';" onblur="if (this.value == '') this.value = 'Search!';" maxlength="255" /><input type="image" src="{{ asset('bundles/bblweb/images/btn_search.png') }}" class="button" /></div></li>
-            <li><a href="#" onClick="return false"><div id="radio"><img src="{{ asset('bundles/bblweb/images/radio4.png') }}"></div></a>
-                <ul>
-                    <li><embed height="100" width="300" src="#"></li>
-                </ul>
-            </li>
-            <li><a href="javascript:void(0);" id="open_f"><div id="filter"><img src="{{ asset('bundles/bblweb/images/filter2.png') }}"></div></a></li>
-            <li><div class="hiddenuser">hidden</div></li>
-            <li><a href="#" onClick="return false" id="current"><img src="{{ asset('bundles/bblweb/images/settings.png') }}" class="pic"></a>
-                <ul>
-                    <li><a href="{{ path('settings') }}">Profilsettings</a></li>
-                    <li><a href="{{ path('events') }}">Events</a></li>
-                </ul>
-            </li>
-            <li><a href="#">Profiles</a>
-                    <ul>
-                    <!-- twigschleife hier
-                            <li><a href="#">Camelized</a></li>
-                            <li><a href="#">TheSimsns</a></li>
-                            <li><a href="#">TheSimls</a></li>
-                    </ul>
-            </li>
-            <li><a href="{{ path('logout') }}">Logout</a></li>
-         </ul>
-   </div>			
-</div>-->
-                    
 <div id="header" class="span-24">
     <div class="menu">
         <ul>
@@ -65,3 +33,85 @@
         </ul>
     </div>
 </div>
+<!-- Filter-Dialog -->
+<div id="dialog_f" style="display:none" title="Filter" class="span-20">
+    <div id="accordion" class="span-20">
+            <h3>Hotspot</h3>
+            <div>
+                <fieldset>
+                        <div class="span-3"><label for="genHot">Genres:</label></div>
+                        <div class="span-17"><select name="genHot" id="genHot" data-placeholder="Choose genres..." class="dialog-multiselect" multiple style="width:350px;" tabindex="4">
+                                <option value=""></option>
+                        </select></div>
+                        <div class="span-3"><label for="locHot">Locations:</label><br /></div>
+                        <div class="span-17"><select name="locHot" id="locHot" data-placeholder="Choose locations..." class="dialog-multiselect" multiple style="width:350px;" tabindex="4">
+                                <option value=""></option>
+                                                <option value="Reutte" id="reHot">Ruette</option>
+                                                <option value="Landeck" id="laHot">Landeck</option>
+                                                <option value="Imst" id="imHot">Imst</option>
+                                                <option value="Innsbruck-Stadt" id="ibkHot">Innsbruck-Stadt</option>
+                                                <option value="Innsbruck-Land"id="inlHot">Innsbruck-Land</option>
+                                                <option value="Schwaz" id="szHot">Schwaz</option>
+                                                <option value="Kufstein" id="kuHot">Kufstein</option>
+                                                <option value="Kitzbühel" id="kbHot">Kitzbühel</option>
+                                                <option value="Lienz" id="liHot">Lienz</option>
+                        </select></div>
+                        <div class="span-3"><label for="favHot">Favorites:</label><br /></div>
+                        <div class="span-17"><select name="favHot" id="favHot" data-placeholder="Choose your favorites..." class="dialog-multiselect" multiple style="width:350px;" tabindex="4">
+                                <option value=""></option>
+                                                <option value="Rock" id="rockDash">Notausgang</option>
+                                                <option value="Metal">Camelized</option>
+                                                <option value="Punk">Inseminoid</option>
+                                                <option value="Jazz">People die out</option>
+                                                <option value="Classic">64k modem</option>
+                        </select></div>
+                </fieldset>
+        </div>
+        <h3>Radio</h3>
+        <div>
+                <fieldset>
+                        <div class="span-3"><label for="genRad">Genres:</label></div>
+                        <div class="span-17"><select id="genRad" name="genRad" data-placeholder="Choose genres..." class="dialog-multiselect" multiple style="width:350px;" tabindex="4">
+                                <option value=""></option>
+                                </select></div>
+                        <div class="span-3"><label for="locRad">Locations:</label></div>
+                        <div class="span-17"><select id="locRad" name="locRad" data-placeholder="Choose locations..." class="dialog-multiselect" multiple style="width:350px;" tabindex="4">
+                                <option value=""></option>
+                                                <option value="Reutte" id="reRad">Ruette</option>
+                                                <option value="Landeck" id="laRad">Landeck</option>
+                                                <option value="Imst" id="imRad">Imst</option>
+                                                <option value="Innsbruck-Stadt" id="ibkRad">Innsbruck-Stadt</option>
+                                                <option value="Innsbruck-Land" id="inlRad">Innsbruck-Land</option>
+                                                <option value="Schwaz" id="szRad">Schwaz</option>
+                                                <option value="Kufstein" id="kuRad">Kufstein</option>
+                                                <option value="Kitzbühel" id="kbRad">Kitzbühel</option>
+                                                <option value="Lienz" id="liRad">Lienz</option>
+                        </select></div>
+                        <div class="span-3"><label for="locRad">Favorites:</label></div>
+                        <div class="span-17"><select id="locRad" name="locRad" data-placeholder="Choose your favorites..." class="dialog-multiselect" multiple style="width:350px;" tabindex="4">
+                                <option value=""></option>
+                                                <option value="Rock" id="rockDash">Notausgang</option>
+                                                <option value="Metal">Camelized</option>
+                                                <option value="Punk">Inseminoid</option>
+                                                <option value="Jazz">People die out</option>
+                                                <option value="Classic">64k modem</option>
+                        </select></div>
+                </fieldset>
+          </div>
+    </div>
+</div>
+<!-- New Message-Dialog -->
+<div id="dialog_m" style="display:none" title="New Message" class="span-10">
+    <div class="span-10">
+        <select id="genRad" name="genRad" data-placeholder="Recipients..." class="inner-dialog-multiselect" multiple style="width:350px;" tabindex="4">
+            <option value=""></option>
+            <option value="Musikschule_Imst">Musikschule Imst</option>
+        </select>
+    </div>
+    <div class="span-10 hidden">hidden</div>
+    <div class="span-10"><label for="subject">Subject:</label></div>
+    <div class="span-10"><input type="text" name="subject" id="subject"></div>
+    <div class="span-10"><label for="message">Message:</label></div>
+    <div class="span-10"><textarea id="message" name="message" data-placeholder="Your message..."></textarea></div>
+</div>
+<!-- received Message-Dialog -->
