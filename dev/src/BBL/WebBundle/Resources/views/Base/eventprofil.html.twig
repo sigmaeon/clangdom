@@ -1,11 +1,4 @@
 {% extends 'BBLWebBundle:Base:layout.html.twig' %}
-{% block header %}
-	{% if sesson == true %}
-			{% include 'BBLWebBundle:User:headeruser.html.twig' with { 'name' : name } %}
-		{% else %}
-			{% include 'BBLWebBundle:Base:headerguest.html.twig' %}
-	{% endif %}
-{% endblock %}
 	{% block content %}
 		<div id="profilbanner" class="span-24">
 			<div id="profilpic" class="span-4"><img src="{{ pic }}" height="120px" width="120px"></div> <div id="profname" class="span-10 last"><h1 class="alt"> {{ eventname }}</h1></div>
@@ -28,46 +21,7 @@
 	{% endblock %}
 	
 {% block javascript %}
-// <script> 
-$(document).ready(function(){
-
-
-	// --------------- AJAX Loading -----------------
-		$( "#tabs" ).tabs({activate: function( event, ui) {
-			var url = '{{ path('ajax_load') }}';
-			  $.ajax({
- 				  url: url,
- 				  type: "post",
-  				  data: {Type: "bands"/*ui.newTab.attr('type')*/,
-  				  		 Num: 10 /* maybe gets moded*/},
-  				  beforeSend: function(){
-  				  	if(ui.newPanel.html() == "") ui.newPanel.html(genLoad());
-   				  },
- 				  success: function(data) {
-     				 ui.newPanel.html(data);
-  				  }
-			});
-		    }
-	    });
-        //initial Load
-		 var url = "{{ path('ajax_load') }}";
-		 $.post(url,{typ: "Plan"}, 
-		 function(data){
-			$("#tabs-1").html(data);
-	      });	
-});
-		 
-function genLoad()
-{
-	return "<p> Loading, please wait....</p>";
-}
-
- 
-function testfunc()
-{
-	alert('Surprise Mothafuckaa!!! ');
-}
-
+	{{ parent() }}
 {% endblock %}
 
 	
