@@ -46,7 +46,69 @@
 	<button onclick="testfunc()" id="yobut"> Yoo </button>
 	
 	
+<<<<<<< HEAD
+<!-- Pop ups --> 
+	<div id="dialog_l" style="display:none" title="Login" class="span-20">
+                <fieldset>
+                    <div class="span-3"><label for="email">Email:</label></div>
+                    <div class="span-17"><input type="text" name="email" id="login_name"></div>
+                    <div class="span-3"><label for="password">Password:</label></div>
+                    <div class="span-17"><input type="password" name="password" id="login_password"></div>
+		</fieldset>
+        </div>
+	
+    <div id="dialog_f" style="display:none" title="Filter" class="span-20">
+                            <div id="accordion" class="span-20">
+                                    <h3>Hotspot</h3>
+                                    <div>
+                                            <fieldset>
+                                                    <div class="span-3"><label for="genHot">Genres:</label></div>
+                                                    <div class="span-17"><select name="genHot" id="genHot" data-placeholder="Choose genres..." class="dialog-multiselect" multiple style="width:350px;" tabindex="4">
+                                                            <option value=""></option>
+                                                    </select></div>
+                                                    <div class="span-3"><label for="locHot">Locations:</label></div>
+                                                    <div class="span-17"><select id="locHot" name="locHot"  data-placeholder="Choose locations..." class="dialog-multiselect" multiple style="width:350px;" tabindex="4">
+                                                            <option value=""></option>
+                                                    </select></div>
+                                                    <div class="span-3"><label for="favHot">Favorites:</label></div>
+                                                    <div class="span-17"><select name="favHot" id="favHot" data-placeholder="Choose your favorites..." class="dialog-multiselect" multiple style="width:350px;" tabindex="4">
+                                                            <option value=""></option>
+                                                    </select></div>
+                                            </fieldset>
+                                    </div>
+                                    <h3>Radio</h3>
+                                    <div>
+                                            <fieldset>
+                                                    <div class="span-3"><label for="genRad">Genres:</label></div>
+                                                    <div class="span-17"><select id="genRad" name="genRad" data-placeholder="Choose genres..." class="dialog-multiselect" multiple style="width:350px;" tabindex="4">
+                                                            <option value=""></option>
+                                                            </select></div>
+                                                    <div class="span-3"><label for="locRad">Locations:</label></div>
+                                                    <div class="span-17"><select id="locRad" name="locRad" data-placeholder="Choose locations..." class="dialog-multiselect" multiple style="width:350px;" tabindex="4">
+                                                            <option value=""></option>
+                                                    </select></div>
+                                                    <div class="span-3"><label for="favRad">Favorites:</label></div>
+                                                    <div class="span-17"><select id="favRad" name="favRad" data-placeholder="Choose your favorites..." class="dialog-multiselect" multiple style="width:350px;" tabindex="4">
+                                                            <option value=""></option>
+                                                    </select></div>
+                                            </fieldset>
+                                    </div>
+                            </div>
+            </div>
+            <div id="dialog_m" style="display:none" title="New Message" class="span-10">
+                    <div class="span-10"><select id="genRad" name="genRad" data-placeholder="Recipients..." class="inner-dialog-multiselect" multiple style="width:350px;" tabindex="4">
+                            <option value=""></option>
+                            <option value="Musikschule_Imst">Musikschule Imst</option>
+                    </select></div>
+                    <div class="span-10 hidden">hidden</div>
+                    <div class="span-10"><label for="subject">Subject:</label></div>
+                    <div class="span-10"><input type="text" name="subject" id="subject"></div>
+                    <div class="span-10"><label for="message">Message:</label></div>
+                    <div class="span-10"><textarea id="message" name="message" data-placeholder="Your message..."></textarea></div>
+            </div>
+=======
 
+>>>>>>> 313f82361fa7706ddae536f556823e62bee5c3de
 {% endblock %}
 
 {% block javascript %}
