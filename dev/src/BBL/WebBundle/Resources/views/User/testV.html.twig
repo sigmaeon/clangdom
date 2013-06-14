@@ -1,0 +1,11 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+	<form action="{{ path('videoupload') }}" method="post">
+		<input type="text" name="link" /> <p>Youtube Link</p>
+		<input type="text" name="name" /> <p>Name</p>
+		<br />
+	<input type="submit" value="Upload" />
+	</form>
+{% endblock %}
+
+	

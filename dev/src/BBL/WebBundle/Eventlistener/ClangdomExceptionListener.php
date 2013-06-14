@@ -2,6 +2,8 @@
 namespace BBL\WebBundle\Eventlistener;
 
 //own Exceptions
+use BBL\WebBundle\Exception\UnauthorizedClangdomException;
+
 use BBL\WebBundle\Exception\ClangdomException;
 use BBL\WebBundle\Exception\ClangdomExceptionInterface;
 use BBL\WebBundle\Exception\EntityNotFoundClangdomException;
@@ -68,6 +70,14 @@ class ClangdomExceptionListener
 			$response->setStatusCode($exception->getStatusCode());
 			$response->headers->replace($exception->getHeaders());
 			$response->setContent($this->engine->render('BBLWebBundle:Exceptions:wrongParams.html.twig'));
+			$event->setResponse($response);
+		}
+		elseif($exception instanceof UnauthorizedClangdomException)
+		{
+			$response = new Response();
+			$response->setStatusCode($exception->getStatusCode());
+			$response->headers->replace($exception->getHeaders());
+			$response->setContent($this->engine->render('BBLWebBundle:Exceptions:unauthorizedParams.html.twig'));
 			$event->setResponse($response);
 		}
 		elseif($exception instanceof RouteNotFoundException)

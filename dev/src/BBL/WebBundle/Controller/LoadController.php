@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use BBL\WebBundle\Utilities\Helper;
 use BBL\WebBundle\Entity\User;
 use BBL\WebBundle\Entity\Konto;
 use BBL\WebBundle\Entity\Music;
@@ -28,10 +29,11 @@ class LoadController extends Controller
     	if($type == null) throw new WrongParamsClangdomException();
     	switch ($type){ 
     	
-    		case "hot":   return $this->fillMusic(); //return $this->fillHot();
+    		case "hot":   return $this->fillHot(); //return $this->fillHot();
     		case "bands": return $this->fillBand();
     		case "event": return $this->fillEvent();
     		case "music": return $this->fillMusic();
+    		case "dash":  return $this->fillDash();
     		default: throw new WrongParamsClangdomException();
     	}
     }
@@ -47,11 +49,11 @@ class LoadController extends Controller
     	$posts = $query->getResult();
     	if($posts == null) throw new EntityNotFoundClangdomException();
     	
-    	
     	$i = 0;
     	foreach ($posts as $post) {
     		if($musicRepo->findOneByPost($post->getIdpost()) != null)
     		{
+    			$music = $musicRepo->findOneByPost($post->getIdpost());
     			$objects['ob'.$i]['type'] = "mp3";
     			$konto = $music->getPost()->getKonto();
     			$pic = $konto->getProfil()->getPicture();
@@ -63,15 +65,26 @@ class LoadController extends Controller
     			$objects['ob'.$i]['song'] = $music->getPost()->getName();
     			$objects['ob'.$i]['songlink'] = $music->getFile()->getWebPath();
     		}
-    		else if($musicRepo->findOneByPost($post) != null)
+    		else if($vidRepo->findOneByPost($post->getIdpost()) != null)
     		{
-    			 
+    			$video = $vidRepo->findOneByPost($post->getIdpost());
+    			$objects['ob'.$i]['type'] = "video";
+    			$konto = $video->getPost()->getKonto();
+    			$pic = $konto->getProfil()->getPicture();
+    			if($pic != null) $objects['ob'.$i]['picture'] =  $pic->getFile()->getWebPath();
+    			else $objects['ob'.$i]['picture'] =  ".."; //default pic link goes here
+    			$objects['ob'.$i]['link'] = $konto->getProfil()->getLink();
+    			$objects['ob'.$i]['info'] = "..";
+    			$objects['ob'.$i]['name'] = $konto->getName();
+    			$objects['ob'.$i]['song'] = $video->getPost()->getName();
+    			$objects['ob'.$i]['youtube'] = $video->getUrl();
     		}
-    		else if($musicRepo->findOneByPost($post) != null)
+    		else if($eventRepo->findOneByPost($post->getIdpost()) != null)
     		{
     			 
     		}
     		$i++;
+    		
     	}
     	
     	return $this->render('BBLWebBundle:Base:content.html.twig',
@@ -156,6 +169,68 @@ class LoadController extends Controller
     			array('objects' => $objects, 'title' => "Bands"));
     }
     
+    public function fillDash()
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$musicRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Music');
+    	$vidRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Video');
+    	$eventRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Event');
+    	$link = $this->getRequest()->request->get('Link');
+    	if(trim($link) == "") throw new WrongParamsClangdomException();
+    	
+    	$query = $em->createQuery(
+    			"SELECT p FROM BBL\WebBundle\Entity\Post p JOIN p.konto k JOIN k.profil pr WHERE pr.link = '". $link .
+    			 "' ORDER BY p.date DESC");
+    	$posts = $query->getResult();
+    	if($posts == null) throw new EntityNotFoundClangdomException();
+    	
+    	$i = 0;
+    	foreach ($posts as $post) {
+    		if($musicRepo->findOneByPost($post->getIdpost()) != null)
+    		{
+    			$music = $musicRepo->findOneByPost($post->getIdpost());
+    			if($link == $this->get('session')->get("link")) $objects['ob'.$i]['type'] = "ownmp3";
+    			else $objects['ob'.$i]['type'] = "mp3";
+    			$konto = $music->getPost()->getKonto();
+    			$pic = $konto->getProfil()->getPicture();
+    			if($pic != null) $objects['ob'.$i]['picture'] =  $pic->getFile()->getWebPath();
+    			else $objects['ob'.$i]['picture'] =  ".."; //default pic link goes here
+    			$objects['ob'.$i]['link'] = $konto->getProfil()->getLink();
+    			$objects['ob'.$i]['info'] = "..";
+    			$objects['ob'.$i]['name'] = $konto->getName();
+    			$objects['ob'.$i]['song'] = $music->getPost()->getName();
+    			$objects['ob'.$i]['songlink'] = $music->getFile()->getWebPath();
+    		}
+    		else if($vidRepo->findOneByPost($post->getIdpost()) != null)
+    		{
+    			$video = $vidRepo->findOneByPost($post->getIdpost());
+    			if($link == $this->get('session')->get("link")) $objects['ob'.$i]['type'] = "video";
+    			else $objects['ob'.$i]['type'] = "video";
+    			$konto = $video->getPost()->getKonto();
+    			$pic = $konto->getProfil()->getPicture();
+    			if($pic != null) $objects['ob'.$i]['picture'] =  $pic->getFile()->getWebPath();
+    			else $objects['ob'.$i]['picture'] =  ".."; //default pic link goes here
+    			$objects['ob'.$i]['link'] = $konto->getProfil()->getLink();
+    			$objects['ob'.$i]['info'] = "..";
+    			$objects['ob'.$i]['name'] = $konto->getName();
+    			$objects['ob'.$i]['song'] = $video->getPost()->getName();
+    			$objects['ob'.$i]['youtube'] = $video->getUrl();
+    		}
+    		else if($eventRepo->findOneByPost($post->getIdpost()) != null)
+    		{
+    			
+    		}
+    		$i++;
+    	
+    	}
+    				
+   		return $this->render('BBLWebBundle:Base:content.html.twig',
+    			array('objects' => $objects));
+    	 
+    	
+    	
+    }
+    
     
 //----------------- Response Form Data----------
     public function fillArtistAction()
@@ -169,7 +244,7 @@ class LoadController extends Controller
     	{
     		$gens[] = $gen->getName();
     	}
-    	$return = array("Genre" => $gens);
+    	$return = array("Genre" => $gens, "Locations" => $this->getLocations());
     	//$return = $this->getLocations();
     	$return = json_encode($return);
     	return new Response($return,200,array('Content-Type'=>'application/json'));
@@ -186,25 +261,40 @@ class LoadController extends Controller
     	{
     		$tasks[] = $task->getName();
     	}
-    	$return = array("Tasks" => $tasks);
-    	//$return = $this->getLocations();
+    	$return = array("Tasks" => $tasks, "Locations" => $this->getLocations());
     	$return = json_encode($return);
     	return new Response($return,200,array('Content-Type'=>'application/json'));
     }
     
     public function getLocations()
     {
-    	$return = array("Country" => array(), "State" => array(), "Region" => array());
+    	$return = array();
     	$em = $this->getDoctrine()->getManager();
     	$locRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Location');
     	$locs = $locRepo->findAll();
     	foreach($locs as $loc)
     	{
-    		$return["Country"][] = $loc->getCountry();
-    		$return["State"][] = $loc->getFederalState();
-    		$return["Region"][] = $loc->getRegion();
+    		$return = $this->toArray($loc, $return);
     	}
-    	$return = json_encode($return);
+    	return $return;
+    }
+    
+    private function toArray($loc, $return)
+    {
+    	if(array_key_exists($loc->getCountry(), $return))
+    	{
+    		if(array_key_exists($loc->getFederalState(), $return[$loc->getCountry()]))
+    		{
+    			$return[$loc->getCountry()][$loc->getFederalState()][] = $loc->getRegion();
+    		}
+    		else{
+    			$return[$loc->getCountry()][$loc->getFederalState()][] =  $loc->getRegion();
+    		}
+    	}
+    	else{
+    		$return[$loc->getCountry()] = array($loc->getFederalState() => array($loc->getRegion()));
+    	}
+    	
     	return $return;
     }
 }

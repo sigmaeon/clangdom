@@ -1,5 +1,5 @@
 body{
-background-image:url('../../bundles/bblweb/images/background2.png');
+background-image:url('../bundles/bblweb/images/background2.png');
 background-repeat:repeat-x;
 background-attachment:fixed;
 }
@@ -31,16 +31,17 @@ list-style-type:none;
 
 
 #header{
-background-image:url('../../bundles/bblweb/images/topbar.jpg');
+background-image:url('../bundles/bblweb/images/topbar.jpg');
 height:54px;
 margin-top:none;
 padding-top:none;
 position:fixed;
-z-index:1;
+z-index:100;
 }
 #content{
-background:none;
+background-color:none;
 padding-top:54px;
+
 }
 
 #footer{
@@ -58,7 +59,7 @@ text-align:right;
 }
 
 #profilbanner{
-padding-top:54px;
+
 height:140px;
 background-color:white;
 }
@@ -81,76 +82,127 @@ width:943px;
 height:16000px;
 border-color:grey;
 }
+/*all tab contents... */
 
-
-.footext{
-display:block;
-text-align:center;
-vertical-align:center;
-height:10px;
-}
-.fixed{
-margin-left:0px;
+.c_container{
+margin-top:10px;
+margin-bottom:10px;
+border:solid 1px;
+margin-left:15px;
 }
 
-.mp3content{
-background-color:#ededed;
-border: 1px solid;
-border-radius:5px;
-box-shadow: 6px 6px 3px #888888;
-padding:10px;
-margin-bottom:20px;
+
+.c_container .c_header{
+background-color:#2e2e2d !important;
 }
 
-.vid{
-margin:10px;
+.delbut{
+border-radius:50px;
+height:18px;
+width:18px;
+padding:0px 0px 0px 0px;
 }
 
-.contentbox{
-display:block;
-padding:10px;
-padding-bottom:10px;
+.c_delete{
+margin-left:30px;
+margin-top:5px;
 }
 
-.youtubecontent{
-background-color:#ededed;
-border: 1px solid;
-border-radius:5px;
-box-shadow:6px 6px 3px #888888;
-padding:10px;
-margin-bottom:20px;
+.c_pic{
+padding: 5px 0 0 5px;
 }
 
-.bandcontent{
-background-color:#ededed;
-border: 1px solid;
-border-radius:5px;
-box-shadow:6px 6px 3px #888888;
-margin-bottom:20px;
-margin-left:5px;
+.c_button{
+margin-left:30px;
 }
 
-.eventcontent{
-background-color:#ededed;
-border: 1px solid;
-border-radius:5px;
-box-shadow:6px 6px 3px #888888;
-padding:10px;
-margin-bottom:20px;
+.c_container h6{
+color:white;
+font-size:20px;
+}
+.c_name{
+padding-top:0;
+}
+.c_content{
+padding-bottom:100px;
+}
+.created{
+padding-left:10px;
+}
+.e_header{
+padding:5px 0 0 5px;
+}
+
+
+.c_footer{
+
+}
+.c_rate{
+
+}
+.c_tags{
+text-align:right;
+}
+
+.c_mp3{
 
 }
 
-.eventBox{
-margin-bottom:5px;
+.c_video{
 
 }
-.contenttitle{
+
+.c_event{
 
 }
-.contentpic{
-margin:5px;
+
+
+/*content shadow*/
+
+/.box h3{
+	text-align:center;
+	position:relative;
+	top:80px;
 }
 
+/*==================================================
+ * Effect 7
+ * ===============================================*/
+.effect7
+{
+  	position:relative;
+    -webkit-box-shadow:0 10px 40px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset !important;
+       -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset !important;
+            box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset !important;
+}
+.effect7:before, .effect7:after
+{
+	content:"";
+    position:absolute;
+    z-index:-1;
+    -webkit-box-shadow:0 0 20px rgba(0,0,0,0.8) !important;
+    -moz-box-shadow:0 0 20px rgba(0,0,0,0.8) !important;
+    box-shadow:0 0 20px rgba(0,0,0,0.8) !important;
+    top:0;
+    bottom:0;
+    left:10px;
+    right:10px;
+    -moz-border-radius:100px / 10px !important;
+    border-radius:100px / 10px !important;
+}
+.effect7:after
+{
+	right:10px;
+    left:auto;
+    -webkit-transform:skew(8deg) rotate(3deg) !important;
+       -moz-transform:skew(8deg) rotate(3deg) !important;
+        -ms-transform:skew(8deg) rotate(3deg) !important;
+         -o-transform:skew(8deg) rotate(3deg) !important;
+            transform:skew(8deg) rotate(3deg) !important;
+}
+/* endcontent */
+
+/* random classes */
 .accordionHeight{
 height:850px;
 }
@@ -175,6 +227,9 @@ visibility:hidden;
 width:227px;
 }
 
+.abstand{
+margin:20px;
+}
 
 .transparent {
 	zoom: 1;
@@ -206,7 +261,7 @@ margin-left:10px;
 margin-right:6px;
 padding-right:10px;
 margin-top:17px;
-background:url(../../bundles/bblweb/images/bg_search-field.png) no-repeat;
+background:url(../bundles/bblweb/images/bg_search-field.png) no-repeat;
 }
 
 #searchfield .textBox {
@@ -379,7 +434,7 @@ box-shadow: inset 0px 0px 7px 2px rgba(0, 0, 0, .3);
 		left: 50%;
 		margin-left: -510px;
 		width: 950px;
-		background: #eee url(../../bundles/bblweb/css/modal-gloss.png) no-repeat -200px -80px;
+		background: #eee url(../bundles/bblweb/css/modal-gloss.png) no-repeat -200px -80px;
 		position: absolute;
 		z-index: 101;
 		padding: 30px 40px 34px;

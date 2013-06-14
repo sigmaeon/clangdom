@@ -67,23 +67,21 @@ class MainController extends Controller
     	$profilRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Profil');
     	
     	$profil = $profilRepo->findOneByLink("/".$name);
+    	$pic = $profil->getPicture()->getFile()->getWebPath();
     	if($profil == null) throw new RouteNotFoundException();
     	$konto = $kontoRepo->findOneByProfil($profil->getIdprofil());
     	
     	//here goes logic for own profil
     	if($konto->getIdkonto() == $session->get('konto')) return$this->render('BBLWebBundle:User:profil.html.twig',
-    				 array('sesson' => true, 'profname' => $konto->getName(), 'pic' => "..", 'name' => $session->get('name')));
+    				 array('sesson' => true, 'profname' => $konto->getName(), 'pic' => $pic, 'name' => $session->get('name')));
+    	
     	//Guest or User?
     	if( $session->get('state') == 'logged') return $this->render('BBLWebBundle:User:profil.html.twig',
-    				 array('sesson' => true, 'profname' => $konto->getName(), 'pic' => "..", 'name' => $session->get('name')));
+    				 array('sesson' => true, 'profname' => $konto->getName(), 'pic' => $pic, 'name' => $session->get('name')));
     	else return $this->render('BBLWebBundle:User:profil.html.twig',
-    				 array('sesson' => false, 'profname' => $konto->getName(), 'pic' => ".."));
+    				 array('sesson' => false, 'profname' => $konto->getName(), 'pic' => $pic));
     }
     
-    public function getOwnAction()
-    {
-    	
-    }
     
     public function eventsAction()
     {
@@ -185,6 +183,47 @@ class MainController extends Controller
     	$session->set('link', $profil->getLink());
     	
     	//return
+    	$response = new Response();
+    	$response->setStatusCode(200);
+    	return $response;
+    }
+    
+    public function loginAction()
+    {
+    	$request = $this->getRequest();
+    	//Objects for Doctrine
+    	$em = $this->getDoctrine()->getManager();
+    	$userRepo = $this->getDoctrine()->getRepository('BBLWebBundle:User');
+    	$genreRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Konto');
+    	$user = $userRepo->findOneByEmail($request->request->get('Email'));
+    	 
+    	//check if valid
+    	if($user == null) {
+    		$response = new Response();
+    		$response->setStatusCode(400);
+    		return $response;
+    	}
+    	 
+    	if($user->getPassword() != $request->request->get('Pwd')){
+    		$response = new Response();
+    		$response->setStatusCode(400);
+    		return $response;
+    	}
+    
+    	$kontos = $user->getIdkonto();
+    	if($kontos[1] == null) $konto = $kontos[0];
+    	//here goes code for multiple accounts
+    	 
+    	//sessionhandling
+    	$session = $this->get('session');
+    	$session->set('state','logged');
+    	$session->set('user', $user->getIduser());
+    	$session->set('name',$konto->getName());
+    	$session->set('konto', $konto->getIdkonto());
+    	$session->set('link', $konto->getProfil()->getLink());
+    	 
+    	 
+    	//response
     	$response = new Response();
     	$response->setStatusCode(200);
     	return $response;
