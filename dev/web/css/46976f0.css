@@ -1,5 +1,5 @@
 body{
-background-image:url('../../bundles/bblweb/images/background2.png');
+background-image:url('../bundles/bblweb/images/background2.png');
 background-repeat:repeat-x;
 background-attachment:fixed;
 }
@@ -31,7 +31,7 @@ list-style-type:none;
 
 
 #header{
-background-image:url('../../bundles/bblweb/images/topbar.jpg');
+background-image:url('../bundles/bblweb/images/topbar.jpg');
 height:54px;
 margin-top:none;
 padding-top:none;
@@ -261,7 +261,7 @@ margin-left:10px;
 margin-right:6px;
 padding-right:10px;
 margin-top:17px;
-background:url(../../bundles/bblweb/images/bg_search-field.png) no-repeat;
+background:url(../bundles/bblweb/images/bg_search-field.png) no-repeat;
 }
 
 #searchfield .textBox {
@@ -434,7 +434,7 @@ box-shadow: inset 0px 0px 7px 2px rgba(0, 0, 0, .3);
 		left: 50%;
 		margin-left: -510px;
 		width: 950px;
-		background: #eee url(../../bundles/bblweb/css/modal-gloss.png) no-repeat -200px -80px;
+		background: #eee url(../bundles/bblweb/css/modal-gloss.png) no-repeat -200px -80px;
 		position: absolute;
 		z-index: 101;
 		padding: 30px 40px 34px;

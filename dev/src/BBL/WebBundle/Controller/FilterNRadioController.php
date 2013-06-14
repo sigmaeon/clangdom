@@ -9,6 +9,7 @@ use BBL\WebBundle\Entity\Post;
 use BBL\WebBundle\Exception\WrongParamsClangdomException;
 
 use BBL\WebBundle\Entity\File;
+use Symfony\Component\HttpFoundation\Cookie;
 
 use BBL\WebBundle\Entity\Picture;
 use BBL\WebBundle\Utilities\ValueCheck;
@@ -25,6 +26,33 @@ class FilterNRadioController extends Controller
 {
  	public function setFilterAction()
  	{
+ 		$response = new Response();
+ 		$filter = json_decode($this->getRequest()->request->get("filter"));
  		
+ 		foreach($filter as $key => $value)
+ 		{
+ 			$i = 0;
+ 			if($value != null)
+ 			{
+ 				foreach($value as $str)
+	 			{
+	 				$response->headers->setCookie(new Cookie("filter".$key."".$i."", $str));
+	 				$i++;
+	 			}
+ 			}
+ 		}
+ 		return $response->send();
+ 	}
+ 	
+ 	public function clearFilterAction()
+ 	{
+ 		$response = new Response("What");
+ 		$cookies = $this->getRequest()->cookies;
+ 		$cookieKeys = $cookies->keys();
+ 		foreach($cookieKeys as $key)
+ 		{
+ 			if(strpos($key, "filter") === 0) $response->headers->clearCookie($key); // ~~~if key starts with "filter"
+ 		}
+ 		return $response->send();
  	}
 }

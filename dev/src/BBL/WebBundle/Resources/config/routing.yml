@@ -92,3 +92,11 @@ settings:
    pattern: /settings
    defaults: { _controller: BBLWebBundle:Main:settings}
    
+setFilter:
+   pattern: /setFilter
+   defaults: { _controller: BBLWebBundle:FilterNRadio:setFilter}
+   
+clearFilter:
+   pattern: /clearFilter
+   defaults: { _controller: BBLWebBundle:FilterNRadio:clearFilter}
+   
