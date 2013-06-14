@@ -102,11 +102,11 @@ function loadFormData()
 				 for(var key in data.Locations) {
 				 	 if (data.Locations.hasOwnProperty(key)){
 						 	 for(var key2 in a[0][key]) {
-								  if (a[0][key].hasOwnProperty(key2)){
+								  if(a[0][key].hasOwnProperty(key2)){
 									  $(this).append('<optgroup name="opt' + key2 + '" label="' + key2 + '"></optgroup> <br />');
-								  }
-								  for (var i = 0; i < a[0][key][key2].length; i++) {
-										 $('optgroup[name="opt' + key2 + '"]').append('<option country="' + key + '" fedstate="' + key2 + '" value="' + a[0][key][key2][i] + '">' + a[0][key][key2][i] + '</option> <br />');
+									  for(i = 0; i < a[0][key][key2].length; i++) {
+											 $(this).find('optgroup[name="opt' + key2 +'"]').append('<option country="' + key + '" fedstate="' + key2 + '" value="' + a[0][key][key2][i] + '">' + a[0][key][key2][i] + '</option> <br />');
+									  }  
 								  }
 							  }
 					 }	
