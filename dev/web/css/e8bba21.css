@@ -1,10 +1,10 @@
 /* rating trigger image */
 .js .radio-rater, .radio-rater a:hover, .radio-rater a:active, .radio-rater a:focus, .radio-rater .current {
-	background:transparent url('../bundles/bblweb/images/radio-rater/star.gif') repeat-x scroll 0 0;
+	background:transparent url('../../bundles/bblweb/images/radio-rater/star.gif') repeat-x scroll 0 0;
 }
 /* unrating trigger image */
 .js .radio-rater .unrate a {
-	background-image: url('../bundles/bblweb/images/radio-rater/delete.gif');
+	background-image: url('../../bundles/bblweb/images/radio-rater/delete.gif');
 }
 .js .radio-rater {
 	background-position:left top;

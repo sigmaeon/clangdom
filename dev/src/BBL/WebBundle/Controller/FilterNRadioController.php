@@ -55,4 +55,11 @@ class FilterNRadioController extends Controller
  		}
  		return $response->send();
  	}
+ 	
+ 	public function setRadioMediaAction()
+ 	{
+ 		
+ 	}
+ 	
 }
+

@@ -16,8 +16,12 @@
 		{% stylesheets 'bundles/bblweb/css/plugins/fancy-type/screen.css' filter='cssrewrite'  %}
         	<link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
         {% endstylesheets %}
-			
-			
+        
+        <!-- -Jplayer -->
+		{% stylesheets 'bundles/bblweb/css/Radio/jplayer.blue.monday.css' filter='cssrewrite' %}
+                <link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
+         {% endstylesheets %}
+	
         <!-- selfmade style.css-->
         {% stylesheets 'bundles/bblweb/css/style.css' filter='cssrewrite' %}
                 <link rel="stylesheet" href="{{ asset_url }}" type="text/css"/>
@@ -58,6 +62,16 @@
         {% javascripts '@BBLWebBundle/Resources/public/js/selfmade.js' %}
             <script src="{{ asset_url }}"></script>
         {% endjavascripts %}-->
+        
+        <!--- JPlayer ---->
+        {% javascripts '@BBLWebBundle/Resources/public/js/Radio/jquery.jplayer.min.js' %}
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %} 
+        {% javascripts '@BBLWebBundle/Resources/public/js/Radio/jplayer.playlist.min.js' %}
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %} 
+        
+        
          <script type="text/javascript" charset="utf-8">
                 $().ready(function() {
                         $("body").addClass("js");
@@ -79,13 +93,17 @@
     {% endblock %}
     </head>
     <body>
+    <div id="sidebar" class="span-6 prepend-1" style="position: fixed;padding-top: 56px;">  
+		{%  block sidebar %}
+		{%  endblock %}
+	</div>
 	<div class="container">
             {% block body %}
 
             {% endblock %}
 	</div>	
-	<script type="text/javascript">	
+    </body>
+    <script type="text/javascript">	
 	{% block javascript %} {% endblock %} 
 	</script>
-    </body>
 </html>

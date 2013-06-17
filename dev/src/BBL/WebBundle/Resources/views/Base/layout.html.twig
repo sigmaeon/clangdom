@@ -1,4 +1,29 @@
 {% extends '::base.html.twig' %}
+{% block sidebar %}
+<div id="radioSide"class="ui-widget-header ui-corner-all">
+	<p>CLANGDOM RADIO</p>
+	<div id="buttons">
+		<button id="prev">previous</button>
+		<button id="play">play</button>
+		<button id="stop">stop</button>
+		<button id="next">next</button>
+	</div>
+</div>
+<div id="jquery_jplayer_1" class="jp-jplayer" style="visibility:hidden"></div>
+<div id="jp_container_1" class="jp-audio">
+	<div class="jp-type-playlist">
+		<div class="jp-playlist">
+			<ul>
+				<li></li>
+			</ul>
+		</div>
+		<div class="jp-no-solution">
+			<span>Update Required</span>
+			To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+		</div>
+	</div>
+</div>
+{% endblock %}
 {% block body %} 
 
 	{% block header %}
@@ -13,7 +38,7 @@
 		{% block content %} 
 		{% endblock %}
 	</div>
-
+	 
 	{% block footer %}
 		<!--<div id="footer" class="span-24 transparent"> 
 			<h1> THIS IS OUR AWESOME FOOTER!!!!!!</h1>
@@ -21,6 +46,7 @@
 	{% endblock %}
 	
 {% endblock %}
+
 
 {% block javascript %}
 //<script>
@@ -142,7 +168,7 @@ $(function() {
                           window.location = "{{ path('bbl_web_homepage') }}";
                           },
                           error: function() {
-                             alert('No! This is wrong');
+                             alert('Wrong Login or Password');
                           }
                 });
             },
@@ -204,6 +230,76 @@ $(function() {
     });
 });
 
+//-------RadioSidebar---------------------
+$(function() {
+    $( "#prev" ).button({
+      text: false,
+      icons: {
+        primary: "ui-icon-seek-prev"
+      }
+    })
+    .click(function() {
+    	player.previous();
+    	if ( $("#play").text() === "play" ) {
+    		$("#play").button("option", { label: "pause", icons: {primary: "ui-icon-pause" }});
+    	}
+        });
+    $( "#play" ).button({
+      text: false,
+      icons: {
+        primary: "ui-icon-play"
+      }
+    })
+    .click(function() {
+      var options;
+      if ( $( this ).text() === "play" ) {
+    	$("#jquery_jplayer_1").jPlayer("play");
+        options = {
+          label: "pause",
+          icons: {
+            primary: "ui-icon-pause"
+          }
+        };
+      } else {
+    	$("#jquery_jplayer_1").jPlayer("pause");
+        options = {
+          label: "play",
+          icons: {
+            primary: "ui-icon-play"
+          }
+        };
+      }
+      $( this ).button( "option", options );
+    });
+    $( "#stop" ).button({
+      text: false,
+      icons: {
+        primary: "ui-icon-stop"
+      }
+    })
+    .click(function() {
+      $("#jquery_jplayer_1").jPlayer("stop");
+      $( "#play" ).button( "option", {
+        label: "play",
+        icons: {
+          primary: "ui-icon-play"
+        }
+      });
+    });
+    $( "#next" ).button({
+      text: false,
+      icons: {
+        primary: "ui-icon-seek-next"
+      }
+    })
+    .click(function() {
+    	player.next();
+    	if ( $("#play").text() === "play" ) {
+    		$("#play").button("option", { label: "pause", icons: {primary: "ui-icon-pause" }});
+    	}
+     });
+});
+
 
   //---------------Helping methods----------------
 function genLoad()
@@ -226,6 +322,140 @@ function getMultiFilter()
    return filter;
 	
 }
-  
+
+
+
+//-------try that fucking player
+
+var player = null;
+$(document).ready(function(){
+player = new jPlayerPlaylist({
+		jPlayer: "#jquery_jplayer_1",
+		cssSelectorAncestor: "#jp_container_1"
+	}, [
+		{
+			title:"Cro Magnon Man",
+			artist:"<a href='/clangdom/app_dev.php/profil/god'> God <a>",
+			mp3:"http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3",
+			oga:"http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg"
+		},
+		{
+			title:"Your Face",
+			mp3:"http://www.jplayer.org/audio/mp3/TSP-05-Your_face.mp3",
+			oga:"http://www.jplayer.org/audio/ogg/TSP-05-Your_face.ogg"
+		},
+		{
+			title:"Cyber Sonnet",
+			artist:"<a href='Tour Mam'> Your Mam <a>",
+			mp3:"http://www.jplayer.org/audio/mp3/TSP-07-Cybersonnet.mp3",
+			oga:"http://www.jplayer.org/audio/ogg/TSP-07-Cybersonnet.ogg"
+		},
+		{
+			title:"Tempered Song",
+			mp3:"http://www.jplayer.org/audio/mp3/Miaow-01-Tempered-song.mp3",
+			oga:"http://www.jplayer.org/audio/ogg/Miaow-01-Tempered-song.ogg"
+		},
+		{
+			title:"Hidden",
+			mp3:"http://www.jplayer.org/audio/mp3/Miaow-02-Hidden.mp3",
+			oga:"http://www.jplayer.org/audio/ogg/Miaow-02-Hidden.ogg"
+		},
+		{
+			title:"Lentement",
+			mp3:"http://www.jplayer.org/audio/mp3/Miaow-03-Lentement.mp3",
+			oga:"http://www.jplayer.org/audio/ogg/Miaow-03-Lentement.ogg"
+		},
+		{
+			title:"Lismore",
+			mp3:"http://www.jplayer.org/audio/mp3/Miaow-04-Lismore.mp3",
+			oga:"http://www.jplayer.org/audio/ogg/Miaow-04-Lismore.ogg"
+		},
+		{
+			title:"The Separation",
+			mp3:"http://www.jplayer.org/audio/mp3/Miaow-05-The-separation.mp3",
+			oga:"http://www.jplayer.org/audio/ogg/Miaow-05-The-separation.ogg"
+		},
+		{
+			title:"Beside Me",
+			mp3:"http://www.jplayer.org/audio/mp3/Miaow-06-Beside-me.mp3",
+			oga:"http://www.jplayer.org/audio/ogg/Miaow-06-Beside-me.ogg"
+		},
+		{
+			title:"Bubble",
+			free:true,
+			mp3:"http://www.jplayer.org/audio/mp3/Miaow-07-Bubble.mp3",
+			oga:"http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
+		},
+		{
+			title:"Stirring of a Fool",
+			mp3:"http://www.jplayer.org/audio/mp3/Miaow-08-Stirring-of-a-fool.mp3",
+			oga:"http://www.jplayer.org/audio/ogg/Miaow-08-Stirring-of-a-fool.ogg"
+		},
+		{
+			title:"Partir",
+			free: true,
+			mp3:"http://www.jplayer.org/audio/mp3/Miaow-09-Partir.mp3",
+			oga:"http://www.jplayer.org/audio/ogg/Miaow-09-Partir.ogg"
+		},
+		{
+			title:"Thin Ice",
+			mp3:"http://www.jplayer.org/audio/mp3/Miaow-10-Thin-ice.mp3",
+			oga:"http://www.jplayer.org/audio/ogg/Miaow-10-Thin-ice.ogg"
+		}
+	], {
+		swfPath: "{{ asset('bundles/bblweb/swf/Jplayer.swf') }}",
+		supplied: "oga, mp3",
+		wmode: "window",
+		smoothPlayBar: true,
+		keyEnabled: true,
+		size: {
+            width: "0",
+            height: "0"
+       }
+	});
+});
+
+
+/*
+$(document).ready(function(){
+      $("#jquery_jplayer_1").jPlayer({
+        ready: function () {
+          $(this).jPlayer("setMedia", {
+            m4a: "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
+            oga: "http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
+          });
+        },
+        swfPath: "{{ asset('bundles/bblweb/swf/Jplayer.swf') }}",
+        supplied: "m4a, oga"
+      });
+    });
+
+  $(document).ready(function(){
+
+			var myCirclePlayer = new CirclePlayer("#jquery_jplayer_1",
+			{
+				m4a: "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
+				oga: "http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
+			}, {
+				cssSelectorAncestor: "#cp_container_1"
+			});
+});
+
+function player(){
+	element=document.getElementById('radpic')
+	if(element.src.match("radioon")){
+		element.src="{{ asset('bundles/bblweb/images/radiooff.png') }}",
+		$(function(){
+			$('#pause').click();
+		});
+	}
+	else{
+		element.src="{{ asset('bundles/bblweb/images/radioon.png') }}",
+		$(function(){
+			$('#play').click();
+		});
+	}
+} 
+*/  
 
 {% endblock %} 

@@ -100,3 +100,7 @@ clearFilter:
    pattern: /clearFilter
    defaults: { _controller: BBLWebBundle:FilterNRadio:clearFilter}
    
+setMedia:
+  pattern: /setMedia
+  defaults: { _controller: BBLWebBundle:FilterNRadio:setRadioMedia}
+   
