@@ -2,6 +2,8 @@
 
 namespace BBL\WebBundle\Controller;
 
+use Doctrine\ORM\Query\AST\LikeExpression;
+
 use BBL\WebBundle\Exception\WrongParamsClangdomException;
 use BBL\WebBundle\Exception\NoAjaxClangdomException;
 use BBL\WebBundle\Exception\EntityNotFoundClangdomException;
@@ -245,7 +247,6 @@ class LoadController extends Controller
     		$gens[] = $gen->getName();
     	}
     	$return = array("Genre" => $gens, "Locations" => $this->getLocations());
-    	//$return = $this->getLocations();
     	$return = json_encode($return);
     	return new Response($return,200,array('Content-Type'=>'application/json'));
     }
@@ -296,5 +297,17 @@ class LoadController extends Controller
     	}
     	
     	return $return;
+    }
+    
+    public function loadArtistAction()
+    {
+    	$em = $this->getDoctrine()->getManager();
+    	$artistRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Artist');
+    	$artists = $artistRepo->findAll();
+    	foreach($artists as $artist)
+    	{
+    		$return[] = $artist->getKonto()->getName();
+    	}
+    	return new Response(json_encode($return),200,array('Content-Type'=>'application/json'));
     }
 }
