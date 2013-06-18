@@ -237,7 +237,6 @@ function getMultiFilter()
 {
    var filter = new Object();
    $('select[type="filter"]').each(function() {
-	 console.log($(this));
   	 filter[$(this).attr('id')] = $(this).val(); 
    });
    return filter;
