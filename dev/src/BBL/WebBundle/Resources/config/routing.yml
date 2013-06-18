@@ -82,7 +82,10 @@ fillArtist:
    defaults: { _controller: BBLWebBundle:Load:fillArtist}
    requirements:
     _method: POST
-   
+    
+loadArtists:
+  pattern: /loadArtists
+  defaults: { _controller: BBLWebBundle:Load:loadArtist}
     
 events:
   pattern: /events

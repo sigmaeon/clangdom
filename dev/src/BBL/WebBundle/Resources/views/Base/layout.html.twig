@@ -55,6 +55,7 @@ $(document).ready(function(){
 	initLoad();
 	loadTabs();
 	loadFormData();
+	loadArtists()
 });
 
 
@@ -111,6 +112,21 @@ function initLoad()
 });
 }
 
+function loadArtists()
+{
+	$.ajax({
+		url: '{{ path('loadArtists') }}',
+		type: "post",
+		success: function( data ) {
+			 var length = data.length;
+			 for(var i = 0; i < length; i++){
+					$('select[id^="fav"]').each(function() { 
+			 			$(this).append('<option value="' + data[i] + '">' + data[i] + '</option> <br />');
+					 });
+			 }
+		 }});
+}
+
 function loadFormData()
 {
 	$.ajax({
@@ -147,7 +163,6 @@ function loadFormData()
 
 $(function() {
     $("#tabs").tabs();
-
     $("#open_l").on("click", function(e) {
         $("#dialog_l").dialog({
             draggable:false,
@@ -310,14 +325,15 @@ function genLoad()
  
 function testfunc()
 {
-	alert('Surprise Mothafuckaa!!! ');
+	alert('Surprise Mothafuckaa!!!');
 }
+
 
 function getMultiFilter()
 {
    var filter = new Object();
    $('select[type="filter"]').each(function() {
-  	 filter[this.attr('id')] = $(this).val(); 
+  	 filter[$(this).attr('id')] = $(this).val(); 
    });
    return filter;
 	
