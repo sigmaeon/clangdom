@@ -4,11 +4,6 @@
         <ul>
             <li><a href="{{ path('bbl_web_homepage') }}">Clangdom</a></li>
             <li><div id="searchfield"><input type="text" id="search" class="textBox" value="Search!" onfocus="if (this.value == 'Search!') this.value = '';" onblur="if (this.value == '') this.value = 'Search!';" maxlength="255" /><input type="image" src="{{ asset('bundles/bblweb/images/btn_search.png') }}" class="button" /></div></li>
-            <li><a href="javascript:void(0);"><div id="radio"><img src="{{ asset('bundles/bblweb/images/radio4.png') }}" class="picR"></div></a>
-                <ul>
-                    <li></li>
-                </ul>
-            </li>
             <li><a id="open_f" href="javascript:void(0);"><div id="filter"><img src="{{ asset('bundles/bblweb/images/filter2.png') }}" class="picF"></div></a></li>
            {% block headerspec %}
            {% endblock %}

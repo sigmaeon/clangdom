@@ -2,23 +2,18 @@
 {% block body %} 
 
 	{% block header %}
-		{% if sesson == true %}
-				{% include 'BBLWebBundle:User:headeruser.html.twig' with { 'name' : name } %}
-			{% else %}
-				{% include 'BBLWebBundle:Base:headerguest.html.twig' %}
-		{% endif %}
+            {% if sesson == true %}
+		{% include 'BBLWebBundle:User:headeruser.html.twig' with { 'name' : name } %}
+            {% else %}
+		{% include 'BBLWebBundle:Base:headerguest.html.twig' %}
+            {% endif %}
 	{% endblock %}
 	
 	<div id="content" class="span-24">
-		{% block content %} 
-		{% endblock %}
+            {% block content %}{% endblock %}
 	</div>
 
-	{% block footer %}
-		<!--<div id="footer" class="span-24 transparent"> 
-			<h1> THIS IS OUR AWESOME FOOTER!!!!!!</h1>
-                     </div>-->
-	{% endblock %}
+	{% block footer %}{% endblock %}
 	
 {% endblock %}
 
@@ -152,6 +147,50 @@ $(function() {
             }
 
         });
+    });
+    
+    $("#open_m").on("click", function(e) {
+        $("#dialog_m").dialog({
+            draggable:false,
+            resizable: false,
+            modal: true,
+            width: 500,
+            height: 420,
+            buttons:{
+            "Send message": function(){
+                    $( this ).dialog( "close" );
+            },
+            Cancel: function() {
+                    $( this ).dialog( "close" );
+                    }
+            }
+
+        });
+
+        $(".inner-dialog-multiselect").chosen();
+
+    });
+
+    $("#open_rm").on("click", function(e) {
+        $("#dialog_rm").dialog({
+            draggable:false,
+            resizable: false,
+            modal: true,
+            width: 500,
+            height: 420,
+            buttons:{
+            "Send message": function(){
+                    $( this ).dialog( "close" );
+            },
+            Cancel: function() {
+                    $( this ).dialog( "close" );
+                    }
+            }
+
+        });
+
+        $(".inner-dialog-multiselect").chosen();
+
     });
 
     $("#open_f").on("click", function(e) {
