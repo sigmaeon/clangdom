@@ -223,7 +223,10 @@ $(function() {
 		                     type: "post",
 		                     url: '{{ path('clearFilter') }}',
 		                     success: function() {
-		                    	//console.log("succsess");
+		                    	$('select[type="filter"]').each(function(){
+		                    	    $(this).val('').trigger('liszt:updated');
+		                    	    $(this).val('Choose...').trigger('liszt:updated');
+		                    	 });
 		                     },
 		                     error: function() {
 		                       // alert('No! This is wrong');
@@ -326,6 +329,16 @@ function genLoad()
 function testfunc()
 {
 	alert('Surprise Mothafuckaa!!!');
+	 $.ajax({
+         type: "post",
+         url: '{{ path('setMedia') }}',
+         success: function() {
+        	//console.log("succsess");
+         },
+         error: function() {
+           // alert('No! This is wrong');
+         }
+	});
 }
 
 

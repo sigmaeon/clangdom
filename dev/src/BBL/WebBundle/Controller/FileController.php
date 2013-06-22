@@ -139,9 +139,20 @@ class FileController extends Controller
     	$em = $this->getDoctrine()->getManager();
     	$kontoRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Konto');
     	$konto = $kontoRepo->findOneByIdkonto($session->get('konto'));
+    	//Taghandling
+    	$tag = $tagRepo->findOneByName(mb_strtolower($konto->getName()));
+    	$tag2 = $tagRepo->findOneByName(mb_strtolower($name));
+    	if($tag2 == null){
+    		$tag2 = new Tags();
+    		$tag2->setName(mb_strtolower($name));
+    		$em->persist($tag2);
+    	}
+    	
     	$post = new Post();
     	$post->setName($name);
     	$post->setKonto($konto);
+    	$post->addTagstag($tag);
+    	$post->addTagstag($tag2);
     	$video = new Video();
     	$video->setUrl($link);
     	$video->setPost($post);

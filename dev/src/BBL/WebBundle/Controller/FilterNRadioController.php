@@ -28,7 +28,7 @@ class FilterNRadioController extends Controller
  	{
  		$response = new Response();
  		$filter = json_decode($this->getRequest()->request->get("filter"));
- 		
+ 		//$this->clearFilterAction();
  		foreach($filter as $key => $value)
  		{
  			$i = 0;
@@ -46,7 +46,7 @@ class FilterNRadioController extends Controller
  	
  	public function clearFilterAction()
  	{
- 		$response = new Response("What");
+ 		$response = new Response();
  		$cookies = $this->getRequest()->cookies;
  		$cookieKeys = $cookies->keys();
  		foreach($cookieKeys as $key)
@@ -58,7 +58,38 @@ class FilterNRadioController extends Controller
  	
  	public function setRadioMediaAction()
  	{
+ 		$artistRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Artist');
+ 		$query = $artistRepo->createQueryBuilder('a');
  		
+ 		$cookies = $this->getRequest()->cookies;
+ 		$cookieKeys = $cookies->keys(); 		
+ 		$favs = null;
+ 		$gens = null;
+ 		$locs = null;
+ 		foreach($cookieKeys as $key)
+ 		{
+ 			if(strpos($key, "filter") === 0)
+ 			{
+ 				
+ 				if(strpos($key, "Rad") !== false)  // ~~~ if key contains "Rad"
+ 				{
+ 					if(strpos($key, "fav") !== false)
+ 					{
+ 						$favs[] = $cookies->get($key);
+ 					}
+ 					if(strpos($key, "gen") !== false)
+ 					{
+ 						$gens[] = $cookies->get($key);
+ 					}
+ 					if(strpos($key, "loc") !== false)
+ 					{
+ 						$locs[] = $cookies->get($key);
+ 					}
+ 				}
+ 			}
+ 		}
+ 		$result = array($locs, $gens, $favs);
+ 		return new Response(json_encode($result));
  	}
  	
 }
