@@ -37,8 +37,17 @@
 	<div id="content" class="span-24">
             {% block content %}{% endblock %}
 	</div>
+<<<<<<< HEAD
 	 
+	{% block footer %}
+		<!--<div id="footer" class="span-24 transparent"> 
+			<h1> THIS IS OUR AWESOME FOOTER!!!!!!</h1>
+                     </div>-->
+	{% endblock %}
+=======
+
 	{% block footer %}{% endblock %}
+>>>>>>> 238e81f9e9dca6acd619eb8125413e66c593ca70
 	
 {% endblock %}
 
