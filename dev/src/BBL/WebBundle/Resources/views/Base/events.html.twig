@@ -14,7 +14,6 @@
 				<h3>Create Event</h3>
 				<div>
 				<!-- action has to be edited!-->
-					<form action="#">
 						<div class="span-24">
 							<div class="span-4 prepend-1 pfeffi">Eventname:</div>
 							<div class="span-4 prepend-1 last"><input type="text" name="eventname" id="eveName"></div>
@@ -25,7 +24,17 @@
 						</div>
 						<div class="span-24">
 							<div class="span-4 prepend-1 pfeffi">Location:</div>
-							<div class="span-4 prepend-1"><input type="text" name="location" id="location"></div>
+							<div class="span-4 prepend-1">
+								<select data-placeholder="Location..." name="location" id="location">
+									<option></option>
+								</select>
+							</div>
+							
+						</div>
+						<div class="span-24">
+							<div class="span-4 prepend-1 pfeffi">Add Artists:</div>
+							<div class="span-4 prepend-1"><select name="favArtist" id="favArtist" data-placeholder="Choose Artists..."  multiple style="width:350px;" tabindex="4">
+							</select></div>
 						</div>
 						<div class="span-24">
 							<div class="span-4 prepend-1 pfeffi">Date:</div>
@@ -42,15 +51,45 @@
 {% endblock %}
 
 {% block javascript %}
-
 // <script>
+{{ parent() }}
 <!-- accordion-->
 	$(document).ready(function(){
-				$( "#accordion" ).accordion({
-				active:false,
-				collapsible:true
-			});
-			$( "#date" ).datepicker();
-			
+		accodionNdThatStuff();
+		createEvent();
+	});
+
+function accodionNdThatStuff()
+{
+
+	//$("#favArtist").chosen();
+	$( "#accordion" ).accordion({
+		active:false,
+		collapsible:true
+	});
+	$( "#date" ).datepicker();	
+}
+
+function createEvent()
+{
+	$("#evebut").click(function(){
+		$.ajax({
+		  type: "post",
+		  url: "{{ path('createEvent') }}",
+		  data: {Name: $("#eveName").val(),
+		  		 Info: $("#info").val(),
+		  		 Artists: JSON.stringify($("#favArtist").val()),
+		  		 Region: $("#location").val,
+				 State:   $('option:selected', '#location').attr('fedstate'),
+			     Region:  $('option:selected', '#location').attr('country'),
+			     Date: $('#date').val(),
+			     Time: $('#time').val()}
+	     
 		});
+	});
+}
+
+
+
+
 {% endblock %}

@@ -5,27 +5,33 @@
 				{% for object in objects %}
 					{% if object.type == "simple" %}
 					    {% include 'BBLWebBundle:Content:simple.html.twig' 
-						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'info': object.info} %}
+						with {'picture': object.picture, 'link': object.link, 
+									'name': object.name, 'info': object.info} %}
 						
 					{% elseif object.type == "mp3" %}
 						{% include 'BBLWebBundle:Content:mp3.html.twig'
-						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'songname': object.song, 'songlink': object.songlink,} %}
+						with {'picture': object.picture, 'link': object.link, 
+								'name': object.name, 'songname': object.song, 'songlink': object.songlink,} %}
 						
 					{% elseif object.type == "video" %}
 					    {% include 'BBLWebBundle:Content:video.html.twig' 
-						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'info': object.info, 'youtubelink': object.youtube, 'songname': object.song} %}
+						with {'picture': object.picture, 'link': object.link, 'name': object.name, 
+								'info': object.info, 'youtubelink': object.youtube, 'songname': object.song} %}
 					
 					{% elseif object.type == "event" %}
 					    {% include 'BBLWebBundle:Content:video.html.twig' 
-						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'info': object.info} %}
+						with {'picture': object.picture, 'link': object.link, 
+								'name': object.name, 'info': object.info} %}
 						
 					{% elseif object.type == "ownmp3" %}
 					    {% include 'BBLWebBundle:Content:ownmp3.html.twig' 
-						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'songname': object.song, 'songlink': object.songlink,} %}
+						with {'picture': object.picture, 'link': object.link, 
+								'name': object.name, 'songname': object.song, 'songlink': object.songlink,} %}
 						
 					{% elseif object.type == "ownvideo" %}
 					    {% include 'BBLWebBundle:Content:ownvideo.html.twig' 
-						with {'picture': object.picture, 'link': object.link, 'name': object.name, 'info': object.info, 'youtubelink': object.youtube, 'songname': object.song} %}
+						with {'picture': object.picture, 'link': object.link, 'name': object.name, 
+								'info': object.info, 'youtubelink': object.youtube, 'songname': object.song} %}
 					
 						
 					{% endif %}

@@ -32,9 +32,11 @@ class FileController extends Controller
 	public function createEventAction()
 	{
 		$session = $this->get('session');
-		if($session->get('state') == 'logged') throw new UnauthorizedClangdomException();
+		if($session->get('state') != 'logged') throw new UnauthorizedClangdomException();
 		$name = $this->getRequest()->get("name");
 		$info = $this->getRequest()->get("info");
+		$artists = json_decode($this->getRequest()->get("Artists"));
+		return new Response();
 		
 		
 	}
@@ -103,9 +105,8 @@ class FileController extends Controller
     	$name = $this->getRequest()->get("name");
     	if(trim($name) == "") throw new WrongParamsClangdomException();
     	$upFile = $this->getRequest()->files->get("datei");
-    	//if(!Helper::checkExtension($upFile, array("mp3"))) throw new WrongParamsClangdomException(); //another exception pls
     	$session = $this->get('session');
-    	if($session->get('state') == 'logged') throw new UnauthorizedClangdomException();
+    	if($session->get('state') != 'logged') throw new UnauthorizedClangdomException();
     	$em = $this->getDoctrine()->getManager();
     	$kontoRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Konto');
     	$konto = $kontoRepo->findOneByIdkonto($session->get('konto'));
@@ -116,14 +117,14 @@ class FileController extends Controller
     	$music->setPost($post);
     	$file = new File();
     	$file->setFile($upFile);
-    	$file->upload(microtime().'.'.'mp3' /*$upFile->guessExtension()*/, $session->get('link'));
+    	$file->upload(uniqid().'.'.'mp3', $session->get('link'));
     	$music->setFile($file);
     	$em->persist($file);
     	$em->persist($music);
     	$em->persist($post);
     	$em->persist($konto);
     	$em->flush();
-    	return new Response("Thats just for testing");
+    	return new Response();
     }
    
     

@@ -28,9 +28,9 @@
 
 	{% block header %}
             {% if sesson == true %}
-		{% include 'BBLWebBundle:User:headeruser.html.twig' with { 'name' : name } %}
+				{% include 'BBLWebBundle:User:headeruser.html.twig' with { 'name' : name } %}
             {% else %}
-		{% include 'BBLWebBundle:Base:headerguest.html.twig' %}
+				{% include 'BBLWebBundle:Base:headerguest.html.twig' %}
             {% endif %}
 	{% endblock %}
 	
@@ -47,10 +47,12 @@
 //<script>
 
 $(document).ready(function(){
+	setRadioMedia();
 	initLoad();
 	loadTabs();
 	loadFormData();
 	loadArtists()
+	
 });
 
 
@@ -87,6 +89,7 @@ function initLoad()
 {
 	var path = window.location.pathname;
 	var link = path.substring(path.lastIndexOf("/"));
+	if(link == "/events") return;
 	$.ajax({
 		  url: '{{ path('ajax_load') }}',
 		  type: "post",
@@ -119,7 +122,7 @@ function loadArtists()
 			 			$(this).append('<option value="' + data[i] + '">' + data[i] + '</option> <br />');
 					 });
 			 }
-		 }});
+		 }}); 
 }
 
 function loadFormData()
@@ -153,6 +156,23 @@ function loadFormData()
 	});
 }
 
+function setRadioMedia()
+{
+	$.ajax({
+       type: "post",
+       url: "{{ path('setMedia') }}",
+       success: function(data) {
+           for(var i = 0; i < data.length; i++)
+           {
+	    	   player.add({
+	    		   title:data[i][1],
+	    		   artist: "<a href='{{ path('bbl_web_homepage') }}profil" +  data[i][3] +  "'> "+ data[i][2]+ " <a>",
+	    		   mp3:"{{ asset('') }}"+data[i][0]+""
+	    		 });
+           }
+       }
+	});
+}
 
 // --------------- Pop Up-------------------
 
@@ -243,6 +263,10 @@ $(function() {
             height: 500,
             buttons:{
             "Apply": function(){
+	            	$.ajax({
+	                    type: "post",
+	                    url: '{{ path('clearFilter') }}'
+	        		  });
                 	 var filter = getMultiFilter();
 	            	 $.ajax({
 	                     type: "post",
@@ -368,16 +392,7 @@ function genLoad()
 function testfunc()
 {
 	alert('Surprise Mothafuckaa!!!');
-	 $.ajax({
-         type: "post",
-         url: '{{ path('setMedia') }}',
-         success: function() {
-        	//console.log("succsess");
-         },
-         error: function() {
-           // alert('No! This is wrong');
-         }
-	});
+	
 }
 
 
@@ -393,84 +408,15 @@ function getMultiFilter()
 
 
 
-//-------try that fucking player
+//-------Radio-Player----
 
 var player = null;
 $(document).ready(function(){
 player = new jPlayerPlaylist({
 		jPlayer: "#jquery_jplayer_1",
 		cssSelectorAncestor: "#jp_container_1"
-	}, [
-		{
-			title:"Cro Magnon Man",
-			artist:"<a href='/clangdom/app_dev.php/profil/god'> God <a>",
-			mp3:"http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/TSP-01-Cro_magnon_man.ogg"
-		},
-		{
-			title:"Your Face",
-			mp3:"http://www.jplayer.org/audio/mp3/TSP-05-Your_face.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/TSP-05-Your_face.ogg"
-		},
-		{
-			title:"Cyber Sonnet",
-			artist:"<a href='Tour Mam'> Your Mam <a>",
-			mp3:"http://www.jplayer.org/audio/mp3/TSP-07-Cybersonnet.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/TSP-07-Cybersonnet.ogg"
-		},
-		{
-			title:"Tempered Song",
-			mp3:"http://www.jplayer.org/audio/mp3/Miaow-01-Tempered-song.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/Miaow-01-Tempered-song.ogg"
-		},
-		{
-			title:"Hidden",
-			mp3:"http://www.jplayer.org/audio/mp3/Miaow-02-Hidden.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/Miaow-02-Hidden.ogg"
-		},
-		{
-			title:"Lentement",
-			mp3:"http://www.jplayer.org/audio/mp3/Miaow-03-Lentement.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/Miaow-03-Lentement.ogg"
-		},
-		{
-			title:"Lismore",
-			mp3:"http://www.jplayer.org/audio/mp3/Miaow-04-Lismore.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/Miaow-04-Lismore.ogg"
-		},
-		{
-			title:"The Separation",
-			mp3:"http://www.jplayer.org/audio/mp3/Miaow-05-The-separation.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/Miaow-05-The-separation.ogg"
-		},
-		{
-			title:"Beside Me",
-			mp3:"http://www.jplayer.org/audio/mp3/Miaow-06-Beside-me.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/Miaow-06-Beside-me.ogg"
-		},
-		{
-			title:"Bubble",
-			free:true,
-			mp3:"http://www.jplayer.org/audio/mp3/Miaow-07-Bubble.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
-		},
-		{
-			title:"Stirring of a Fool",
-			mp3:"http://www.jplayer.org/audio/mp3/Miaow-08-Stirring-of-a-fool.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/Miaow-08-Stirring-of-a-fool.ogg"
-		},
-		{
-			title:"Partir",
-			free: true,
-			mp3:"http://www.jplayer.org/audio/mp3/Miaow-09-Partir.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/Miaow-09-Partir.ogg"
-		},
-		{
-			title:"Thin Ice",
-			mp3:"http://www.jplayer.org/audio/mp3/Miaow-10-Thin-ice.mp3",
-			oga:"http://www.jplayer.org/audio/ogg/Miaow-10-Thin-ice.ogg"
-		}
-	], {
+	},
+	{
 		swfPath: "{{ asset('bundles/bblweb/swf/Jplayer.swf') }}",
 		supplied: "oga, mp3",
 		wmode: "window",
@@ -482,48 +428,5 @@ player = new jPlayerPlaylist({
        }
 	});
 });
-
-
-/*
-$(document).ready(function(){
-      $("#jquery_jplayer_1").jPlayer({
-        ready: function () {
-          $(this).jPlayer("setMedia", {
-            m4a: "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
-            oga: "http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
-          });
-        },
-        swfPath: "{{ asset('bundles/bblweb/swf/Jplayer.swf') }}",
-        supplied: "m4a, oga"
-      });
-    });
-
-  $(document).ready(function(){
-
-			var myCirclePlayer = new CirclePlayer("#jquery_jplayer_1",
-			{
-				m4a: "http://www.jplayer.org/audio/m4a/Miaow-07-Bubble.m4a",
-				oga: "http://www.jplayer.org/audio/ogg/Miaow-07-Bubble.ogg"
-			}, {
-				cssSelectorAncestor: "#cp_container_1"
-			});
-});
-
-function player(){
-	element=document.getElementById('radpic')
-	if(element.src.match("radioon")){
-		element.src="{{ asset('bundles/bblweb/images/radiooff.png') }}",
-		$(function(){
-			$('#pause').click();
-		});
-	}
-	else{
-		element.src="{{ asset('bundles/bblweb/images/radioon.png') }}",
-		$(function(){
-			$('#play').click();
-		});
-	}
-} 
-*/  
 
 {% endblock %} 

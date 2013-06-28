@@ -67,8 +67,10 @@ class MainController extends Controller
     	$profilRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Profil');
     	
     	$profil = $profilRepo->findOneByLink("/".$name);
-    	$pic = $profil->getPicture()->getFile()->getWebPath();
     	if($profil == null) throw new RouteNotFoundException();
+    	$pic = $profil->getPicture();
+    	if($pic == null) $pic = $pic = "images/default.jpg";
+    	else $pic = $pic->getFile()->getWebPath();
     	$konto = $kontoRepo->findOneByProfil($profil->getIdprofil());
     	
     	//here goes logic for own profil
@@ -139,7 +141,7 @@ class MainController extends Controller
     		$link = ($str.$i);
     	}
     	
-    	$fs->mkdir(self::$rootDir."/".$link); // make a dir for the User and i want an exception
+    	$fs->mkdir(self::$rootDir."/".$link); 
     	$profil->setLink($link);
     	$konto->setProfil($profil);
     	
@@ -164,7 +166,7 @@ class MainController extends Controller
     	
     	//Define Konto
     	if($request->request->get('Type') == "Artist") $this->signArtist($konto);
-    	else if($request->request->get('Type') == "Source") $this->signSource($konto);  //wrong-type Exception GOES here
+    	else if($request->request->get('Type') == "Source") $this->signSource($konto);  
     	$user->addIdkonto($konto);
     	
     	

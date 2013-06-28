@@ -77,7 +77,7 @@ class ClangdomExceptionListener
 			$response = new Response();
 			$response->setStatusCode($exception->getStatusCode());
 			$response->headers->replace($exception->getHeaders());
-			$response->setContent($this->engine->render('BBLWebBundle:Exceptions:unauthorizedParams.html.twig'));
+			$response->setContent($this->engine->render('BBLWebBundle:Exceptions:unauthorized.html.twig'));
 			$event->setResponse($response);
 		}
 		elseif($exception instanceof RouteNotFoundException)

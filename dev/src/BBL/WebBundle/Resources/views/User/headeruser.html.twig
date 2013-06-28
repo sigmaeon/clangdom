@@ -1,7 +1,7 @@
 {% extends 'BBLWebBundle:Base:headerlayout.html.twig' %}
 {% block headerspec %}
  {{ parent() }}     
-        <li><div class="hiddenuser">hiden</div></li>
+        <li><div class="hiddenuser">hidden</div></li>
         <li><a href="javascript:void(0);"><img src="{{ asset('bundles/bblweb/images/message.png') }}" class="picM"></a>
                   <ul class="menucontainer">
                            <li><a id="open_m" href="javascript:void(0);">New Message</a></li>
@@ -28,9 +28,8 @@
 <!-- New Message-Dialog -->
 <div id="dialog_m" style="display:none" title="New Message" class="span-10">
     <div class="span-10">
-        <select id="genRad" name="genRad" data-placeholder="Recipients..." class="inner-dialog-multiselect" multiple style="width:350px;" tabindex="4">
+        <select id="mesRec" name="mesRec" data-placeholder="Recipients..." class="dialog-multiselect" multiple style="width:350px;" tabindex="4">
             <option value=""></option>
-            <option value="Musikschule_Imst">Musikschule Imst</option>
         </select>
     </div>
     <div class="span-10 hidden">hidden</div>

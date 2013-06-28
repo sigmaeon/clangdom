@@ -28,7 +28,6 @@ class FilterNRadioController extends Controller
  	{
  		$response = new Response();
  		$filter = json_decode($this->getRequest()->request->get("filter"));
- 		//$this->clearFilterAction();
  		foreach($filter as $key => $value)
  		{
  			$i = 0;
@@ -41,7 +40,9 @@ class FilterNRadioController extends Controller
 	 			}
  			}
  		}
- 		return $response->send();
+ 		$response->send();
+ 		$response->sendHeaders();
+ 		return $response;
  	}
  	
  	public function clearFilterAction()
@@ -58,8 +59,12 @@ class FilterNRadioController extends Controller
  	
  	public function setRadioMediaAction()
  	{
+ 		$em = $this->getDoctrine()->getManager();
  		$artistRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Artist');
- 		$query = $artistRepo->createQueryBuilder('a');
+ 		$query = $artistRepo->createQueryBuilder('a')
+ 				->innerJoin('a.konto', 'k')
+ 				->innerJoin('k.location', 'l')
+ 				->innerJoin('a.genregenre', 'g');
  		
  		$cookies = $this->getRequest()->cookies;
  		$cookieKeys = $cookies->keys(); 		
@@ -88,8 +93,45 @@ class FilterNRadioController extends Controller
  				}
  			}
  		}
- 		$result = array($locs, $gens, $favs);
- 		return new Response(json_encode($result));
+ 		if($gens != null)
+ 		{
+ 			$query->where('g.name IN (:gens)')
+ 				  ->setParameter('gens', $gens);
+ 		}
+ 		if($locs != null)
+ 		{
+ 			if($gens == null) 
+ 			{
+ 				$query->where('l.region IN (:locs)');
+ 				$first = false;
+ 			}
+ 			else $query->andWhere('l.region IN (:locs)');
+ 			$query->setParameter('locs', $locs);
+ 			
+ 		}
+ 		if($favs != null && ($locs != null || $gens != null))
+ 		{
+ 			$query->orWhere('k.name IN (:favs)');
+ 			$query->setParameter('favs', $favs);
+ 		}
+ 			
+ 		$result = $query->getQuery()->getResult();
+ 		$mp3s = null;
+ 		foreach($result as $artist)
+ 		{
+ 			$mq = $em->createQuery("SELECT m FROM BBL\WebBundle\Entity\Music m JOIN m.post p JOIN p.konto k 
+ 									WHERE k.idkonto = '" .$artist->getKonto()->getIdkonto() . "'");
+ 			$musics = $mq->getResult();
+ 			foreach($musics as $music)
+ 			{
+ 				$mp3s[] = array($music->getFile()->getWebPath(), $music->getPost()->getName(),
+ 								 $artist->getKonto()->getName(), $artist->getKonto()->getProfil()->getLink());
+ 			}
+ 		}
+ 		if($mp3s == null) return new Response();
+ 		shuffle($mp3s);
+ 		$mp3s = array_slice($mp3s, 0, 20);
+ 		return new Response(json_encode($mp3s),200,array('Content-Type'=>'application/json'));
  	}
  	
 }

@@ -15,7 +15,7 @@
 	<hr>
 		<div class="c_content span-22">
 		<div class="c_songtitle span-20 prepend-1"><p>{{ songname }}</p></div>
-		<div class="c_mp3 span-20 prepend-1"><audio controls><source src="{{ asset(songlink) }}"></audio></div>
+		<div class="c_mp3 span-20 prepend-1"><audio controls preload="none"><source src="{{ asset(songlink) }}"></audio></div> 
 	</div>
 	<hr>
 	<div class="c_footer span-22">

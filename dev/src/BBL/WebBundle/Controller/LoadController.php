@@ -25,13 +25,11 @@ class LoadController extends Controller
     	//Objects for Managing
     	$request = $this->getRequest();
     	if(!$request->isXmlHttpRequest()) throw new NoAjaxClangdomException();
-    	$em = $this->getDoctrine()->getManager();
-    	$userRepo = $this->getDoctrine()->getRepository('BBLWebBundle:User');
     	$type = $request->request->get('Type');
     	if($type == null) throw new WrongParamsClangdomException();
     	switch ($type){ 
     	
-    		case "hot":   return $this->fillHot(); //return $this->fillHot();
+    		case "hot":   return $this->fillHot(); 
     		case "bands": return $this->fillBand();
     		case "event": return $this->fillEvent();
     		case "music": return $this->fillMusic();
@@ -60,9 +58,8 @@ class LoadController extends Controller
     			$konto = $music->getPost()->getKonto();
     			$pic = $konto->getProfil()->getPicture();
     			if($pic != null) $objects['ob'.$i]['picture'] =  $pic->getFile()->getWebPath();
-    			else $objects['ob'.$i]['picture'] =  ".."; //default pic link goes here
+    			else $objects['ob'.$i]['picture'] =  "images/default.jpg"; //default pic link 
     			$objects['ob'.$i]['link'] = $konto->getProfil()->getLink();
-    			$objects['ob'.$i]['info'] = "..";
     			$objects['ob'.$i]['name'] = $konto->getName();
     			$objects['ob'.$i]['song'] = $music->getPost()->getName();
     			$objects['ob'.$i]['songlink'] = $music->getFile()->getWebPath();
@@ -74,7 +71,7 @@ class LoadController extends Controller
     			$konto = $video->getPost()->getKonto();
     			$pic = $konto->getProfil()->getPicture();
     			if($pic != null) $objects['ob'.$i]['picture'] =  $pic->getFile()->getWebPath();
-    			else $objects['ob'.$i]['picture'] =  ".."; //default pic link goes here
+    			else $objects['ob'.$i]['picture'] =  "images/default.jpg"; //default pic 
     			$objects['ob'.$i]['link'] = $konto->getProfil()->getLink();
     			$objects['ob'.$i]['info'] = "..";
     			$objects['ob'.$i]['name'] = $konto->getName();
@@ -105,7 +102,7 @@ class LoadController extends Controller
     		$objects['ob'.$i]['type'] = "simple";
     		$pic = $konto->getProfil()->getPicture();
     		if($pic != null) $objects['ob'.$i]['picture'] =  $pic->getFile()->getWebPath();
-    		else $objects['ob'.$i]['picture'] =  "..";
+    		else $objects['ob'.$i]['picture'] =  "images/default.jpg";
     		$objects['ob'.$i]['link'] = $konto->getProfil()->getLink();
     		$objects['ob'.$i]['info'] = "..";
     		$objects['ob'.$i]['name'] = $konto->getName();
@@ -138,7 +135,7 @@ class LoadController extends Controller
     		if($pic != null) $objects['ob'.$i]['picture'] =  $pic->getFile()->getWebPath();
     		else $objects['ob'.$i]['picture'] =  ".."; //default pic link goes here
     		$objects['ob'.$i]['link'] = $konto->getProfil()->getLink();
-    		$objects['ob'.$i]['info'] = "..";
+    		$objects['ob'.$i]['info'] = "images/default.jpg";
     		$objects['ob'.$i]['name'] = $konto->getName();
     		$objects['ob'.$i]['song'] = $music->getPost()->getName();
     		$objects['ob'.$i]['songlink'] = $music->getFile()->getWebPath();
@@ -161,9 +158,9 @@ class LoadController extends Controller
     		$objects['ob'.$i]['type'] = "simple";
     		$pic = $konto->getProfil()->getPicture();
     		if($pic != null) $objects['ob'.$i]['picture'] =  $pic->getFile()->getWebPath();
-    		else $objects['ob'.$i]['picture'] =  "..";
+    		else $objects['ob'.$i]['picture'] =  "images/default.jpg";
     		$objects['ob'.$i]['link'] = $konto->getProfil()->getLink();
-    		$objects['ob'.$i]['info'] = "..";
+    		$objects['ob'.$i]['info'] = "images/default.jpg";
     		$objects['ob'.$i]['name'] = $konto->getName();
     		$i++;
     	}
@@ -196,9 +193,9 @@ class LoadController extends Controller
     			$konto = $music->getPost()->getKonto();
     			$pic = $konto->getProfil()->getPicture();
     			if($pic != null) $objects['ob'.$i]['picture'] =  $pic->getFile()->getWebPath();
-    			else $objects['ob'.$i]['picture'] =  ".."; //default pic link goes here
+    			else $objects['ob'.$i]['picture'] =  "images/default.jpg"; //default pic link goes here
     			$objects['ob'.$i]['link'] = $konto->getProfil()->getLink();
-    			$objects['ob'.$i]['info'] = "..";
+    			$objects['ob'.$i]['info'] = "images/default.jpg";
     			$objects['ob'.$i]['name'] = $konto->getName();
     			$objects['ob'.$i]['song'] = $music->getPost()->getName();
     			$objects['ob'.$i]['songlink'] = $music->getFile()->getWebPath();
@@ -211,9 +208,9 @@ class LoadController extends Controller
     			$konto = $video->getPost()->getKonto();
     			$pic = $konto->getProfil()->getPicture();
     			if($pic != null) $objects['ob'.$i]['picture'] =  $pic->getFile()->getWebPath();
-    			else $objects['ob'.$i]['picture'] =  ".."; //default pic link goes here
+    			else $objects['ob'.$i]['picture'] =  "images/default.jpg"; //default pic link goes here
     			$objects['ob'.$i]['link'] = $konto->getProfil()->getLink();
-    			$objects['ob'.$i]['info'] = "..";
+    			$objects['ob'.$i]['info'] = "images/default.jpg";
     			$objects['ob'.$i]['name'] = $konto->getName();
     			$objects['ob'.$i]['song'] = $video->getPost()->getName();
     			$objects['ob'.$i]['youtube'] = $video->getUrl();
