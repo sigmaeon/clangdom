@@ -29,18 +29,18 @@ class Event
     private $startdate;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="Enddate", type="date", nullable=true)
-     */
-    private $enddate;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="Info", type="text", nullable=true)
      */
     private $info;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="Time", type="time", nullable=true)
+     */
+    private $time;
 
     /**
      * @var \Doctrine\Common\Collections\Collection

@@ -29,18 +29,18 @@ class Event
     private $startdate;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="Enddate", type="date", nullable=true)
-     */
-    private $enddate;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="Info", type="text", nullable=true)
      */
     private $info;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="Time", type="time", nullable=true)
+     */
+    private $time;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -120,29 +120,6 @@ class Event
     }
 
     /**
-     * Set enddate
-     *
-     * @param \DateTime $enddate
-     * @return Event
-     */
-    public function setEnddate($enddate)
-    {
-        $this->enddate = $enddate;
-    
-        return $this;
-    }
-
-    /**
-     * Get enddate
-     *
-     * @return \DateTime 
-     */
-    public function getEnddate()
-    {
-        return $this->enddate;
-    }
-
-    /**
      * Set info
      *
      * @param string $info
@@ -163,6 +140,29 @@ class Event
     public function getInfo()
     {
         return $this->info;
+    }
+
+    /**
+     * Set time
+     *
+     * @param \DateTime $time
+     * @return Event
+     */
+    public function setTime($time)
+    {
+        $this->time = $time;
+    
+        return $this;
+    }
+
+    /**
+     * Get time
+     *
+     * @return \DateTime 
+     */
+    public function getTime()
+    {
+        return $this->time;
     }
 
     /**

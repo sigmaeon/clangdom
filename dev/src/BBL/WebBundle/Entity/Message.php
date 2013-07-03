@@ -5,21 +5,21 @@ namespace BBL\WebBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Nachricht
+ * Message
  *
- * @ORM\Table(name="nachricht")
+ * @ORM\Table(name="message")
  * @ORM\Entity
  */
-class Nachricht
+class Message
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="idNachricht", type="integer", nullable=false)
+     * @ORM\Column(name="idMessage", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idnachricht;
+    private $idmessage;
 
     /**
      * @var string
@@ -38,9 +38,9 @@ class Nachricht
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="Date", type="date", nullable=false)
+     * @ORM\Column(name="Datetime", type="datetime", nullable=false)
      */
-    private $date;
+    private $datetime;
 
     /**
      * @var boolean
@@ -72,20 +72,20 @@ class Nachricht
 
 
     /**
-     * Get idnachricht
+     * Get idmessage
      *
      * @return integer 
      */
-    public function getIdnachricht()
+    public function getIdmessage()
     {
-        return $this->idnachricht;
+        return $this->idmessage;
     }
 
     /**
      * Set subject
      *
      * @param string $subject
-     * @return Nachricht
+     * @return Message
      */
     public function setSubject($subject)
     {
@@ -108,7 +108,7 @@ class Nachricht
      * Set text
      *
      * @param string $text
-     * @return Nachricht
+     * @return Message
      */
     public function setText($text)
     {
@@ -128,33 +128,33 @@ class Nachricht
     }
 
     /**
-     * Set date
+     * Set datetime
      *
-     * @param \DateTime $date
-     * @return Nachricht
+     * @param \DateTime $datetime
+     * @return Message
      */
-    public function setDate($date)
+    public function setDatetime($datetime)
     {
-        $this->date = $date;
+        $this->datetime = $datetime;
     
         return $this;
     }
 
     /**
-     * Get date
+     * Get datetime
      *
      * @return \DateTime 
      */
-    public function getDate()
+    public function getDatetime()
     {
-        return $this->date;
+        return $this->datetime;
     }
 
     /**
      * Set checked
      *
      * @param boolean $checked
-     * @return Nachricht
+     * @return Message
      */
     public function setChecked($checked)
     {
@@ -177,7 +177,7 @@ class Nachricht
      * Set sender
      *
      * @param \BBL\WebBundle\Entity\Konto $sender
-     * @return Nachricht
+     * @return Message
      */
     public function setSender(\BBL\WebBundle\Entity\Konto $sender = null)
     {
@@ -200,7 +200,7 @@ class Nachricht
      * Set recipient
      *
      * @param \BBL\WebBundle\Entity\Konto $recipient
-     * @return Nachricht
+     * @return Message
      */
     public function setRecipient(\BBL\WebBundle\Entity\Konto $recipient = null)
     {

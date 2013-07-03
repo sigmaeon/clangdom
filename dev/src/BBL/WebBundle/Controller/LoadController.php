@@ -116,8 +116,6 @@ class LoadController extends Controller
     
     public function fillEvent()
     {
-    	 
-   		
     }
     
     public function fillMusic()

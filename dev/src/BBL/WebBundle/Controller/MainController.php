@@ -310,5 +310,9 @@ class MainController extends Controller
 	}
 
 //--------------------------------SIGN UP---------------------------------------
+
+//----------------Message System----
+
+	
     
 }

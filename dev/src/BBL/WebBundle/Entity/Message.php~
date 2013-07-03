@@ -1,0 +1,73 @@
+<?php
+
+namespace BBL\WebBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Message
+ *
+ * @ORM\Table(name="message")
+ * @ORM\Entity
+ */
+class Message
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idMessage", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idmessage;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Subject", type="string", length=45, nullable=true)
+     */
+    private $subject;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Text", type="text", nullable=false)
+     */
+    private $text;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="Datetime", type="datetime", nullable=false)
+     */
+    private $datetime;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="Checked", type="boolean", nullable=false)
+     */
+    private $checked;
+
+    /**
+     * @var \Konto
+     *
+     * @ORM\ManyToOne(targetEntity="Konto")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Sender", referencedColumnName="idKonto")
+     * })
+     */
+    private $sender;
+
+    /**
+     * @var \Konto
+     *
+     * @ORM\ManyToOne(targetEntity="Konto")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Recipient", referencedColumnName="idKonto")
+     * })
+     */
+    private $recipient;
+
+
+}

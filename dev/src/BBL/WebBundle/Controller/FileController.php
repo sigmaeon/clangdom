@@ -2,6 +2,10 @@
 
 namespace BBL\WebBundle\Controller;
 
+use BBL\WebBundle\Entity\Profil;
+
+use BBL\WebBundle\Entity\Event;
+
 use BBL\WebBundle\Exception\EntityNotFoundClangdomException;
 
 use BBL\WebBundle\Exception\UnauthorizedClangdomException;
@@ -30,14 +34,58 @@ use BBL\WebBundle\Entity\Konto;
 class FileController extends Controller
 {
 	public function createEventAction()
-	{
+	{	
 		$session = $this->get('session');
 		if($session->get('state') != 'logged') throw new UnauthorizedClangdomException();
-		$name = $this->getRequest()->get("name");
-		$info = $this->getRequest()->get("info");
+		$em = $this->getDoctrine()->getManager();
+		$kontoRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Konto');
+		$konto = $kontoRepo->findOneByIdkonto($session->get('Konto'));
+		$artistRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Artist');
+		$profilRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Profil');
+		$name = $this->getRequest()->get("Name");
+		$info = $this->getRequest()->get("Info");
 		$artists = json_decode($this->getRequest()->get("Artists"));
-		return new Response();
+		$date = $this->getRequest()->get("Date");
+		$date = $date=date("Y-m-d",strtotime($date));
+		$date = new \DateTime($date);
+		$time = new \DateTime($this->getRequest()->get("Time"));
+		if($name == null) return new Response("The Event needs a Name", 405);
 		
+		$post = new Post();
+		$post->setName($name);
+		$post->setKonto($konto);
+		$event = new Event();
+		$event->setPost($post);
+		$profil = new Profil();
+		$str = ("/".$name);
+    	$str = mb_strtolower(preg_replace('/\s+/', '', $str), 'UTF-8'); //remove all whitespaces and set to lower case
+    	$link = $str;
+    	for($i = 1; $profilRepo->findOneByLink($link) != null; $i++)
+    	{
+    		
+    		$link = ($str.$i);
+    	}
+    	$profil->setLink($link);
+		$event->setProfil($profil);
+		if($info != null) $event->setInfo($info);
+		if($date != null) $event->setStartdate($date);
+		if($time != null) $event->setTime($time);
+		if($artists != null){
+			foreach($artists as $artist)
+			{
+				$artistEnti = $artistRepo->findOneByName($artist);  //must get better
+				$event->addKonto($artistEnti->getKonto());
+			}
+		}
+	
+		$em->persist($event);
+		$em->persist($post);
+		$wm->persist($profil);
+		$em->persist($konto);
+		$em->flush();
+		$response = new Response();
+		$response->setStatusCode(200);
+		return $response;
 		
 	}
  

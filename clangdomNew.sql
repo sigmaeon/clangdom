@@ -249,8 +249,8 @@ CREATE  TABLE IF NOT EXISTS `clangdom`.`Artist` (
   CONSTRAINT `fk_Artist_Konto1`
     FOREIGN KEY (`Konto` )
     REFERENCES `clangdom`.`Konto` (`idKonto` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 

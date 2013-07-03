@@ -5,8 +5,8 @@
       <generator strategy="IDENTITY"/>
     </id>
     <field name="startdate" type="date" column="Startdate" nullable="true"/>
-    <field name="enddate" type="date" column="Enddate" nullable="true"/>
     <field name="info" type="text" column="Info" nullable="true"/>
+    <field name="time" type="time" column="Time" nullable="true"/>
     <many-to-one field="profil" target-entity="Profil">
       <join-columns>
         <join-column name="Profil" referenced-column-name="idProfil"/>
