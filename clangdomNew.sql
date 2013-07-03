@@ -191,13 +191,13 @@ CREATE  TABLE IF NOT EXISTS `clangdom`.`Music` (
   CONSTRAINT `fk_Music_Post1`
     FOREIGN KEY (`Post` )
     REFERENCES `clangdom`.`Post` (`idPost` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
   CONSTRAINT `fk_Music_File1`
     FOREIGN KEY (`File` )
     REFERENCES `clangdom`.`File` (`idFile` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -269,8 +269,8 @@ CREATE  TABLE IF NOT EXISTS `clangdom`.`Source` (
   CONSTRAINT `fk_Source_Konto1`
     FOREIGN KEY (`Konto` )
     REFERENCES `clangdom`.`Konto` (`idKonto` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 

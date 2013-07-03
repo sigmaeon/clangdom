@@ -87,7 +87,9 @@ class MainController extends Controller
     
     public function eventsAction()
     {
-    	return $this->render('BBLWebBundle:Base:events.html.twig');
+    	$session = $this->get('session');
+    	if($session->get('state') == 'logged') return $this->render('BBLWebBundle:Base:events.html.twig');
+    	else return new Response('<html> <body>Not checked in </body> </html>');
     }
     
     public function settingsAction()
@@ -311,8 +313,17 @@ class MainController extends Controller
 
 //--------------------------------SIGN UP---------------------------------------
 
-//----------------Message System----
-
+//----------------Message System-------------
+public function sendMessageAction()
+{
+	$session = $this->get('session');
+	if($session->get('state') != 'logged') throw new UnauthorizedClangdomException();
+	$em = $this->getDoctrine()->getManager();
+	$kontoRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Konto');
+	$request = $this->getRequest();
+	return new Response();
+	
+}
 	
     
 }

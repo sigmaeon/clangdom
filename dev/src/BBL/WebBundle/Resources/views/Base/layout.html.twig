@@ -119,7 +119,7 @@ function loadArtists()
 			 var length = data.length;
 			 for(var i = 0; i < length; i++){
 					$('select[id^="fav"]').each(function() { 
-			 			$(this).append('<option value="' + data[i] + '">' + data[i] + '</option> <br />');
+			 			$(this).append('<option value="' + data[i][0] + '" artId="' + data[i][1] + '">' + data[i][0] + '</option> <br />');
 					 });
 			 }
 		 }}); 
@@ -210,28 +210,7 @@ $(function() {
         });
     });
     
-    $("#open_m").on("click", function(e) {
-        $("#dialog_m").dialog({
-            draggable:false,
-            resizable: false,
-            modal: true,
-            width: 500,
-            height: 420,
-            buttons:{
-            "Send message": function(){
-                    $( this ).dialog( "close" );
-            },
-            Cancel: function() {
-                    $( this ).dialog( "close" );
-                    }
-            }
-
-        });
-
-        $(".inner-dialog-multiselect").chosen();
-
-    });
-
+/*
     $("#open_rm").on("click", function(e) {
         $("#dialog_rm").dialog({
             draggable:false,
@@ -252,7 +231,7 @@ $(function() {
 
         $(".inner-dialog-multiselect").chosen();
 
-    });
+    });*/
 
     $("#open_f").on("click", function(e) {
         $("#dialog_f").dialog({
@@ -428,5 +407,44 @@ player = new jPlayerPlaylist({
        }
 	});
 });
+
+{% if sesson == true %}
+//--------------Javascripts for Users-----
+$("#open_m").on("click", function(e) {
+      $("#dialog_m").dialog({
+          draggable:false,
+          resizable: false,
+          modal: true,
+          width: 500,
+          height: 420,
+          buttons:{
+          "Send message": function() {
+        	 var ids = new Array();
+      		 $("#favRec option:selected").each(function(){ids.push($(this).attr("artid"));});
+          	 $.ajax({
+                   type: "post",
+                   url: '{{ path('sendMessage') }}',
+                   data: {Subject: $("#subject").val(),
+						  Text: $("message").val(),
+						  Recs: ids
+                     	 },	
+                   success: function() {
+                  	//console.log("succsess");
+                   },
+                   error: function() {
+                     // alert('No! This is wrong');
+                   }
+       		  });
+          	  $( this ).dialog( "close" );    
+          },
+          Cancel: function() {
+                  $( this ).dialog( "close" );
+          }
+          }
+      });
+
+      $(".inner-dialog-multiselect").chosen();
+});
+{% endif %}
 
 {% endblock %} 

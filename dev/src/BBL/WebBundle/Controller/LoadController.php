@@ -301,7 +301,7 @@ class LoadController extends Controller
     	$artists = $artistRepo->findAll();
     	foreach($artists as $artist)
     	{
-    		$return[] = $artist->getKonto()->getName();
+    		$return[] = array($artist->getKonto()->getName(), $artist->getIdartist());
     	}
     	return new Response(json_encode($return),200,array('Content-Type'=>'application/json'));
     }

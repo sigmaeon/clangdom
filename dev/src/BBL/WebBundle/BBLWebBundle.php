@@ -28,7 +28,7 @@ class BBLWebBundle extends Bundle
 		catch (IOException $e) {
 			echo "An error occurred while creating your directory";
 		}
-		//File::setUploadsDirectory($rootDir);
+		File::setUploadsDirectory($rootDir);
 		MainController::setUploadsDirectory($rootDir);
 	}
 }

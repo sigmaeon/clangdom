@@ -113,4 +113,7 @@ createEvent:
   requirements:
     _method: POST
      
+sendMessage:
+  pattern: /sendMessage
+  defaults: { _controller: BBLWebBundle:Main:sendMessage}
    

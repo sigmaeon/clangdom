@@ -39,14 +39,16 @@ class FileController extends Controller
 		if($session->get('state') != 'logged') throw new UnauthorizedClangdomException();
 		$em = $this->getDoctrine()->getManager();
 		$kontoRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Konto');
-		$konto = $kontoRepo->findOneByIdkonto($session->get('Konto'));
+		$konto = $kontoRepo->findOneByIdkonto($session->get('konto'));
+		
 		$artistRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Artist');
 		$profilRepo = $this->getDoctrine()->getRepository('BBLWebBundle:Profil');
 		$name = $this->getRequest()->get("Name");
 		$info = $this->getRequest()->get("Info");
-		$artists = json_decode($this->getRequest()->get("Artists"));
+		$artNames = json_decode($this->getRequest()->get("Artists"));
+		$artIds   = json_decode($this->getRequest()->get("id"));
 		$date = $this->getRequest()->get("Date");
-		$date = $date=date("Y-m-d",strtotime($date));
+		$date = $date = date("Y-m-d",strtotime($date));
 		$date = new \DateTime($date);
 		$time = new \DateTime($this->getRequest()->get("Time"));
 		if($name == null) return new Response("The Event needs a Name", 405);
@@ -70,17 +72,17 @@ class FileController extends Controller
 		if($info != null) $event->setInfo($info);
 		if($date != null) $event->setStartdate($date);
 		if($time != null) $event->setTime($time);
-		if($artists != null){
-			foreach($artists as $artist)
+		if($artIds != null){
+			foreach($artIds as $id)
 			{
-				$artistEnti = $artistRepo->findOneByName($artist);  //must get better
+				$artistEnti = $artistRepo->findOneByIdartist($id);  //must get better
 				$event->addKonto($artistEnti->getKonto());
 			}
 		}
 	
 		$em->persist($event);
 		$em->persist($post);
-		$wm->persist($profil);
+		$em->persist($profil);
 		$em->persist($konto);
 		$em->flush();
 		$response = new Response();

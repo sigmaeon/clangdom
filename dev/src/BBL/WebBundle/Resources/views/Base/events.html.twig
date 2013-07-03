@@ -73,18 +73,23 @@ function accodionNdThatStuff()
 function createEvent()
 {
 	$("#evebut").click(function(){
+		var ids = new Array();
+		$("#favArtist option:selected").each(function(){ids.push($(this).attr("artid"));});
 		$.ajax({
 		  type: "post",
 		  url: "{{ path('createEvent') }}",
 		  data: {Name: $("#eveName").val(),
+			  	 id: JSON.stringify(ids),
 		  		 Info: $("#info").val(),
 		  		 Artists: JSON.stringify($("#favArtist").val()),
 		  		 Region: $("#location").val,
 				 State:   $('option:selected', '#location').attr('fedstate'),
 			     Region:  $('option:selected', '#location').attr('country'),
 			     Date: $('#date').val(),
-			     Time: $('#time').val()}
-	     
+			     Time: $('#time').val()},
+		 success: function() {
+ 					 window.location = "{{ path('bbl_web_homepage') }}";
+  		 }
 		});
 	});
 }
